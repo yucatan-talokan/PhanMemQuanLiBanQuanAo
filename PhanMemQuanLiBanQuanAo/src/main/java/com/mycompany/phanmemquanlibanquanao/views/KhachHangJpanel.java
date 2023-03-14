@@ -66,7 +66,6 @@ public class KhachHangJpanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("Quản lý khách hàng");
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setToolTipText("");
 
@@ -301,8 +300,6 @@ public class KhachHangJpanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Danh sách KH", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
-
         tblLichSu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -357,7 +354,7 @@ public class KhachHangJpanel extends javax.swing.JPanel {
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE))
+                        .addComponent(jTabbedPane1))
                     .addContainerGap())
                 .addGroup(layout.createSequentialGroup()
                     .addGap(326, 326, 326)
