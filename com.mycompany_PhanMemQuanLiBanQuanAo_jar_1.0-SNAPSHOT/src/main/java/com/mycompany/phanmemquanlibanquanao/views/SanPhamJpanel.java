@@ -77,8 +77,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
         btnThem.setText("Them");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
