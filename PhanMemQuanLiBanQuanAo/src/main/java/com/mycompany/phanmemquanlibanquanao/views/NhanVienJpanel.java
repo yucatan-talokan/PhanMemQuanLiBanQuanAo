@@ -272,13 +272,13 @@ public class NhanVienJpanel extends javax.swing.JPanel {
 
         tbNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã NV", "Chức vụ", "Tên NV", "CCCD", "Giới tính", "Email", "Ngày sinh", "SDT", "Địa chỉ"
             }
         ));
         tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {

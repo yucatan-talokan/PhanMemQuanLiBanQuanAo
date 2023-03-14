@@ -255,7 +255,7 @@ public class KhachHangJpanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã KH", "Tên", "SDT", "Địa chỉ"
             }
         ));
         tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -311,7 +311,7 @@ public class KhachHangJpanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã HD", "Ngày tạo", "Trạng thái"
             }
         ));
         tblLichSu.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -56,7 +56,7 @@
                       <Component id="jButton8" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="viewPanel" max="32767" attributes="0"/>
+                  <Component id="viewPanel" pref="612" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

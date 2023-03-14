@@ -216,13 +216,13 @@ public class BanHangJpanel extends javax.swing.JPanel {
 
         tblCtsp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã SP", "Tên SP", "Loại", "Màu sắc", "Chất liệu", "Size", "Số lượng", "Đơn giá"
             }
         ));
         tblCtsp.addMouseListener(new java.awt.event.MouseAdapter() {
