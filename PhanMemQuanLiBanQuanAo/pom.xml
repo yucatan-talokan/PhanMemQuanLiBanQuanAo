@@ -12,6 +12,10 @@
         <exec.mainClass>com.mycompany.phanmemquanlibanquanao.PhanMemQuanLiBanQuanAo</exec.mainClass>
     </properties>
     <dependencies>
-        
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE130</version>
+        </dependency>
     </dependencies>
 </project>
