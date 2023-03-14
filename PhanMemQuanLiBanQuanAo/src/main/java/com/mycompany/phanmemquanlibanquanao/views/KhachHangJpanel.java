@@ -227,8 +227,6 @@ public class KhachHangJpanel extends javax.swing.JPanel {
                 .addGap(54, 54, 54))
         );
 
-        jPanel2.setBackground(new java.awt.Color(102, 153, 255));
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Danh sách khách hàng");
 
