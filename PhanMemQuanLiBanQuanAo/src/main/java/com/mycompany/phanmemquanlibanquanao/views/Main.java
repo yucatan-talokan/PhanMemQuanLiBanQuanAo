@@ -102,7 +102,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("Đăng Xuất");
+        jButton8.setText("Màu Sắc");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         viewPanel.setLayout(new java.awt.BorderLayout());
 
@@ -196,11 +201,17 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         showPanel(new BanHangJpanel());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        showPanel(new KhuyenMaiJpanel());        // TODO add your handling code here:
+        showPanel(new KhuyenMaiJpanel());      // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        showPanel(new MauSacJPanel());
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
