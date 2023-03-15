@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.config;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NhanVien;
 import java.util.Properties;
@@ -30,12 +31,12 @@ public class HibernateConfig {
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QUANLYBANQUANAON8");
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123");
-        properties.put(Environment.SHOW_SQL, "true");
+        properties.put(Environment.SHOW_SQL, "false");
         conf.setProperties(properties);
 //        conf.addAnnotatedClass(SanPham.class);
 //        conf.addAnnotatedClass(ChiTietSp.class);    
 //        conf.addAnnotatedClass(DongSp.class);
-//        conf.addAnnotatedClass(KhuyenMai.class);
+        conf.addAnnotatedClass(KhuyenMai.class);
 //        conf.addAnnotatedClass(ChatLieu.class);
 //        conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
