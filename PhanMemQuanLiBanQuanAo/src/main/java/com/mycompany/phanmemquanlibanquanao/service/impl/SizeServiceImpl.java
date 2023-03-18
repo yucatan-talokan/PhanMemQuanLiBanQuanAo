@@ -25,4 +25,9 @@ public class SizeServiceImpl implements  SizeService{
     public Boolean add(Size size) {
         return sizeRepository.add(size);
     }
+      @Override
+    public Boolean delete(Size size) {
+        return sizeRepository.delete(size);
+    }
+
 }

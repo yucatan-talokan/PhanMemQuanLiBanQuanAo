@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.service;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import java.util.List;
 
@@ -15,4 +16,5 @@ import java.util.List;
 public interface ChiTietSPService {
         public List<MauSac> getMauSac();
         public List<Size> getSize();
+        public List<NSX> getNsx();
 }

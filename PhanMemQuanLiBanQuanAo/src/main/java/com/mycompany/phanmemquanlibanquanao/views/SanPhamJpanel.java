@@ -5,12 +5,16 @@
 package com.mycompany.phanmemquanlibanquanao.views;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
+
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import com.mycompany.phanmemquanlibanquanao.repository.ChiTietSPRepository;
 import com.mycompany.phanmemquanlibanquanao.service.MauSacService;
+import com.mycompany.phanmemquanlibanquanao.service.NSXService;
 import com.mycompany.phanmemquanlibanquanao.service.SizeService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.ChiTietSPServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.MauSacServiceImpl;
+import com.mycompany.phanmemquanlibanquanao.service.impl.NSXServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.SizeServiceImpl;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -30,13 +34,16 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     ChiTietSPServiceImpl chiTietSpServiceImpl = new ChiTietSPServiceImpl();
     private MauSacService mauSacService = new MauSacServiceImpl();
     private SizeService sizeService = new SizeServiceImpl();
+    private NSXService nSXService = new NSXServiceImpl();
     private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
     private List<MauSac> listMauSac = chiTietSpServiceImpl.getMauSac();
     private List<Size> listSize = chiTietSpServiceImpl.getSize();
+    private List<NSX> listNSX = chiTietSpServiceImpl.getNsx();
     public SanPhamJpanel() {
         initComponents();
         loadCboMauSac(chiTietSpServiceImpl.getMauSac());
         loadCboSize(chiTietSpServiceImpl.getSize());
+        loadCboNSX(chiTietSpServiceImpl.getNsx());
     }
 
     public void loadCboMauSac(List<MauSac> list) {
@@ -52,6 +59,15 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (Size size : list) {
             row.addElement(size.getTen());
+        }
+        cboMauSac.setModel(row);
+
+    }
+    
+     public void loadCboNSX(List<NSX> list) {
+        DefaultComboBoxModel row = new DefaultComboBoxModel();
+        for (NSX nsx : list) {
+            row.addElement(nsx.getTen());
         }
         cboMauSac.setModel(row);
 
@@ -84,6 +100,20 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         }
     }
+    
+     public void loadTblNSX(List<NSX> list) {
+        model = (DefaultTableModel) tblThuocTinh.getModel();
+        model.setRowCount(0);
+        int i = 1;
+        for (NSX nsx : list) {
+            Object[] row = new Object[]{
+                i, nsx.getMa(), nsx.getTen()
+            };
+            i++;
+            model.addRow(row);
+
+        }
+    }
 
     public Boolean checkMauSac() {
         Boolean check = true;
@@ -99,6 +129,16 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         Boolean check = true;
         for (Size size : listSize) {
             if (size.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
+                check = false;
+            }
+        }
+        return check;
+    }
+    
+     public Boolean checkNSX() {
+        Boolean check = true;
+        for (NSX nsx : listNSX) {
+            if (nsx.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
                 check = false;
             }
         }
@@ -157,7 +197,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         rdoMau = new javax.swing.JRadioButton();
         rdoSize = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        rdoNSX = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
@@ -492,8 +532,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Loại");
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("NSX");
+        buttonGroup1.add(rdoNSX);
+        rdoNSX.setText("NSX");
+        rdoNSX.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoNSXMouseClicked(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setText("Chất liệu");
@@ -569,7 +614,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                         .addGap(109, 109, 109)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rdoSize)
-                            .addComponent(jRadioButton4)
+                            .addComponent(rdoNSX)
                             .addComponent(jRadioButton6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(134, 134, 134)
@@ -590,7 +635,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(rdoNSX))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel14)
@@ -686,7 +731,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cboSizeMouseEntered
 
     private void rdoMauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoMauMouseClicked
-        loadTblMau(chiTietSpServiceImpl.getMauSac());        // TODO add your handling code here:
+        loadTblMau(chiTietSpServiceImpl.getMauSac());
+return;        // TODO add your handling code here:
     }//GEN-LAST:event_rdoMauMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -729,7 +775,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Điền size");
                     return;
                 }
-                if (!checkMauSac()) {
+                if (!checkSize()) {
                     JOptionPane.showMessageDialog(this, "Đã tồn tại");
                     return;
                 }
@@ -746,6 +792,33 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         }
         loadTblSize(chiTietSpServiceImpl.getSize());
+        
+        
+          if (rdoNSX.isSelected() == true) {
+
+            try {
+                NSX nsx = new NSX();
+                if (txtTenThuocTinh.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Điền NSX");
+                    return;
+                }
+                if (!checkNSX()) {
+                    JOptionPane.showMessageDialog(this, "Đã tồn tại");
+                    return;
+                }
+                nsx.setTen(txtTenThuocTinh.getText());
+                nsx.setMa(txtMa.getText());
+
+                if (nSXService.add(nsx)) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    loadTblNSX(chiTietSpServiceImpl.getNsx());
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        loadTblNSX(chiTietSpServiceImpl.getNsx());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -769,12 +842,53 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         }
+         if (rdoSize.isSelected()) {
+            try {
+                int index = tblThuocTinh.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Chua cho size de xoa");
+                    return;
+                }
+                Size size = sizeService.getAll().get(index);
+                if (sizeService.delete(size)) {
+                    JOptionPane.showMessageDialog(this, "Xóa thành công");
+                    loadTblSize(sizeService.getAll());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                e.printStackTrace();
+            }
+        }
+          if (rdoNSX.isSelected()) {
+            try {
+                int index = tblThuocTinh.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Chua cho nsx de xoa");
+                    return;
+                }
+                NSX nsx = nSXService.getAll().get(index);
+                if (nSXService.delete(nsx)) {
+                    JOptionPane.showMessageDialog(this, "Xóa thành công");
+                    loadTblNSX(nSXService.getAll());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void rdoSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoSizeMouseClicked
         // TODO add your handling code here:
-         loadTblSize(chiTietSpServiceImpl.getSize());  
+         loadTblSize(chiTietSpServiceImpl.getSize());
+         return;
     }//GEN-LAST:event_rdoSizeMouseClicked
+
+    private void rdoNSXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNSXMouseClicked
+        // TODO add your handling code here:
+        loadTblNSX(chiTietSpServiceImpl.getNsx());
+         return;
+    }//GEN-LAST:event_rdoNSXMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -811,7 +925,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
@@ -820,6 +933,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JRadioButton rdoMau;
+    private javax.swing.JRadioButton rdoNSX;
     private javax.swing.JRadioButton rdoSize;
     private javax.swing.JTable tblChiTietSp;
     private javax.swing.JTable tblThuocTinh;

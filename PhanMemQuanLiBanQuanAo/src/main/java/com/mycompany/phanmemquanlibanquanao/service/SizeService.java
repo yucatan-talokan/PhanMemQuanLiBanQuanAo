@@ -17,4 +17,5 @@ public interface SizeService {
     List<Size> getAll();
 
     public Boolean add(Size size);
+    public Boolean delete(Size size);
 }

@@ -41,17 +41,17 @@ public class SizeRepository {
     
   
      
-//     public Boolean delete(MauSac mauSac) {
-//        Transaction transaction = null;
-//        try (Session session = HibernateConfig.getFACTORY().openSession()) {
-//            transaction = session.beginTransaction();
-//            session.delete(mauSac);
-//            transaction.commit();
-//            return true;
-//        } catch (Exception e) {
-//            e.printStackTrace(System.out);
-//        }
-//        return null;
-//
-//    }
+     public Boolean delete(Size size) {
+        Transaction transaction = null;
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(size);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+
+    }
 }

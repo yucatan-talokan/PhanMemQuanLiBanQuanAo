@@ -4,10 +4,28 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service.impl;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
+import com.mycompany.phanmemquanlibanquanao.repository.NSXRepository;
+import com.mycompany.phanmemquanlibanquanao.service.NSXService;
+import java.util.List;
+
 /**
  *
  * @author Thanh Giang
  */
-public class NSXServiceImpl {
-    
+public class NSXServiceImpl implements  NSXService{
+    private NSXRepository nSXRepository =  new NSXRepository();
+    @Override
+    public List<NSX> getAll() {
+        return nSXRepository.getAll();
+    }
+
+    @Override
+    public Boolean add(NSX nsx) {
+        return nSXRepository.add(nsx);
+    }
+      @Override
+    public Boolean delete(NSX nsx) {
+        return nSXRepository.delete(nsx);
+    }
 }

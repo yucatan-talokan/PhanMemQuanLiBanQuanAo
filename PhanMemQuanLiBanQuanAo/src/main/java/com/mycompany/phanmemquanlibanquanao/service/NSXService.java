@@ -4,10 +4,16 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
+import java.util.List;
+
 /**
  *
  * @author Thanh Giang
  */
 public interface NSXService {
-    
+    List<NSX> getAll();
+
+    public Boolean add(NSX nsx);
+    public Boolean delete(NSX nsx);
 }

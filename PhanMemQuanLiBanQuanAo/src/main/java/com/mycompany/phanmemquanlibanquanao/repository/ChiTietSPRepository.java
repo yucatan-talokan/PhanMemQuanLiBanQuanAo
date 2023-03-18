@@ -6,6 +6,7 @@ package com.mycompany.phanmemquanlibanquanao.repository;
 
 import com.mycompany.phanmemquanlibanquanao.config.HibernateConfig;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import java.util.List;
 import javax.persistence.Query;
@@ -27,6 +28,12 @@ public class ChiTietSPRepository {
     private String fromSize = "From Size";
         public List<Size> getSize() {
         Query query = session.createQuery(fromSize);
+        return query.getResultList();
+    }
+        
+        private String fromNSX = "From NSX";
+        public List<NSX> getNSX() {
+        Query query = session.createQuery(fromNSX);
         return query.getResultList();
     }
 }
