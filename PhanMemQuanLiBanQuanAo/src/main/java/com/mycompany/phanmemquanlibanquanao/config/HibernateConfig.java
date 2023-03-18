@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.config;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
@@ -39,7 +40,7 @@ public class HibernateConfig {
         conf.setProperties(properties);
         conf.addAnnotatedClass(SanPham.class);
 //        conf.addAnnotatedClass(ChiTietSp.class);    
-//        conf.addAnnotatedClass(DongSp.class);
+        conf.addAnnotatedClass(DongSP.class);
         conf.addAnnotatedClass(KhuyenMai.class);
         conf.addAnnotatedClass(ChatLieu.class);
 //        conf.addAnnotatedClass(ChucVu.class);

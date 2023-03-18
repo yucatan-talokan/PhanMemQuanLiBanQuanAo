@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.repository;
 
 import com.mycompany.phanmemquanlibanquanao.config.HibernateConfig;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
@@ -34,6 +35,11 @@ public class ChiTietSPRepository {
         private String fromNSX = "From NSX";
         public List<NSX> getNSX() {
         Query query = session.createQuery(fromNSX);
+        return query.getResultList();
+    }  
+        private String fromDongSP = "From DongSP";
+        public List<DongSP> getDongSP() {
+        Query query = session.createQuery(fromDongSP);
         return query.getResultList();
     }
 }

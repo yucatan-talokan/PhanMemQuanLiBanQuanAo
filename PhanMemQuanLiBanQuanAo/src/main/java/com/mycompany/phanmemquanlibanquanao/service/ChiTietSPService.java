@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
@@ -17,4 +18,5 @@ public interface ChiTietSPService {
         public List<MauSac> getMauSac();
         public List<Size> getSize();
         public List<NSX> getNsx();
+        public List<DongSP> getDongSP();
 }

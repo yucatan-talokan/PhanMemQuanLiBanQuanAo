@@ -4,15 +4,18 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import com.mycompany.phanmemquanlibanquanao.repository.ChiTietSPRepository;
+import com.mycompany.phanmemquanlibanquanao.service.DongSPService;
 import com.mycompany.phanmemquanlibanquanao.service.MauSacService;
 import com.mycompany.phanmemquanlibanquanao.service.NSXService;
 import com.mycompany.phanmemquanlibanquanao.service.SizeService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.ChiTietSPServiceImpl;
+import com.mycompany.phanmemquanlibanquanao.service.impl.DongSPServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.MauSacServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.NSXServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.SizeServiceImpl;
@@ -35,15 +38,18 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private MauSacService mauSacService = new MauSacServiceImpl();
     private SizeService sizeService = new SizeServiceImpl();
     private NSXService nSXService = new NSXServiceImpl();
+    private DongSPService dongSPService = new DongSPServiceImpl();
     private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
     private List<MauSac> listMauSac = chiTietSpServiceImpl.getMauSac();
     private List<Size> listSize = chiTietSpServiceImpl.getSize();
     private List<NSX> listNSX = chiTietSpServiceImpl.getNsx();
+    private List<DongSP> listDongSP = chiTietSpServiceImpl.getDongSP();
     public SanPhamJpanel() {
         initComponents();
         loadCboMauSac(chiTietSpServiceImpl.getMauSac());
         loadCboSize(chiTietSpServiceImpl.getSize());
         loadCboNSX(chiTietSpServiceImpl.getNsx());
+        loadCboDongSP(chiTietSpServiceImpl.getDongSP());
     }
 
     public void loadCboMauSac(List<MauSac> list) {
@@ -73,6 +79,15 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
     }
 
+      public void loadCboDongSP(List<DongSP> list) {
+        DefaultComboBoxModel row = new DefaultComboBoxModel();
+        for (DongSP dongSP : list) {
+            row.addElement(dongSP.getTen());
+        }
+        cboMauSac.setModel(row);
+
+    }
+     
     public void loadTblMau(List<MauSac> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
@@ -114,6 +129,20 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         }
     }
+     
+      public void loadTblDongSP(List<DongSP> list) {
+        model = (DefaultTableModel) tblThuocTinh.getModel();
+        model.setRowCount(0);
+        int i = 1;
+        for (DongSP dongSP : list) {
+            Object[] row = new Object[]{
+                i, dongSP.getMa(), dongSP.getTen()
+            };
+            i++;
+            model.addRow(row);
+
+        }
+    }
 
     public Boolean checkMauSac() {
         Boolean check = true;
@@ -144,7 +173,16 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         }
         return check;
     }
-
+ 
+      public Boolean checkDongSP() {
+        Boolean check = true;
+        for (DongSP dongSP: listDongSP) {
+            if (dongSP.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
+                check = false;
+            }
+        }
+        return check;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,7 +234,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         rdoMau = new javax.swing.JRadioButton();
         rdoSize = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rdoDongSP = new javax.swing.JRadioButton();
         rdoNSX = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
@@ -529,8 +567,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Loại");
+        buttonGroup1.add(rdoDongSP);
+        rdoDongSP.setText("Loại");
+        rdoDongSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoDongSPMouseClicked(evt);
+            }
+        });
 
         buttonGroup1.add(rdoNSX);
         rdoNSX.setText("NSX");
@@ -603,7 +646,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(rdoMau)
                                     .addComponent(jRadioButton5)
-                                    .addComponent(jRadioButton3)))
+                                    .addComponent(rdoDongSP)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(134, 134, 134)
                                 .addComponent(jButton1)
@@ -634,7 +677,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton3)
+                    .addComponent(rdoDongSP)
                     .addComponent(rdoNSX))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -819,6 +862,31 @@ return;        // TODO add your handling code here:
             }
         }
         loadTblNSX(chiTietSpServiceImpl.getNsx());
+        if (rdoDongSP.isSelected() == true) {
+
+            try {
+                DongSP dongSP = new DongSP();
+                if (txtTenThuocTinh.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Điền Dòng sản phẩm");
+                    return;
+                }
+                if (!checkDongSP()) {
+                    JOptionPane.showMessageDialog(this, "Đã tồn tại");
+                    return;
+                }
+                dongSP.setTen(txtTenThuocTinh.getText());
+                dongSP.setMa(txtMa.getText());
+
+                if (dongSPService.add(dongSP)) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    loadTblDongSP(chiTietSpServiceImpl.getDongSP());
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        loadTblDongSP(chiTietSpServiceImpl.getDongSP());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -876,6 +944,23 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
+          if (rdoDongSP.isSelected()) {
+            try {
+                int index = tblThuocTinh.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Chua cho dòng sản phẩm de xoa");
+                    return;
+                }
+                DongSP dongSP = dongSPService.getAll().get(index);
+                if (dongSPService.delete(dongSP)) {
+                    JOptionPane.showMessageDialog(this, "Xóa thành công");
+                    loadTblDongSP(dongSPService.getAll());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void rdoSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoSizeMouseClicked
@@ -889,6 +974,12 @@ return;        // TODO add your handling code here:
         loadTblNSX(chiTietSpServiceImpl.getNsx());
          return;
     }//GEN-LAST:event_rdoNSXMouseClicked
+
+    private void rdoDongSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoDongSPMouseClicked
+        // TODO add your handling code here:
+        loadTblDongSP(chiTietSpServiceImpl.getDongSP());
+         return;
+    }//GEN-LAST:event_rdoDongSPMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -924,7 +1015,6 @@ return;        // TODO add your handling code here:
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
@@ -932,6 +1022,7 @@ return;        // TODO add your handling code here:
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JRadioButton rdoDongSP;
     private javax.swing.JRadioButton rdoMau;
     private javax.swing.JRadioButton rdoNSX;
     private javax.swing.JRadioButton rdoSize;
