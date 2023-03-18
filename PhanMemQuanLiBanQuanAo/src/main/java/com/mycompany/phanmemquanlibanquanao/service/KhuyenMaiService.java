@@ -4,10 +4,13 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
+import java.util.List;
+
 /**
  *
  * @author Thanh Giang
  */
 public interface KhuyenMaiService {
-    
+    List<KhuyenMai> getAll();
 }

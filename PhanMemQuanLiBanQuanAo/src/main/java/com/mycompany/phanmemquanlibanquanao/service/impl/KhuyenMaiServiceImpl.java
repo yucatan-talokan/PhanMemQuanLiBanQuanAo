@@ -4,10 +4,20 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service.impl;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
+import com.mycompany.phanmemquanlibanquanao.repository.KhuyenMaiRepository;
+import com.mycompany.phanmemquanlibanquanao.service.KhuyenMaiService;
+import java.util.List;
+
 /**
  *
  * @author Thanh Giang
  */
-public class KhuyenMaiServiceImpl {
+public class KhuyenMaiServiceImpl implements KhuyenMaiService{
+private KhuyenMaiRepository khuyenMaiRepository=new KhuyenMaiRepository();
+    @Override
+    public List<KhuyenMai> getAll() {
+        return khuyenMaiRepository.getAll();
+    }
     
 }
