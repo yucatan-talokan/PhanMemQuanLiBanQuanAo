@@ -4,10 +4,14 @@
  */
 package com.mycompany.phanmemquanlibanquanao.config;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NhanVien;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.SanPham;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -33,15 +37,15 @@ public class HibernateConfig {
         properties.put(Environment.PASS, "123");
         properties.put(Environment.SHOW_SQL, "true");
         conf.setProperties(properties);
-//        conf.addAnnotatedClass(SanPham.class);
+        conf.addAnnotatedClass(SanPham.class);
 //        conf.addAnnotatedClass(ChiTietSp.class);    
 //        conf.addAnnotatedClass(DongSp.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-//        conf.addAnnotatedClass(ChatLieu.class);
+        conf.addAnnotatedClass(ChatLieu.class);
 //        conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
-//        conf.addAnnotatedClass(Size.class);
-//        conf.addAnnotatedClass(Nsx.class);
+        conf.addAnnotatedClass(Size.class);
+        conf.addAnnotatedClass(NSX.class);
         conf.addAnnotatedClass(MauSac.class);
 //        conf.addAnnotatedClass(HoaDon.class);
 //        conf.addAnnotatedClass(HoaDonChiTiet.class);

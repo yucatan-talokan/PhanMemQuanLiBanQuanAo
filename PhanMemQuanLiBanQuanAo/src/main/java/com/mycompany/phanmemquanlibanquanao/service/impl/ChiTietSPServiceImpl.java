@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.service.impl;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import com.mycompany.phanmemquanlibanquanao.repository.ChiTietSPRepository;
 import com.mycompany.phanmemquanlibanquanao.service.ChiTietSPService;
 import java.util.List;
@@ -19,5 +20,11 @@ public class ChiTietSPServiceImpl implements ChiTietSPService{
     @Override
     public List<MauSac> getMauSac() {
 return chiTietSpRepository.getMauSac();    }
+
+    @Override
+    public List<Size> getSize() {
+       return chiTietSpRepository.getSize();
+    }
     
+   
 }

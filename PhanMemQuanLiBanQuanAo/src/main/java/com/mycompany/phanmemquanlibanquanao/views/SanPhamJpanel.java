@@ -5,10 +5,13 @@
 package com.mycompany.phanmemquanlibanquanao.views;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import com.mycompany.phanmemquanlibanquanao.repository.ChiTietSPRepository;
 import com.mycompany.phanmemquanlibanquanao.service.MauSacService;
+import com.mycompany.phanmemquanlibanquanao.service.SizeService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.ChiTietSPServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.MauSacServiceImpl;
+import com.mycompany.phanmemquanlibanquanao.service.impl.SizeServiceImpl;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -26,18 +29,29 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private DefaultTableModel model;
     ChiTietSPServiceImpl chiTietSpServiceImpl = new ChiTietSPServiceImpl();
     private MauSacService mauSacService = new MauSacServiceImpl();
+    private SizeService sizeService = new SizeServiceImpl();
     private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
     private List<MauSac> listMauSac = chiTietSpServiceImpl.getMauSac();
-
+    private List<Size> listSize = chiTietSpServiceImpl.getSize();
     public SanPhamJpanel() {
         initComponents();
         loadCboMauSac(chiTietSpServiceImpl.getMauSac());
+        loadCboSize(chiTietSpServiceImpl.getSize());
     }
 
     public void loadCboMauSac(List<MauSac> list) {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (MauSac mauSac : list) {
             row.addElement(mauSac.getTen());
+        }
+        cboMauSac.setModel(row);
+
+    }
+    
+    public void loadCboSize(List<Size> list) {
+        DefaultComboBoxModel row = new DefaultComboBoxModel();
+        for (Size size : list) {
+            row.addElement(size.getTen());
         }
         cboMauSac.setModel(row);
 
@@ -56,11 +70,35 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         }
     }
+    
+    public void loadTblSize(List<Size> list) {
+        model = (DefaultTableModel) tblThuocTinh.getModel();
+        model.setRowCount(0);
+        int i = 1;
+        for (Size size : list) {
+            Object[] row = new Object[]{
+                i, size.getMa(), size.getTen()
+            };
+            i++;
+            model.addRow(row);
+
+        }
+    }
 
     public Boolean checkMauSac() {
         Boolean check = true;
         for (MauSac mauSac : listMauSac) {
             if (mauSac.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
+                check = false;
+            }
+        }
+        return check;
+    }
+    
+    public Boolean checkSize() {
+        Boolean check = true;
+        for (Size size : listSize) {
+            if (size.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
                 check = false;
             }
         }
@@ -117,7 +155,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         txtMa = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         rdoMau = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdoSize = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
@@ -443,8 +481,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Size");
+        buttonGroup1.add(rdoSize);
+        rdoSize.setText("Size");
+        rdoSize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoSizeMouseClicked(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Loại");
@@ -525,7 +568,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                                 .addComponent(jButton4)))
                         .addGap(109, 109, 109)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
+                            .addComponent(rdoSize)
                             .addComponent(jRadioButton4)
                             .addComponent(jRadioButton6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -541,7 +584,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(txtTenThuocTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdoMau)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rdoSize))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -675,6 +718,34 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         }
         loadTblMau(chiTietSpServiceImpl.getMauSac());
+        
+        
+        
+         if (rdoSize.isSelected() == true) {
+
+            try {
+                Size size = new Size();
+                if (txtTenThuocTinh.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Điền size");
+                    return;
+                }
+                if (!checkMauSac()) {
+                    JOptionPane.showMessageDialog(this, "Đã tồn tại");
+                    return;
+                }
+                size.setTen(txtTenThuocTinh.getText());
+                size.setMa(txtMa.getText());
+
+                if (sizeService.add(size)) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    loadTblSize(chiTietSpServiceImpl.getSize());
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        loadTblSize(chiTietSpServiceImpl.getSize());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -699,6 +770,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void rdoSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoSizeMouseClicked
+        // TODO add your handling code here:
+         loadTblSize(chiTietSpServiceImpl.getSize());  
+    }//GEN-LAST:event_rdoSizeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -734,7 +810,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
@@ -745,6 +820,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JRadioButton rdoMau;
+    private javax.swing.JRadioButton rdoSize;
     private javax.swing.JTable tblChiTietSp;
     private javax.swing.JTable tblThuocTinh;
     private javax.swing.JTextField txtGia;

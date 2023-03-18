@@ -4,10 +4,17 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
+import java.util.List;
+
 /**
  *
  * @author Thanh Giang
  */
 public interface SizeService {
     
+    List<Size> getAll();
+
+    public Boolean add(Size size);
 }

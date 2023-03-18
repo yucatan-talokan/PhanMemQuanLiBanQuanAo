@@ -567,7 +567,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rdoSize" min="-2" max="-2" attributes="0"/>
                                   <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
                                   <Component id="jRadioButton6" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -589,7 +589,7 @@
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtTenThuocTinh" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rdoMau" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdoSize" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -653,13 +653,16 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rdoMauMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="rdoSize">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Size"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rdoSizeMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButton3">
               <Properties>
