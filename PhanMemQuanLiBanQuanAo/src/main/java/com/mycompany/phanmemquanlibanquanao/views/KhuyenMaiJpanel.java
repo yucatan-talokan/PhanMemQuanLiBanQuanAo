@@ -41,6 +41,12 @@ private DefaultTableModel dtm;
             dtm.addRow(row);
         }
     }
+    public void getData(KhuyenMai km){
+        km.setMa(txtMa.getText());
+        km.setTen(txtTen.getText());
+        
+        
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -73,6 +79,11 @@ private DefaultTableModel dtm;
         jLabel6.setText("Mức giảm giá");
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnSua.setText("Sửa");
 
@@ -162,6 +173,11 @@ private DefaultTableModel dtm;
                 .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        KhuyenMai km=new KhuyenMai();
+        
+    }//GEN-LAST:event_btnThemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

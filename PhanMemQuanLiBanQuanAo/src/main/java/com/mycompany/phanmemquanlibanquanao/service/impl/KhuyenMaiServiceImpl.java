@@ -19,5 +19,10 @@ private KhuyenMaiRepository khuyenMaiRepository=new KhuyenMaiRepository();
     public List<KhuyenMai> getAll() {
         return khuyenMaiRepository.getAll();
     }
+
+    @Override
+    public Boolean add(KhuyenMai km) {
+        return khuyenMaiRepository.add(km);
+    }
     
 }
