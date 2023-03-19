@@ -227,11 +227,11 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int row = tblKhuyenMai.getSelectedRow();
         KhuyenMai km = khuyenMaiService.getAll().get(row);
-            km.setMa(txtMa.getText());
-            km.setTen(txtTen.getText());
-            km.setNgayBatDau(txtBatDau.getDate());
-            km.setNgayKetThuc(txtKetThuc.getDate());
-            km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
+        km.setMa(txtMa.getText());
+        km.setTen(txtTen.getText());
+        km.setNgayBatDau(txtBatDau.getDate());
+        km.setNgayKetThuc(txtKetThuc.getDate());
+        km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Hãy chọn 1 dòng trên table để sửa");
         } else {
@@ -245,23 +245,19 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        int confirm=JOptionPane.showConfirmDialog(this,"Bạn có muốn xoá không");
-        if(confirm==JOptionPane.YES_OPTION){
-            int row=tblKhuyenMai.getSelectedRow();
-        KhuyenMai km=khuyenMaiService.getAll().get(row);
-        if(row==-1){
+        int row = tblKhuyenMai.getSelectedRow();
+        KhuyenMai km = khuyenMaiService.getAll().get(row);
+        if (row == -1) {
             JOptionPane.showMessageDialog(this, "Hãy chọn một dòng trên table để xoá");
-        }
-        else{
-            if(khuyenMaiService.delete(km)){
+        } else {
+            if (khuyenMaiService.delete(km)) {
                 JOptionPane.showMessageDialog(this, "Xoá thành công");
                 loadTable(khuyenMaiService.getAll());
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Xoá thất bại");
             }
         }
-        }
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
 
