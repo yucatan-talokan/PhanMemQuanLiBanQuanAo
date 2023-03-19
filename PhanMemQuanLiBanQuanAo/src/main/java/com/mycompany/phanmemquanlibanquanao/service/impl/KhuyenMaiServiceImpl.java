@@ -24,5 +24,15 @@ private KhuyenMaiRepository khuyenMaiRepository=new KhuyenMaiRepository();
     public Boolean add(KhuyenMai km) {
         return khuyenMaiRepository.add(km);
     }
+
+    @Override
+    public Boolean update(KhuyenMai km) {
+        return khuyenMaiRepository.update(km);
+    }
+
+    @Override
+    public Boolean delete(KhuyenMai km) {
+        return khuyenMaiRepository.delete(km);
+    }
     
 }

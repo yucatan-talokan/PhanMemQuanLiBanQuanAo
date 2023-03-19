@@ -14,4 +14,6 @@ import java.util.List;
 public interface KhuyenMaiService {
     List<KhuyenMai> getAll();
     public Boolean add(KhuyenMai km);
+    public Boolean update(KhuyenMai km);
+    public Boolean delete(KhuyenMai km);
 }

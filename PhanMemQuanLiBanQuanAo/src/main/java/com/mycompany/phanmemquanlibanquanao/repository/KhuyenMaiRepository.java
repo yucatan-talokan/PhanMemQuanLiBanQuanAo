@@ -34,4 +34,30 @@ public class KhuyenMaiRepository {
         }
         return null;
     }
+    public Boolean update(KhuyenMai km){
+        Transaction trans=null;
+        try(Session session=HibernateConfig.getFACTORY().openSession()){
+            trans=session.beginTransaction();
+            session.saveOrUpdate(km);
+            trans.commit();
+            return true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Boolean delete(KhuyenMai km){
+        Transaction trans=null;
+        try(Session session=HibernateConfig.getFACTORY().openSession()){
+            trans=session.beginTransaction();
+            session.delete(km);
+            trans.commit();
+            return true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
