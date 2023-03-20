@@ -4,16 +4,20 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import com.mycompany.phanmemquanlibanquanao.repository.ChiTietSPRepository;
+import com.mycompany.phanmemquanlibanquanao.service.ChatLieuService;
 import com.mycompany.phanmemquanlibanquanao.service.DongSPService;
 import com.mycompany.phanmemquanlibanquanao.service.MauSacService;
 import com.mycompany.phanmemquanlibanquanao.service.NSXService;
 import com.mycompany.phanmemquanlibanquanao.service.SizeService;
+import com.mycompany.phanmemquanlibanquanao.service.impl.ChatLieuServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.ChiTietSPServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.DongSPServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.MauSacServiceImpl;
@@ -39,17 +43,23 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private SizeService sizeService = new SizeServiceImpl();
     private NSXService nSXService = new NSXServiceImpl();
     private DongSPService dongSPService = new DongSPServiceImpl();
+    private ChatLieuService chatLieuService = new ChatLieuServiceImpl();
+    
     private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
+    
     private List<MauSac> listMauSac = chiTietSpServiceImpl.getMauSac();
     private List<Size> listSize = chiTietSpServiceImpl.getSize();
     private List<NSX> listNSX = chiTietSpServiceImpl.getNsx();
     private List<DongSP> listDongSP = chiTietSpServiceImpl.getDongSP();
+    private List<ChatLieu> listChatLieu = chiTietSpServiceImpl.getChatLieu();
+    
     public SanPhamJpanel() {
         initComponents();
         loadCboMauSac(chiTietSpServiceImpl.getMauSac());
         loadCboSize(chiTietSpServiceImpl.getSize());
         loadCboNSX(chiTietSpServiceImpl.getNsx());
         loadCboDongSP(chiTietSpServiceImpl.getDongSP());
+        loadCboChatLieu(chiTietSpServiceImpl.getChatLieu());
     }
 
     public void loadCboMauSac(List<MauSac> list) {
@@ -66,7 +76,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         for (Size size : list) {
             row.addElement(size.getTen());
         }
-        cboMauSac.setModel(row);
+        cboSize.setModel(row);
 
     }
     
@@ -75,7 +85,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         for (NSX nsx : list) {
             row.addElement(nsx.getTen());
         }
-        cboMauSac.setModel(row);
+        cboNsx.setModel(row);
 
     }
 
@@ -84,7 +94,16 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         for (DongSP dongSP : list) {
             row.addElement(dongSP.getTen());
         }
-        cboMauSac.setModel(row);
+        cboDongSp.setModel(row);
+
+    }
+      
+       public void loadCboChatLieu(List<ChatLieu> list) {
+        DefaultComboBoxModel row = new DefaultComboBoxModel();
+        for (ChatLieu chatLieu : list) {
+            row.addElement(chatLieu.getTen());
+        }
+        cboChatLieu.setModel(row);
 
     }
      
@@ -144,6 +163,19 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         }
     }
 
+       public void loadTblChatLieu(List<ChatLieu> list) {
+        model = (DefaultTableModel) tblThuocTinh.getModel();
+        model.setRowCount(0);
+        int i = 1;
+            for (ChatLieu chatLieu : list) {
+            Object[] row = new Object[]{
+                i, chatLieu.getMa(),chatLieu.getTen()
+            };
+            i++;
+            model.addRow(row);
+
+        }
+    }
     public Boolean checkMauSac() {
         Boolean check = true;
         for (MauSac mauSac : listMauSac) {
@@ -178,6 +210,15 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         Boolean check = true;
         for (DongSP dongSP: listDongSP) {
             if (dongSP.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
+                check = false;
+            }
+        }
+        return check;
+    }
+       public Boolean checkChatLieu() {
+        Boolean check = true;
+        for (ChatLieu chatLieu: listChatLieu) {
+            if (chatLieu.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
                 check = false;
             }
         }
@@ -236,7 +277,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         rdoSize = new javax.swing.JRadioButton();
         rdoDongSP = new javax.swing.JRadioButton();
         rdoNSX = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        rboChatLieu = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -385,6 +426,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cboMauSac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cboMauSacMouseEntered(evt);
+            }
+        });
+        cboMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMauSacActionPerformed(evt);
             }
         });
 
@@ -583,8 +629,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setText("Chất liệu");
+        buttonGroup1.add(rboChatLieu);
+        rboChatLieu.setText("Chất liệu");
+        rboChatLieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rboChatLieuMouseClicked(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton6);
         jRadioButton6.setText("Sản phẩm");
@@ -645,7 +696,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(rdoMau)
-                                    .addComponent(jRadioButton5)
+                                    .addComponent(rboChatLieu)
                                     .addComponent(rdoDongSP)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(134, 134, 134)
@@ -684,7 +735,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     .addComponent(jLabel14)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton5)
+                        .addComponent(rboChatLieu)
                         .addComponent(jRadioButton6)))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -886,7 +937,32 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
-        loadTblDongSP(chiTietSpServiceImpl.getDongSP());
+        loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
+         if (rboChatLieu.isSelected() == true) {
+
+            try {
+                ChatLieu chatLieu = new ChatLieu();
+                if (txtTenThuocTinh.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Điền chất liệu");
+                    return;
+                }
+                if (!checkChatLieu()) {
+                    JOptionPane.showMessageDialog(this, "Đã tồn tại");
+                    return;
+                }
+                chatLieu.setTen(txtTenThuocTinh.getText());
+                chatLieu.setMa(txtMa.getText());
+
+                if (chatLieuService.add(chatLieu)) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    loadTblDongSP(chiTietSpServiceImpl.getDongSP());
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -961,6 +1037,23 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
+           if (rboChatLieu.isSelected()) {
+            try {
+                int index = tblThuocTinh.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Chua cho chất liệu de xoa");
+                    return;
+                }
+                ChatLieu chatLieu = chatLieuService.getAll().get(index);
+                if (chatLieuService.delete(chatLieu)) {
+                    JOptionPane.showMessageDialog(this, "Xóa thành công");
+                    loadTblChatLieu(chatLieuService.getAll());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void rdoSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoSizeMouseClicked
@@ -980,6 +1073,16 @@ return;        // TODO add your handling code here:
         loadTblDongSP(chiTietSpServiceImpl.getDongSP());
          return;
     }//GEN-LAST:event_rdoDongSPMouseClicked
+
+    private void rboChatLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rboChatLieuMouseClicked
+        // TODO add your handling code here:
+         loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
+         return;
+    }//GEN-LAST:event_rboChatLieuMouseClicked
+
+    private void cboMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMauSacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboMauSacActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1015,13 +1118,13 @@ return;        // TODO add your handling code here:
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JRadioButton rboChatLieu;
     private javax.swing.JRadioButton rdoDongSP;
     private javax.swing.JRadioButton rdoMau;
     private javax.swing.JRadioButton rdoNSX;

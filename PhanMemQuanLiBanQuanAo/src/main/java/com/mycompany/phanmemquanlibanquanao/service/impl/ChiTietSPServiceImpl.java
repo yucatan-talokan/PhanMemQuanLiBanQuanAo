@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service.impl;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
@@ -35,6 +36,10 @@ return chiTietSpRepository.getMauSac();    }
      @Override
     public List<DongSP> getDongSP()  {
      return chiTietSpRepository.getDongSP();
+    }
+         @Override
+    public List<ChatLieu> getChatLieu()  {
+     return chiTietSpRepository.getChatLieu();
     }
    
     

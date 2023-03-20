@@ -4,10 +4,16 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
+import java.util.List;
+
 /**
  *
  * @author Thanh Giang
  */
 public interface ChatLieuService {
-    
+    List<ChatLieu> getAll();
+
+    public Boolean add(ChatLieu chatLieu);
+    public Boolean delete(ChatLieu chatLieu);
 }

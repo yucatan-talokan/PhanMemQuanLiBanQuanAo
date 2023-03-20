@@ -42,7 +42,7 @@ public class HibernateConfig {
 //        conf.addAnnotatedClass(ChiTietSp.class);    
         conf.addAnnotatedClass(DongSP.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-        conf.addAnnotatedClass(ChatLieu.class);
+       conf.addAnnotatedClass(ChatLieu.class);
 //        conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(Size.class);

@@ -22,7 +22,7 @@ public class NSXRepository {
     private String fromTable = "FROM NSX";
     
     public List<NSX> getAll(){
-        Query query = session.createQuery(fromTable, Size.class);
+        Query query = session.createQuery(fromTable, NSX.class);
         return  query.getResultList();
     }
  
