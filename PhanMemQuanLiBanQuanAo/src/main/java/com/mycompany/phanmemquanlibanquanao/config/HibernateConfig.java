@@ -5,7 +5,11 @@
 package com.mycompany.phanmemquanlibanquanao.config;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChiTietSP;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChucVu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDonChiTiet;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
@@ -39,17 +43,17 @@ public class HibernateConfig {
         properties.put(Environment.SHOW_SQL, "true");
         conf.setProperties(properties);
         conf.addAnnotatedClass(SanPham.class);
-//        conf.addAnnotatedClass(ChiTietSp.class);    
+        conf.addAnnotatedClass(ChiTietSP.class);    
         conf.addAnnotatedClass(DongSP.class);
         conf.addAnnotatedClass(KhuyenMai.class);
        conf.addAnnotatedClass(ChatLieu.class);
-//        conf.addAnnotatedClass(ChucVu.class);
+        conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(Size.class);
         conf.addAnnotatedClass(NSX.class);
         conf.addAnnotatedClass(MauSac.class);
-//        conf.addAnnotatedClass(HoaDon.class);
-//        conf.addAnnotatedClass(HoaDonChiTiet.class);
+        conf.addAnnotatedClass(HoaDon.class);
+        conf.addAnnotatedClass(HoaDonChiTiet.class);
         conf.addAnnotatedClass(KhachHang.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()

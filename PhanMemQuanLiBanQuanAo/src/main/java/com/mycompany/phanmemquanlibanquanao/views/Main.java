@@ -102,7 +102,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("Màu Sắc");
+        jButton8.setText("Đăng xuất");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -210,7 +210,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        showPanel(new MauSacJPanel());
+       
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

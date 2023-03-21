@@ -37,4 +37,38 @@ public class KhachHangRepository {
         }
         return null;
     }
+        public Boolean update(KhachHang KhachHang) {
+
+        Transaction transaction = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(KhachHang);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+
+    }
+
+    public Boolean Delete(KhachHang KhachHang) {
+        Transaction transaction = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession();) {
+            transaction = session.beginTransaction();
+            session.delete(KhachHang);
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+        public KhachHang getOne(int id) {
+        String sql = fromTable + "Where id = :id";
+        Query query = session.createQuery(sql, KhachHang.class);
+        query.setParameter("id", id);
+        return (KhachHang) query.getSingleResult();
+    }
 }

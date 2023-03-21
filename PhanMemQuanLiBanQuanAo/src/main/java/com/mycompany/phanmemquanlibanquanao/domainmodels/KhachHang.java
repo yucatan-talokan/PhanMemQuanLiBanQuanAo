@@ -46,17 +46,17 @@ public class KhachHang {
     private String ma;
     
      
-    @Column(name = "capbac")
-    private Integer capBac;
+//    @Column(name = "capbac")
+//    private Integer capBac;
     
     @Column(name = "diaChi")
     private String diaChi;
 
-    public String capbac(){
-        if(capBac==0){
-            return "Bạc";
-        }else if(capBac==1){
-            return "Vàng";
-        }else return "Kim cương";  
-    }
+//    public String capbac(){
+//        if(capBac==0){
+//            return "Bạc";
+//        }else if(capBac==1){
+//            return "Vàng";
+//        }else return "Kim cương";  
+//    }
 }

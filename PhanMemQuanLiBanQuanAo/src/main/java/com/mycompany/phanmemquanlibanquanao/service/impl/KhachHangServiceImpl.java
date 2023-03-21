@@ -26,5 +26,21 @@ private KhachHangRepository KhachHangRepository = new KhachHangRepository();
         return  KhachHangRepository.add(KhachHang);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Boolean update(KhachHang KhachHang) {
+        return KhachHangRepository.update(KhachHang);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Boolean Delete(KhachHang KhachHang) {
+        return KhachHangRepository.Delete(KhachHang);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public KhachHang getOne(int id) {
+return KhachHangRepository.getOne(id);    }
     
 }

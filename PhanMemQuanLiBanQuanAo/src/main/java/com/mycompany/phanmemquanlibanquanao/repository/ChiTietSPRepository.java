@@ -21,7 +21,7 @@ import org.hibernate.Session;
  */
 public class ChiTietSPRepository {
     private Session session = HibernateConfig.getFACTORY().openSession();
-    
+    private String fromTable = "From ChiTietSP";
     private String fromMauSac = "From MauSac";
         public List<MauSac> getMauSac() {
         Query query = session.createQuery(fromMauSac);
