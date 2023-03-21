@@ -9,6 +9,7 @@ import com.mycompany.phanmemquanlibanquanao.service.NhanVienService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.NhanVienServiceImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -490,7 +491,13 @@ public class NhanVienJpanel extends javax.swing.JPanel {
 
     private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
         // TODO add your handling code here:
-
+      ArrayList<NhanVien> lst = new ArrayList<>();
+        for (NhanVien nv : nhanVienService.getAll()) {
+            if (nv.getTenNhanVien().contains(txtTim.getText()) || nv.getMaNV().contains(txtTim.getText()) || nv.getCccd().contains(txtTim.getText())) {
+                lst.add(nv);
+            }
+        }
+        loadData(lst);
     }//GEN-LAST:event_txtTimKeyReleased
 
     private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed

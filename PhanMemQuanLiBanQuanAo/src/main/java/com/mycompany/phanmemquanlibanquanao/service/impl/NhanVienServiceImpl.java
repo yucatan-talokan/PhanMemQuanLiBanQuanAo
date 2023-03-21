@@ -35,4 +35,8 @@ public class NhanVienServiceImpl implements NhanVienService{
     public Boolean update(NhanVien nhanVien) {
         return nhanVienRepository.Update(nhanVien);
     }
+     @Override
+    public NhanVien getOne(Integer id) {
+        return nhanVienRepository.getOne(id);
+    }
 }

@@ -19,4 +19,6 @@ public interface NhanVienService {
     public Boolean delete(NhanVien nhanVien);
 
     public Boolean update(NhanVien nhanVien);
+    
+     NhanVien getOne(Integer id);
 }
