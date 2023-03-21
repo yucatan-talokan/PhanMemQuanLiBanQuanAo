@@ -6,14 +6,17 @@ package com.mycompany.phanmemquanlibanquanao.repository;
 
 import com.mycompany.phanmemquanlibanquanao.config.HibernateConfig;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChiTietSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.SanPham;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -21,6 +24,16 @@ import org.hibernate.Session;
  */
 public class ChiTietSPRepository {
     private Session session = HibernateConfig.getFACTORY().openSession();
+    public ArrayList<ChiTietSP> getAll() {
+        Query query = session.createQuery(fromTable+" order by id desc");
+        return (ArrayList<ChiTietSP>) query.getResultList();
+    }
+    
+    public ArrayList<ChiTietSP> getAllSanPhamLonHon0() {
+        Query query = session.createQuery(fromTable+" where soLuongTon >0");
+        return (ArrayList<ChiTietSP>) query.getResultList();
+    }
+
     private String fromTable = "From ChiTietSP";
     private String fromMauSac = "From MauSac";
         public List<MauSac> getMauSac() {
@@ -54,4 +67,53 @@ public class ChiTietSPRepository {
         Query query = session.createQuery(fromSanPham);
         return query.getResultList();
     }
+        public Boolean add(ChiTietSP chiTietSp) {
+        Transaction transaction = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession();) {
+
+            transaction = session.beginTransaction();
+            session.save(chiTietSp);
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+        public Boolean update(ChiTietSP chiTietSp) {
+        Transaction transaction = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession();) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(chiTietSp);
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Boolean delete(ChiTietSP chiTietSp) {
+        Transaction transaction = null;
+        try ( Session session = HibernateConfig.getFACTORY().openSession();) {
+
+            transaction = session.beginTransaction();
+            session.delete(chiTietSp);
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+ public ChiTietSP getOne(String id) {
+        String sql = fromTable + " where MACTSP=:id";
+        Query query = session.createQuery(sql, ChiTietSP.class);
+        query.setParameter("id", id);
+        return (ChiTietSP) query.getSingleResult();
+    }
+
 }
