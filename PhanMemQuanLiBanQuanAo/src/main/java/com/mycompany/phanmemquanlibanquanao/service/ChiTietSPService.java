@@ -8,6 +8,7 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.SanPham;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import java.util.List;
 
@@ -21,4 +22,5 @@ public interface ChiTietSPService {
         public List<NSX> getNsx();
         public List<DongSP> getDongSP();
         public List<ChatLieu> getChatLieu();
+         public List<SanPham> getSanPham();
 }

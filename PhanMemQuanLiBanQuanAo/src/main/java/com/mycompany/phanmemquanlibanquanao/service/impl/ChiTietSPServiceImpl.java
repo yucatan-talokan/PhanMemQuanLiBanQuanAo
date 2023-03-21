@@ -8,6 +8,7 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.SanPham;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import com.mycompany.phanmemquanlibanquanao.repository.ChiTietSPRepository;
 import com.mycompany.phanmemquanlibanquanao.service.ChiTietSPService;
@@ -41,7 +42,10 @@ return chiTietSpRepository.getMauSac();    }
     public List<ChatLieu> getChatLieu()  {
      return chiTietSpRepository.getChatLieu();
     }
-   
+        @Override
+    public List<SanPham> getSanPham()  {
+     return chiTietSpRepository.getSanPham();
+    }
     
    
 }

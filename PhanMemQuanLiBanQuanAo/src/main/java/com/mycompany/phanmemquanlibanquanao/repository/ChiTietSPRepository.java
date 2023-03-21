@@ -9,6 +9,7 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.DongSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.SanPham;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import java.util.List;
 import javax.persistence.Query;
@@ -46,6 +47,11 @@ public class ChiTietSPRepository {
             private String fromChatLieu = "From ChatLieu";
         public List<ChatLieu> getChatLieu() {
         Query query = session.createQuery(fromChatLieu);
+        return query.getResultList();
+    }
+             private String fromSanPham = "From SanPham";
+        public List<SanPham> getSanPham() {
+        Query query = session.createQuery(fromSanPham);
         return query.getResultList();
     }
 }
