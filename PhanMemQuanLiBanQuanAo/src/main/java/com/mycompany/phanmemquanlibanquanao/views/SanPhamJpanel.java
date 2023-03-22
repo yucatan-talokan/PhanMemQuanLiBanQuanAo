@@ -730,6 +730,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                 "STT", "Mã", "Tên"
             }
         ));
+        tblThuocTinh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblThuocTinhMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblThuocTinh);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1363,6 +1368,14 @@ return;        // TODO add your handling code here:
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void tblThuocTinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThuocTinhMouseClicked
+        // TODO add your handling code here:
+        int index = tblThuocTinh.getSelectedRow();
+        txtTenThuocTinh.setText(tblThuocTinh.getValueAt(index,2).toString());
+        txtMa.setText(tblThuocTinh.getValueAt(index, 1).toString());
+       
+    }//GEN-LAST:event_tblThuocTinhMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
