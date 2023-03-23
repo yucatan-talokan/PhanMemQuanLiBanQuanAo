@@ -609,6 +609,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
+        txtTim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimMouseClicked(evt);
+            }
+        });
         txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTimKeyReleased(evt);
@@ -1376,6 +1381,10 @@ return;        // TODO add your handling code here:
         txtMa.setText(tblThuocTinh.getValueAt(index, 1).toString());
        
     }//GEN-LAST:event_tblThuocTinhMouseClicked
+
+    private void txtTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
