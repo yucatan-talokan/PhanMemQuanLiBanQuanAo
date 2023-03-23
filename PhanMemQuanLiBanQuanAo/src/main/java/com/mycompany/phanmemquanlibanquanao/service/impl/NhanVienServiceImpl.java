@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service.impl;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChucVu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NhanVien;
 import com.mycompany.phanmemquanlibanquanao.repository.NhanVienRepository;
 import com.mycompany.phanmemquanlibanquanao.service.NhanVienService;
@@ -39,4 +40,8 @@ public class NhanVienServiceImpl implements NhanVienService{
     public NhanVien getOne(Integer id) {
         return nhanVienRepository.getOne(id);
     }
+        @Override
+    public List<ChucVu> getChucVu() {
+return nhanVienRepository.getChucVu();    }
+
 }

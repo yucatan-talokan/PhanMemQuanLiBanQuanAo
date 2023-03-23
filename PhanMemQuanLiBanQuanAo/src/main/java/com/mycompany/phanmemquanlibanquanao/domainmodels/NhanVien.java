@@ -66,9 +66,9 @@ public class NhanVien {
     @Column(name = "Email")
     private String email;
     
-//    @ManyToOne
-//    @JoinColumn(name = "IdChucVu",referencedColumnName = "id" )
-//    private ChucVu chucVu;
+    @ManyToOne
+    @JoinColumn(name = "IdChucVu",referencedColumnName = "id" )
+    private ChucVu chucVu;
     
     public String htGioiTinh(){
         if(gioiTinh == true){

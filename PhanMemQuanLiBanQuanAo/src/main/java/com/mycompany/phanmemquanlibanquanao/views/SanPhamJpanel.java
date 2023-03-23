@@ -1225,8 +1225,8 @@ return;        // TODO add your handling code here:
                     JOptionPane.showMessageDialog(this, "Chua cho mau de xoa");
                     return;
                 }
-                MauSac chatLieu = mauSacService.getAll().get(index);
-                if (mauSacService.delete(chatLieu)) {
+                MauSac mauSac = mauSacService.getAll().get(index);
+                if (mauSacService.delete(mauSac)) {
                     JOptionPane.showMessageDialog(this, "Xóa thành công");
                     loadTblMau(mauSacService.getAll());
                 }

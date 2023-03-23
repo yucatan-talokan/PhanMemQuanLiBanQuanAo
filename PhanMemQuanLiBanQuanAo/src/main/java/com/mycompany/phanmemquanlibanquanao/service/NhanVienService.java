@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.service;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChucVu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NhanVien;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public interface NhanVienService {
     public Boolean delete(NhanVien nhanVien);
 
     public Boolean update(NhanVien nhanVien);
+     public List<ChucVu> getChucVu();
     
      NhanVien getOne(Integer id);
 }

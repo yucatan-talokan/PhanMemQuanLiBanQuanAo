@@ -5,7 +5,9 @@
 package com.mycompany.phanmemquanlibanquanao.repository;
 
 import com.mycompany.phanmemquanlibanquanao.config.HibernateConfig;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChucVu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NhanVien;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,6 +21,12 @@ public class NhanVienRepository {
      private Session session = HibernateConfig.getFACTORY().openSession();
     
     private String fromTable = "FROM NhanVien";
+    
+     private String fromChucVu = "From ChucVu";
+        public List<ChucVu> getChucVu() {
+        javax.persistence.Query query = session.createQuery(fromChucVu);
+        return query.getResultList();
+    }
     
     public List<NhanVien> getAll(){
         Query query = session.createQuery(fromTable, NhanVien.class);

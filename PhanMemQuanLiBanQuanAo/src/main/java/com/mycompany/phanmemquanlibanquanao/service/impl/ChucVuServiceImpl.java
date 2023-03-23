@@ -29,4 +29,5 @@ public class ChucVuServiceImpl implements ChucVuService{
     public Boolean delete(ChucVu chucVu) {
         return chucVuRepository.delete(chucVu);
     }
+
 }

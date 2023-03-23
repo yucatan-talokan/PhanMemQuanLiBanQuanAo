@@ -4,8 +4,12 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChucVu;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NhanVien;
+import com.mycompany.phanmemquanlibanquanao.repository.NhanVienRepository;
+import com.mycompany.phanmemquanlibanquanao.service.ChucVuService;
 import com.mycompany.phanmemquanlibanquanao.service.NhanVienService;
+import com.mycompany.phanmemquanlibanquanao.service.impl.ChucVuServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.NhanVienServiceImpl;
 
 import java.text.ParseException;
@@ -15,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,19 +32,50 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     /**
      * Creates new form test
      */
-    
+    private NhanVienServiceImpl nhanVienServiceImpl = new NhanVienServiceImpl();
       private NhanVienService nhanVienService = new NhanVienServiceImpl();
+      private ChucVuService chucVuService = new ChucVuServiceImpl();
+      
+      private NhanVienRepository nhanVienRepository = new NhanVienRepository();
     private DefaultTableModel defaultTableModel;
+    
+    private List<NhanVien> list = nhanVienService.getAll();
+    private List<ChucVu> listcChucVus = nhanVienService.getChucVu();
     public NhanVienJpanel() {
         initComponents();
         loadData(nhanVienService.getAll());
+        loadCboChucVu(nhanVienService.getChucVu());
+        loadTblChucVu(listcChucVus);
     }
-    
-        private String doiNgay(Date d) {
-        SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("dd-MM-yyyy");
-        String ngaySinh = format.format(d);
-        return ngaySinh;
+       public void loadCboChucVu(List<ChucVu> list) {
+        DefaultComboBoxModel row = new DefaultComboBoxModel();
+        for (ChucVu chucVu : list) {
+            row.addElement(chucVu.getTen());
+        }
+        cboChucVu.setModel(row);
+       }
+
+         public Boolean checkMChucVu() {
+        Boolean check = true;
+        for (ChucVu chucVu : listcChucVus) {
+            if (chucVu.getTen().equalsIgnoreCase(txtTenchucvu.getText())) {
+                check = false;
+            }
+        }
+        return check;
+    }
+           public void loadTblChucVu(List<ChucVu> list) {
+        defaultTableModel = (DefaultTableModel) tblChucVu.getModel();
+        defaultTableModel.setRowCount(0);
+        int i = 1;
+        for (ChucVu chucVu : list) {
+            Object[] row = new Object[]{
+                i, chucVu.getMa(), chucVu.getTen()
+            };
+            i++;
+            defaultTableModel.addRow(row);
+
+        }
     }
     public void loadData(List<NhanVien> list) {
         nhanVienService = new NhanVienServiceImpl();
@@ -48,7 +84,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         int i = 1;
         for (NhanVien nhanVien : list) {
             defaultTableModel.addRow(new Object[]{i, nhanVien.getMaNV(),nhanVien.getCccd(),nhanVien.getTenNhanVien(),nhanVien.htGioiTinh(), nhanVien.getEmail(),
-                doiNgay(nhanVien.getNgaySinh()),nhanVien.getSDT(),nhanVien.getDiaChi()});
+              nhanVien.getNgaySinh(),nhanVien.getSDT(),nhanVien.getDiaChi(),nhanVien.getChucVu().getTen()});
             i++;
         }
     }
@@ -89,7 +125,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         txtCccd = new javax.swing.JTextField();
         txtEmail1 = new javax.swing.JTextField();
         txtMaNV = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboChucVu = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -209,7 +245,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel14.setText("Chức vụ");
 
@@ -227,7 +263,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
                     .addComponent(jLabel14))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, 300, Short.MAX_VALUE)
+                    .addComponent(cboChucVu, 0, 300, Short.MAX_VALUE)
                     .addComponent(txtTenNhanVien)
                     .addComponent(txtCccd)
                     .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -317,7 +353,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
                                 .addComponent(jLabel14))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)))
                 .addGap(44, 44, 44))
         );
@@ -330,13 +366,13 @@ public class NhanVienJpanel extends javax.swing.JPanel {
 
         tbNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã NV", "CCCD", "Ten NV", "Giới tính", "Email", "Ngày sinh", "SDT", "Diachi"
+                "STT", "Mã NV", "CCCD", "Ten NV", "Giới tính", "Email", "Ngày sinh", "SDT", "Diachi", "Chức vụ"
             }
         ));
         tbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -399,7 +435,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1073, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
         );
@@ -566,7 +602,10 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         nhanVien.setNgaySinh(date);
         nhanVien.setDiaChi(txtDiaChi.getText());
         nhanVien.setSDT(txtSDT.getText());
-
+         int index10 = cboChucVu.getSelectedIndex();
+            ChucVu chucVu = nhanVienServiceImpl.getChucVu().get(index10);
+            nhanVien.setChucVu(chucVu);
+        
         if (nhanVienService.update(nhanVien)) {
             JOptionPane.showMessageDialog(this, "Sửa thành công");
             loadData(nhanVienService.getAll());
@@ -581,6 +620,9 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         nhanVien.setMaNV(txtMaNV.getText());
         nhanVien.setCccd(txtCccd.getText());
         nhanVien.setTenNhanVien(txtTenNhanVien.getText());
+        int index10 = cboChucVu.getSelectedIndex();
+            ChucVu chucVu = nhanVienServiceImpl.getChucVu().get(index10);
+            nhanVien.setChucVu(chucVu);
         Boolean gioiTinh = false;
         if (rbnNam.isSelected()) {
             gioiTinh = true;
@@ -639,6 +681,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         txtNgaySinh.setText(tbNhanVien.getValueAt(row,6).toString());
         txtSDT.setText(tbNhanVien.getValueAt(row,7).toString());
         txtDiaChi.setText(tbNhanVien.getValueAt(row,8).toString());
+        cboChucVu.setSelectedItem(tbNhanVien.getValueAt(row, 9).toString());
     }//GEN-LAST:event_tbNhanVienMouseClicked
 
     private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
@@ -668,16 +711,25 @@ public class NhanVienJpanel extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-//        int index = tblChucVu.getSelectedRow();
-//        ChucVu chucVu = chucVuService.getAll().get(index);
-//        if (index == -1) {
-//            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-//        } else if (chucVuService.delete(chucVu)) {
-//            JOptionPane.showMessageDialog(this, "Xóa thành công");
-//            loadData(chucVuService.getAll());
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Xóa thất bại");
-//        }
+ nhanVienRepository = new NhanVienRepository();
+        nhanVienServiceImpl = new NhanVienServiceImpl();
+        
+            try {
+                int index = tblChucVu.getSelectedRow();
+                if (index == -1) {
+                    JOptionPane.showMessageDialog(this, "Chua cho chuc vu de xoa");
+                    return;
+                }
+                ChucVu chucVu = chucVuService.getAll().get(index);
+                if (chucVuService.delete(chucVu)) {
+                    JOptionPane.showMessageDialog(this, "Xóa thành công");
+                    loadTblChucVu(chucVuService.getAll());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                e.printStackTrace();
+            }
+        
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblChucVuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChucVuMouseClicked
@@ -694,16 +746,34 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
-//        // TODO add your handling code here:
-//        ChucVu chucVu = new ChucVu();
-//        chucVu.setTen(txtTenchucvu.getText());
-//        chucVu.setMa(txtMachucvu.getText());
-//        if (chucVuService.add(chucVu)) {
-//            JOptionPane.showMessageDialog(this, "Thêm thành công");
-//            loadData(chucVuService.getAll());
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Thêm thất bại");
-//        }
+        // TODO add your handling code here:
+        nhanVienRepository = new NhanVienRepository();
+        nhanVienServiceImpl = new NhanVienServiceImpl();
+       
+
+            try {
+                ChucVu chucVu = new ChucVu();
+                if (txtTenchucvu.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Điền màu sắc");
+                    return;
+                }
+                if (!checkMChucVu()) {
+                    JOptionPane.showMessageDialog(this, "Đã tồn tại");
+                    return;
+                }
+                chucVu.setTen(txtTenchucvu.getText());
+               chucVu.setMa(txtMachucvu.getText());
+
+                if (chucVuService.add(chucVu)) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    loadTblChucVu(nhanVienServiceImpl.getChucVu());
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        
+        loadTblChucVu(nhanVienServiceImpl.getChucVu());
     }//GEN-LAST:event_btnThem1ActionPerformed
 
 
@@ -716,8 +786,8 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnThem1;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXuatFile;
+    private javax.swing.JComboBox<String> cboChucVu;
     private javax.swing.JCheckBox chekNghi;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
