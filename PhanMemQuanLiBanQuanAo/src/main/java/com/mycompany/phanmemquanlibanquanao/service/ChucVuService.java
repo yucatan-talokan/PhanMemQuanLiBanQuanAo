@@ -5,7 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.service;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChucVu;
-import com.mycompany.phanmemquanlibanquanao.views.ChucVuJpanel;
+
 import java.util.List;
 
 /**

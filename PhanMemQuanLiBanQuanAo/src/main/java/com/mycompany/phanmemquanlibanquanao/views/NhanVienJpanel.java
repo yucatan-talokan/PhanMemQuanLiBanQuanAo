@@ -59,6 +59,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     private DefaultTableModel defaultTableModel2;
     private DefaultTableModel defaultTableModel;
     private List<NhanVien> list = nhanVienService.getAll();
+    private List<ChucVu> listChucVus = nhanVienService.getChucVu();
 
      private StringBuilder sb;
     private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -79,7 +80,7 @@ loadDataCV(chucVuService.getAll());
       public void loadDataCV(List<ChucVu> list) {
         chucVuService = new ChucVuServiceImpl()
         ;
-        defaultTableModel = (DefaultTableModel) tblChucVu.getModel();
+        defaultTableModel = (DefaultTableModel) tblChucVu1.getModel();
         defaultTableModel.setRowCount(0);
         int i = 1;
         for (ChucVu chucVu : list) {
@@ -88,34 +89,22 @@ loadDataCV(chucVuService.getAll());
         }
     }
 
-//         public Boolean checkMChucVu() {
-//        Boolean check = true;
-//        for (ChucVu chucVu : listcChucVus) {
-//            if (chucVu.getTen().equalsIgnoreCase(txtTenchucvu.getText())) {
-//                check = false;
-//            }
-//        }
-//        return check;
-//    }
+         public Boolean checkMChucVu() {
+        Boolean check = true;
+        for (ChucVu chucVu : listChucVus) {
+            if (chucVu.getTen().equalsIgnoreCase(txtTenchucvu.getText())) {
+                check = false;
+            }
+        }
+        return check;
+    }
             private String doiNgay(Date d) {
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern("dd-MM-yyyy");
         String ngaySinh = format.format(d);
         return ngaySinh;
     }
-//           public void loadTblChucVu(List<ChucVu> list) {
-//        defaultTableModel = (DefaultTableModel) tblChucVu.getModel();
-//        defaultTableModel.setRowCount(0);
-//        int i = 1;
-//        for (ChucVu chucVu : list) {
-//            Object[] row = new Object[]{
-//                i, chucVu.getMa(), chucVu.getTen()
-//            };
-//            i++;
-//            defaultTableModel.addRow(row);
-//
-//        }
-//    }
+        
     public void loadData(List<NhanVien> list) {
        
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -279,6 +268,7 @@ loadDataCV(chucVuService.getAll());
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -317,8 +307,16 @@ loadDataCV(chucVuService.getAll());
         txtTim = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblChucVu = new javax.swing.JTable();
+        btnXoa = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblChucVu1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtTenchucvu = new javax.swing.JTextField();
+        txtMachucvu = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
+        btnThem1 = new javax.swing.JButton();
+        btnSua1 = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -329,8 +327,10 @@ loadDataCV(chucVuService.getAll());
 
         jLabel6.setText("Ngày Sinh :");
 
+        buttonGroup1.add(rbnNam);
         rbnNam.setText("Nam");
 
+        buttonGroup2.add(rbnNu);
         rbnNu.setText("Nữ");
 
         jLabel7.setText("SĐT :");
@@ -399,8 +399,9 @@ loadDataCV(chucVuService.getAll());
                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(btnXoaNv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jLabel9.setText("CCCD :");
@@ -484,7 +485,7 @@ loadDataCV(chucVuService.getAll());
                 .addGap(86, 86, 86))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnXuatFile, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnXuatFile, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
         );
         jPanel3Layout.setVerticalGroup(
@@ -622,11 +623,11 @@ loadDataCV(chucVuService.getAll());
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(389, 389, 389)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addContainerGap(551, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1077, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1131, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
         );
@@ -643,34 +644,104 @@ loadDataCV(chucVuService.getAll());
 
         jTabbedPane1.addTab("Nhân viên", jPanel1);
 
-        tblChucVu.setModel(new javax.swing.table.DefaultTableModel(
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
+        tblChucVu1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ehe", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã chức vụ", "Tên chức vụ"
             }
         ));
-        jScrollPane2.setViewportView(tblChucVu);
+        tblChucVu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblChucVu1MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblChucVu1);
+
+        jLabel4.setText("Mã chức vụ");
+
+        jLabel10.setText("Tên chức vụ");
+
+        btnClear.setText("Clear form");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnThem1.setText("Thêm ");
+        btnThem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThem1ActionPerformed(evt);
+            }
+        });
+
+        btnSua1.setText("Sửa");
+        btnSua1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSua1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(537, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnClear)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(41, 41, 41)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtMachucvu, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTenchucvu, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(116, 116, 116)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnThem1)
+                                        .addComponent(btnSua1)
+                                        .addComponent(btnXoa)))))))
+                .addContainerGap(553, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtMachucvu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThem1))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtTenchucvu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSua1))
+                .addGap(18, 18, 18)
+                .addComponent(btnXoa)
+                .addGap(30, 30, 30)
+                .addComponent(btnClear)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jPanel2);
@@ -880,23 +951,84 @@ loadDataCV(chucVuService.getAll());
         // TODO add your handling code here:
     }//GEN-LAST:event_cboChucVuActionPerformed
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        int index = tblChucVu1.getSelectedRow();
+        ChucVu chucVu = chucVuService.getAll().get(index);
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        } else if (chucVuService.delete(chucVu)) {
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            loadDataCV(chucVuService.getAll());
+        } else {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblChucVu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChucVu1MouseClicked
+        // TODO add your handling code here:
+        int row = tblChucVu1.getSelectedRow();
+        txtMachucvu.setText(tblChucVu1.getValueAt(row, 1).toString());
+        txtTenchucvu.setText(tblChucVu1.getValueAt(row, 2).toString());
+    }//GEN-LAST:event_tblChucVu1MouseClicked
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        txtMachucvu.setText("");
+        txtTenchucvu.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
+        // TODO add your handling code here:
+        ChucVu chucVu = new ChucVu();
+        chucVu.setTen(txtTenchucvu.getText());
+        chucVu.setMa(txtMachucvu.getText());
+        if (chucVuService.add(chucVu)) {
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            loadDataCV(chucVuService.getAll());
+        } else {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+    }//GEN-LAST:event_btnThem1ActionPerformed
+
+    private void btnSua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua1ActionPerformed
+        //        // TODO add your handling code here:
+        //        int index = tblChucVu.getSelectedRow();
+        //        ChucVu chucVu = chucVuService.getAll().get(index);
+        //        chucVu.setTen(txtTenchucvu.getText());
+        //        chucVu.setMa(txtMachucvu.getText());
+        //        if (chucVuService) {
+            //            JOptionPane.showMessageDialog(this, "Sửa thành công");
+            //            loadData(chucVuService.getAll());
+            //        } else {
+            //            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            //        }
+    }//GEN-LAST:event_btnSua1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnSua1;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThem1;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXoaNv;
     private javax.swing.JButton btnXuatFile;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cboChucVu;
     private javax.swing.JCheckBox chekNghi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -908,20 +1040,22 @@ loadDataCV(chucVuService.getAll());
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jlbTrangThai;
     private javax.swing.JRadioButton rbnNam;
     private javax.swing.JRadioButton rbnNu;
     private javax.swing.JTable tbNhanVien;
-    private javax.swing.JTable tblChucVu;
+    private javax.swing.JTable tblChucVu1;
     private javax.swing.JTextField txtCccd;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtMaNV;
+    private javax.swing.JTextField txtMachucvu;
     private com.toedter.calendar.JDateChooser txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenNhanVien;
+    private javax.swing.JTextField txtTenchucvu;
     private javax.swing.JTextField txtTim;
     // End of variables declaration//GEN-END:variables
 }
