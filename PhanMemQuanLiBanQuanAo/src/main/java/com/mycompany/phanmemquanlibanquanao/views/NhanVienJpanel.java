@@ -731,6 +731,19 @@ public class NhanVienJpanel extends javax.swing.JPanel {
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
+          txtMaNV.setText(null);
+        txtCccd.setText(null);
+        txtNgaySinh.setCalendar(null);
+        txtTenNhanVien.setText(null);
+        cboChucVu.setSelectedItem(0);
+        txtDiaChi.setText(null);
+        txtEmail1.setText(null);
+        txtSDT.setText(null);
+        rbnNam.setSelected(false);
+        rbnNu.setSelected(false);
+        chekNghi.setSelected(false);
+        chekNghi.setEnabled(false);
+        
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
