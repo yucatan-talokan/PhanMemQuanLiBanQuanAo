@@ -56,8 +56,8 @@ public class NhanVienJpanel extends javax.swing.JPanel {
       private ChucVuService chucVuService = new ChucVuServiceImpl();
       
       private NhanVienRepository nhanVienRepository = new NhanVienRepository();
+    private DefaultTableModel defaultTableModel2;
     private DefaultTableModel defaultTableModel;
-    
     private List<NhanVien> list = nhanVienService.getAll();
 
      private StringBuilder sb;
@@ -66,7 +66,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         initComponents();
         loadData(nhanVienService.getAll());
         loadCbo();
-
+loadDataCV(chucVuService.getAll());
     }
       private void loadCbo() {
         DefaultComboBoxModel defaultComboBoxModel;
@@ -74,6 +74,17 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         defaultComboBoxModel.removeAllElements();
         for (ChucVu chucVu : chucVuService.getAll()) {
             defaultComboBoxModel.addElement(chucVu.getTen());
+        }
+    }
+      public void loadDataCV(List<ChucVu> list) {
+        chucVuService = new ChucVuServiceImpl()
+        ;
+        defaultTableModel = (DefaultTableModel) tblChucVu.getModel();
+        defaultTableModel.setRowCount(0);
+        int i = 1;
+        for (ChucVu chucVu : list) {
+            defaultTableModel.addRow(new Object[]{i, chucVu.getMa(), chucVu.getTen()});
+            i++;
         }
     }
 
@@ -108,11 +119,11 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     public void loadData(List<NhanVien> list) {
        
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        defaultTableModel = (DefaultTableModel) tbNhanVien.getModel();
-        defaultTableModel.setRowCount(0);
+        defaultTableModel2 = (DefaultTableModel) tbNhanVien.getModel();
+        defaultTableModel2.setRowCount(0);
         int i = 1;
         for (NhanVien nhanVien : list) {
-            defaultTableModel.addRow(new Object[]{i, nhanVien.getMaNV(),nhanVien.getCccd(),nhanVien.getTenNhanVien(),nhanVien.htGioiTinh(), nhanVien.getEmail(),
+            defaultTableModel2.addRow(new Object[]{i, nhanVien.getMaNV(),nhanVien.getCccd(),nhanVien.getTenNhanVien(),nhanVien.htGioiTinh(), nhanVien.getEmail(),
               doiNgay(nhanVien.getNgaySinh()),nhanVien.getSDT(),nhanVien.getDiaChi(),nhanVien.getChucVu().getTen(),nhanVien.htDeleted()});
             i++;
         }
@@ -305,6 +316,9 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txtTim = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblChucVu = new javax.swing.JTable();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -398,6 +412,11 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         });
 
         cboChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboChucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboChucVuActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Chức vụ");
 
@@ -526,7 +545,6 @@ public class NhanVienJpanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)))
-                .addGap(18, 18, 18)
                 .addComponent(btnXuatFile, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -608,7 +626,7 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1073, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1077, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
         );
@@ -624,6 +642,38 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Nhân viên", jPanel1);
+
+        tblChucVu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ehe", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblChucVu);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(537, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -805,11 +855,11 @@ public class NhanVienJpanel extends javax.swing.JPanel {
         if (excelChooser == JFileChooser.APPROVE_OPTION) {
             XSSFWorkbook exceSSFWorkbookExprort = new XSSFWorkbook();
             XSSFSheet excelSheet = exceSSFWorkbookExprort.createSheet("Danh Sach");
-            for (int i = 0; i < defaultTableModel.getRowCount(); i++) {
+            for (int i = 0; i < defaultTableModel2.getRowCount(); i++) {
                 XSSFRow excelRow = excelSheet.createRow(i);
-                for (int j = 0; j < defaultTableModel.getColumnCount(); j++) {
+                for (int j = 0; j < defaultTableModel2.getColumnCount(); j++) {
                     XSSFCell excelCell = excelRow.createCell(j);
-                    excelCell.setCellValue(defaultTableModel.getValueAt(i, j).toString());
+                    excelCell.setCellValue(defaultTableModel2.getValueAt(i, j).toString());
                 }
             }
             FileOutputStream excelFIS;
@@ -825,6 +875,10 @@ public class NhanVienJpanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnXuatFileActionPerformed
+
+    private void cboChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChucVuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboChucVuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -849,15 +903,18 @@ public class NhanVienJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jlbTrangThai;
     private javax.swing.JRadioButton rbnNam;
     private javax.swing.JRadioButton rbnNu;
     private javax.swing.JTable tbNhanVien;
+    private javax.swing.JTable tblChucVu;
     private javax.swing.JTextField txtCccd;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail1;
