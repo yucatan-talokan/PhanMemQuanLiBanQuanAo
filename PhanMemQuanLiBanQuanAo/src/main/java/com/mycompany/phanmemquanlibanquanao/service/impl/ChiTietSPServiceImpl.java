@@ -74,4 +74,10 @@ return chiTietSpRepository.getMauSac();    }
     public ChiTietSP getOne(String id) {
         return chiTietSpRepository.getOne(id);
     }
+
+    @Override
+    public ChiTietSP getOneByMaCtsp(String ma) {
+        return chiTietSpRepository.getOneByMaCtsp(ma);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

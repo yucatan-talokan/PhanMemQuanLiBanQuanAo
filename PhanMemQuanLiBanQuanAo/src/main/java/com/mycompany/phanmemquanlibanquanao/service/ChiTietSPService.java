@@ -32,4 +32,7 @@ public interface ChiTietSPService {
 
     public Boolean delete(ChiTietSP chiTietSp);
     public ChiTietSP getOne(String id);
+    
+
+        ChiTietSP getOneByMaCtsp(String ma);
 }
