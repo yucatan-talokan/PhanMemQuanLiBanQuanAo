@@ -52,7 +52,8 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     public void clearForm() {
         txtMa.setText("");
         txtTen.setText("");
-
+        txtMucGiam.setText("");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -209,6 +210,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         if (khuyenMaiService.add(km)) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
             loadTable(khuyenMaiService.getAll());
+            clearForm();
         } else {
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         }
@@ -238,6 +240,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
             if (khuyenMaiService.update(km)) {
                 JOptionPane.showMessageDialog(this, "Sửa thành công");
                 loadTable(khuyenMaiService.getAll());
+                clearForm();
             } else {
                 JOptionPane.showMessageDialog(this, "Sửa thất bại");
             }
@@ -253,6 +256,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
             if (khuyenMaiService.delete(km)) {
                 JOptionPane.showMessageDialog(this, "Xoá thành công");
                 loadTable(khuyenMaiService.getAll());
+                clearForm();
             } else {
                 JOptionPane.showMessageDialog(this, "Xoá thất bại");
             }
