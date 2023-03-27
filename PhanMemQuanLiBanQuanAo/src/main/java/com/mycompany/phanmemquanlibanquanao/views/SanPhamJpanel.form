@@ -52,7 +52,7 @@
                           <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="1077" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -100,9 +100,16 @@
                           <Component id="btnThem" min="-2" pref="184" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           <Component id="btnSUa" min="-2" pref="170" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" pref="183" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnQR" min="-2" pref="183" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="581" max="32767" attributes="0"/>
+                              <Component id="jButton6" min="-2" pref="183" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="317" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -111,11 +118,20 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton3" alignment="1" pref="49" max="32767" attributes="0"/>
-                              <Component id="btnThem" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnSUa" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnThem" alignment="0" pref="49" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="btnSUa" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnQR" alignment="3" pref="49" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton6" pref="49" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -137,12 +153,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSUaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="btnQR">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="QR"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQRActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton6">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xoa"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
@@ -38,7 +38,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jPanel2" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                              <Component id="jplCam" min="-2" pref="184" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -58,7 +58,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jPanel2" max="32767" attributes="0"/>
-                          <Component id="jPanel9" max="32767" attributes="0"/>
+                          <Component id="jplCam" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
@@ -430,7 +430,7 @@
             <Component class="javax.swing.JButton" name="btnThanhToan">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="ff" red="ff" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Thanh to&#xe1;n"/>
               </Properties>
@@ -540,7 +540,7 @@
             <Component class="javax.swing.JButton" name="btnTaoHoaDon">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="ff" red="ff" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#x1ea1;o h&#xf3;a &#x111;&#x1a1;n"/>
               </Properties>
@@ -594,7 +594,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane2" alignment="1" pref="726" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" pref="732" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -662,7 +662,7 @@
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="ff" red="ff" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i gi&#x1ecf; h&#xe0;ng"/>
               </Properties>
@@ -679,7 +679,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="578" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="566" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -723,9 +723,9 @@
                               <Component id="rdoChoThanhToan" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="rdoDaThanhToan" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="159" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" alignment="1" pref="560" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="1" pref="548" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -824,19 +824,10 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel9">
+    <Container class="javax.swing.JPanel" name="jplCam">
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="172" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
     </Container>
   </SubComponents>

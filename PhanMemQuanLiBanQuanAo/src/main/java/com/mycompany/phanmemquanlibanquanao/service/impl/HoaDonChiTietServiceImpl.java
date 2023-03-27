@@ -41,7 +41,8 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService{
 
     @Override
     public Boolean delete(HoaDonChiTiet hdct) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return hoaDonChiTietRepository.delete(hdct);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

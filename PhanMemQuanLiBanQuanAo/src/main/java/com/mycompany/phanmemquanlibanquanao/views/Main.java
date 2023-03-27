@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+import com.github.sarxos.webcam.Webcam;
 import javax.swing.JPanel;
 
 /**
@@ -16,10 +17,16 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     private JPanel jpanel;
-
+    BanHangJpanel banHangJPanel;
+    SanPhamJpanel chiTietSpJpanel;
+//    public Webcam webcam = null;
     public Main() {
         initComponents();
-        showPanel(new BanHangJpanel());
+
+        banHangJPanel = new BanHangJpanel();
+                chiTietSpJpanel = new SanPhamJpanel();
+                showPanel(banHangJPanel);
+        banHangJPanel.initWebcam();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -28,6 +35,15 @@ public class Main extends javax.swing.JFrame {
         viewPanel.removeAll();
         viewPanel.add(jpanel);
         viewPanel.validate();
+    }
+        private void closeWebcam() {
+        if (chiTietSpJpanel.webcam != null) {
+            chiTietSpJpanel.webcam.close();
+        }
+        if (banHangJPanel.webcam != null) {
+            banHangJPanel.webcam.close();
+        }
+
     }
 
     /**
@@ -202,32 +218,45 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLichSuGiaoDichActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
-        showPanel(new KhachHangJpanel());        // TODO add your handling code here:
+        showPanel(new KhachHangJpanel());
+        closeWebcam();        // TODO add your handling code here:
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanPhamActionPerformed
         // TODO add your handling code here:
         showPanel(new SanPhamJpanel());
+        closeWebcam();  
+        
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
         showPanel(new NhanVienJpanel());
+        closeWebcam();  
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
         // TODO add your handling code here:
-        showPanel(new BanHangJpanel());
-        
+//        showPanel(new BanHangJpanel());
+                closeWebcam();
+//        showPanel(banHangJPanel);
+        banHangJPanel = new BanHangJpanel();
+        viewPanel.removeAll();
+        viewPanel.add(banHangJPanel);
+        viewPanel.revalidate();
+        viewPanel.repaint();
+        banHangJPanel.initWebcam();
+
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
-        showPanel(new KhuyenMaiJpanel());      // TODO add your handling code here:
+        showPanel(new KhuyenMaiJpanel());
+        closeWebcam();  // TODO add your handling code here:
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     /**

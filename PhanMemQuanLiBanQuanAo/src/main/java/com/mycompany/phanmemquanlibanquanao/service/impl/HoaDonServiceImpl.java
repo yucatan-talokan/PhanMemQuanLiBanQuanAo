@@ -27,11 +27,7 @@ public class HoaDonServiceImpl implements HoaDonService{
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public List<HoaDon> getHdWhere(int tt, int id) {
-        return hoaDonReposity.getHdWhere(tt, id);
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public HoaDon getOneByMaHD(String maHoaDon) {
@@ -60,6 +56,12 @@ public class HoaDonServiceImpl implements HoaDonService{
     @Override
     public Boolean delete(HoaDon hd) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<HoaDon> getHdWhere(int tt) {
+        return hoaDonReposity.getHdWhere(tt);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

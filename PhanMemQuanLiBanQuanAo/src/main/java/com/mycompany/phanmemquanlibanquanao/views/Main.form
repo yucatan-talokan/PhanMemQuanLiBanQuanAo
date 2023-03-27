@@ -75,15 +75,13 @@
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnBanHang" pref="147" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnKhachHang" alignment="1" pref="147" max="32767" attributes="0"/>
-                              <Component id="btnNhanVien" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnSanPham" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnThongKe" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnKhuyenMai" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnLichSuGiaoDich" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnDangXuat" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnKhachHang" alignment="1" pref="147" max="32767" attributes="0"/>
+                          <Component id="btnNhanVien" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnSanPham" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnThongKe" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnKhuyenMai" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnLichSuGiaoDich" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnDangXuat" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
