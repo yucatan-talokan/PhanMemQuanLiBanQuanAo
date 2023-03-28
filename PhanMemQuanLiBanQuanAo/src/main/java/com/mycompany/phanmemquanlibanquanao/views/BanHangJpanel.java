@@ -20,9 +20,11 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDonChiTiet;
 import com.mycompany.phanmemquanlibanquanao.service.ChiTietSPService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonChiTietService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonService;
+import com.mycompany.phanmemquanlibanquanao.service.KhachHangService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.ChiTietSPServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.HoaDonChiTietServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.HoaDonServiceImpl;
+import com.mycompany.phanmemquanlibanquanao.service.impl.KhachHangServiceImpl;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
@@ -33,6 +35,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,7 +44,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thanh Giang
  */
-public class BanHangJpanel extends javax.swing.JPanel implements Runnable, ThreadFactory, Serializable{
+public class BanHangJpanel extends javax.swing.JPanel implements Runnable, ThreadFactory, Serializable {
 
     /**
      * Creates new form test
@@ -50,21 +54,27 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private HoaDonService hoaDonService = new HoaDonServiceImpl();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private ChiTietSPService chiTietSPService = new ChiTietSPServiceImpl();
-        private WebcamPanel panel = null;
+    SanPhamJpanel chiTietSpJpanel;
+    private WebcamPanel panel = null;
     public Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
+    private KhachHangService khachHangService;
+
     public BanHangJpanel() {
         initComponents();
+                khachHangService = new KhachHangServiceImpl();
         loadDataHoaDon(hoaDonService.getAll());
         loadDataCtsp(chiTietSPService.getAllSanPhamLonHon0());
         loadDataGioHang(hoaDonChiTietService.getHdctByIdHD(-1));
         lblMaHD.setText("");
+        autoKhuyenMai();
+
     }
-        public void initWebcam() {
+
+    public void initWebcam() {
         Dimension size = WebcamResolution.QVGA.getSize();
         webcam = Webcam.getWebcams().get(0);
         webcam.setViewSize(size);
-
         panel = new WebcamPanel(webcam);
         panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
