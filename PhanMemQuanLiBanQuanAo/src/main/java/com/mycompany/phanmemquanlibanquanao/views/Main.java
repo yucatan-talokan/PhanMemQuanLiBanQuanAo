@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.views;
 
 import com.github.sarxos.webcam.Webcam;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -20,12 +21,13 @@ public class Main extends javax.swing.JFrame {
     BanHangJpanel banHangJPanel;
     SanPhamJpanel chiTietSpJpanel;
 //    public Webcam webcam = null;
+
     public Main() {
         initComponents();
 
         banHangJPanel = new BanHangJpanel();
-                chiTietSpJpanel = new SanPhamJpanel();
-                showPanel(banHangJPanel);
+        chiTietSpJpanel = new SanPhamJpanel();
+        showPanel(banHangJPanel);
         banHangJPanel.initWebcam();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
@@ -36,7 +38,8 @@ public class Main extends javax.swing.JFrame {
         viewPanel.add(jpanel);
         viewPanel.validate();
     }
-        private void closeWebcam() {
+
+    private void closeWebcam() {
         if (chiTietSpJpanel.webcam != null) {
             chiTietSpJpanel.webcam.close();
         }
@@ -225,20 +228,20 @@ public class Main extends javax.swing.JFrame {
     private void btnSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSanPhamActionPerformed
         // TODO add your handling code here:
         showPanel(new SanPhamJpanel());
-        closeWebcam();  
-        
+        closeWebcam();
+
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
         showPanel(new NhanVienJpanel());
-        closeWebcam();  
+        closeWebcam();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
         // TODO add your handling code here:
 //        showPanel(new BanHangJpanel());
-                closeWebcam();
+        closeWebcam();
 //        showPanel(banHangJPanel);
         banHangJPanel = new BanHangJpanel();
         viewPanel.removeAll();
