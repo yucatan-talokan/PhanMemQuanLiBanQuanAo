@@ -222,42 +222,42 @@ loadDataCV(chucVuService.getAll());
         }
         return sb;
     }
-// private void sendMail() {
-////        final String username = "tranviethung271003@gmail.com";
-////        final String password = "ibxcgycsagvxcabs";
-//        final String username = "zluong23@gmail.com";
+ private void sendMail() {
+//        final String username = "tranviethung271003@gmail.com";
 //        final String password = "ibxcgycsagvxcabs";
-//
-//        Properties prop = new Properties();
-//        prop.put("mail.smtp.host", "smtp.gmail.com");
-//        prop.put("mail.smtp.port", "587");
-//        prop.put("mail.smtp.auth", "true");
-//        prop.put("mail.smtp.starttls.enable", "true"); //TLS
-//
-//        Session session = Session.getInstance(prop,
-//                new Authenticator() {
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(username, password);
-//            }
-//        });
-//
-//        try {
-//
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress("zluong23@gmail.com"));
-//            message.setRecipients(
-//                    Message.RecipientType.TO,
-//                    InternetAddress.parse(txtEmail1.getText())
-//            );
-//            message.setSubject("Ban da duoc nhan lam tai cua hang");
-//            message.setText("Mat khau cua ban la: 1\n Luu y: Ban can doi mat khau som de dam bao an toan cho tai khoan !");
-//            Transport.send(message);
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
-//        JOptionPane.showMessageDialog(this, "Gửi mail thành công");
-//
-//    }
+        final String username = "zluong24@gmail.com";
+        final String password = "Vanluong03";
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+
+        Session session = Session.getInstance(prop,
+                new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("zluong24@gmail.com"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(txtEmail1.getText())
+            );
+            message.setSubject("Ban da duoc nhan lam tai cua hang");
+            message.setText("Mat khau cua ban la: 1\n Luu y: Ban can doi mat khau som de dam bao an toan cho tai khoan !");
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(this, "Gửi mail thành công");
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -852,7 +852,7 @@ loadDataCV(chucVuService.getAll());
         if (nhanVienService.add(nhanVien)) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
             loadData((ArrayList<NhanVien>) nhanVienService.getAll());
-//            sendMail();
+            sendMail();
         } else {
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         }

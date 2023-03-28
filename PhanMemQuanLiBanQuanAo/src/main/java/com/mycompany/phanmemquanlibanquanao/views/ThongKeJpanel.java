@@ -46,7 +46,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     public ThongKeJpanel() {
         initComponents();
-         loadTable(chiTietSpRepository.getAll());
+        loadTable(chiTietSpRepository.getAll());
         hoaDonService = new HoaDonServiceImpl();
         txtTongDonHang1.setText(getTongDonHang() + "");
         txtThanhCong1.setText(getTongDonHangThanhCong() + "");
