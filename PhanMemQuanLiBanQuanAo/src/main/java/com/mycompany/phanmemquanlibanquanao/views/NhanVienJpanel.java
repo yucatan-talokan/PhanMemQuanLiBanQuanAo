@@ -225,7 +225,7 @@ loadDataCV(chucVuService.getAll());
  private void sendMail() {
 //        final String username = "tranviethung271003@gmail.com";
 //        final String password = "ibxcgycsagvxcabs";
-        final String username = "zluong24@gmail.com";
+        final String username = "luongpvph27222@fpt.edu.vn";
         final String password = "Vanluong03";
 
         Properties prop = new Properties();
@@ -244,7 +244,7 @@ loadDataCV(chucVuService.getAll());
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("zluong24@gmail.com"));
+            message.setFrom(new InternetAddress("luongpvph27222@fpt.edu.vn"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(txtEmail1.getText())
