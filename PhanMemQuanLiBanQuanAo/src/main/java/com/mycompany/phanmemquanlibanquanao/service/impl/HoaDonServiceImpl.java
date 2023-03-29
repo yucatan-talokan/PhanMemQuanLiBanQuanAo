@@ -37,8 +37,8 @@ public class HoaDonServiceImpl implements HoaDonService{
 
     @Override
     public List<HoaDon> getHoaDonByIdNV(int idnv) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return hoaDonReposity.getHoaDonByIdNV(idnv);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -59,9 +59,9 @@ public class HoaDonServiceImpl implements HoaDonService{
     }
 
     @Override
-    public List<HoaDon> getHdWhere(int tt) {
-        return hoaDonReposity.getHdWhere(tt);
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<HoaDon> getHdWhere(int tt, int id) {
+        return hoaDonReposity.getHdWhere(tt, id);
     }
+
     
 }

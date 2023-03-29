@@ -825,8 +825,8 @@ loadDataCV(chucVuService.getAll());
         }
         List<NhanVien> listNV = nhanVienService.getAll();
         NhanVien nhanVien = new NhanVien();
-//        String i = "1";
-//        nhanVien.autoPass(i);
+        String i = "123";
+        nhanVien.autoPass(i);
         nhanVien.setMaNV(txtMaNV.getText());
         nhanVien.setCccd(txtCccd.getText());
         nhanVien.setTenNhanVien(txtTenNhanVien.getText());

@@ -25,9 +25,10 @@ public class HoaDonRepository {
         return query.getResultList();
     }
 
-    public List<HoaDon> getHdWhere(int tt) {
-        Query query = session.createQuery(fromTable + "  where trangThai =:tt order by id desc", HoaDon.class);
+    public List<HoaDon> getHdWhere(int tt, int id) {
+        Query query = session.createQuery(fromTable + "  where trangThai =:tt and idNhanVien = :id order by id desc", HoaDon.class);
         query.setParameter("tt", tt);
+        query.setParameter("id", id);
         return query.getResultList();
     }
     

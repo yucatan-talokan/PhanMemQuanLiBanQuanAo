@@ -115,6 +115,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -268,6 +269,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        buttonGroup1.add(rdoThang);
         rdoThang.setSelected(true);
         rdoThang.setText("Tháng");
         rdoThang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,6 +283,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(rdoNam);
         rdoNam.setText("Năm");
         rdoNam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -749,6 +752,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btlTKDoanhThu;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

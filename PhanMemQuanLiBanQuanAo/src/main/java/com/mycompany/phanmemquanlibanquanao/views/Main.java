@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.views;
 
 import com.github.sarxos.webcam.Webcam;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.UserLogin;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -30,6 +31,8 @@ public class Main extends javax.swing.JFrame {
         showPanel(banHangJPanel);
         banHangJPanel.initWebcam();
         this.setExtendedState(MAXIMIZED_BOTH);
+                lblTenNV.setText(UserLogin.getNhanVien().getTenNhanVien());
+        lblChucVu.setText(UserLogin.getNhanVien().getChucVu().getTen());
     }
 
     private void showPanel(JPanel panel) {
@@ -70,6 +73,8 @@ public class Main extends javax.swing.JFrame {
         btnThongKe = new javax.swing.JButton();
         btnLichSuGiaoDich = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
+        lblTenNV = new javax.swing.JLabel();
+        lblChucVu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,28 +146,38 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        lblTenNV.setText("Tên Nhân Viên");
+
+        lblChucVu.setText("Chức Vụ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                         .addComponent(btnKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                         .addComponent(btnNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSanPham, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnKhuyenMai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLichSuGiaoDich, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTenNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(42, 42, 42)
+                .addComponent(lblTenNV)
+                .addGap(34, 34, 34)
+                .addComponent(lblChucVu)
+                .addGap(42, 42, 42)
                 .addComponent(btnBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,11 +228,13 @@ public class Main extends javax.swing.JFrame {
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
         showPanel(new ThongKeJpanel());
+        closeWebcam();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnLichSuGiaoDichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuGiaoDichActionPerformed
         // TODO add your handling code here:
         showPanel(new LichSuGiaoDichJpanel());
+        closeWebcam();
     }//GEN-LAST:event_btnLichSuGiaoDichActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
@@ -309,6 +326,8 @@ public class Main extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblChucVu;
+    private javax.swing.JLabel lblTenNV;
     private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 }

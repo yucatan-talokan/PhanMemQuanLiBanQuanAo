@@ -73,15 +73,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnBanHang" pref="147" max="32767" attributes="0"/>
-                          <Component id="btnKhachHang" alignment="1" pref="147" max="32767" attributes="0"/>
-                          <Component id="btnNhanVien" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnSanPham" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnThongKe" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnKhuyenMai" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnLichSuGiaoDich" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnDangXuat" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblChucVu" min="-2" pref="68" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnBanHang" pref="147" max="32767" attributes="0"/>
+                              <Component id="btnKhachHang" alignment="1" pref="147" max="32767" attributes="0"/>
+                              <Component id="btnNhanVien" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnSanPham" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnThongKe" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnKhuyenMai" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnLichSuGiaoDich" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnDangXuat" alignment="1" max="32767" attributes="0"/>
+                              <Component id="lblTenNV" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
@@ -90,7 +94,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="lblTenNV" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="lblChucVu" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="btnBanHang" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnKhachHang" min="-2" pref="36" max="-2" attributes="0"/>
@@ -199,6 +207,16 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangXuatActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTenNV">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T&#xea;n Nh&#xe2;n Vi&#xea;n"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblChucVu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c V&#x1ee5;"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

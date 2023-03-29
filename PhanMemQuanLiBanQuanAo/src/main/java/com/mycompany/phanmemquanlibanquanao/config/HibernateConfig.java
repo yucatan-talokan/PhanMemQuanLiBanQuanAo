@@ -29,7 +29,8 @@ import org.hibernate.service.ServiceRegistry;
  * @author Thanh Giang
  */
 public class HibernateConfig {
-        private static final SessionFactory FACTORY;
+
+    private static final SessionFactory FACTORY;
 
     static {
         Configuration conf = new Configuration();
@@ -43,10 +44,10 @@ public class HibernateConfig {
         properties.put(Environment.SHOW_SQL, "true");
         conf.setProperties(properties);
         conf.addAnnotatedClass(SanPham.class);
-        conf.addAnnotatedClass(ChiTietSP.class);    
+        conf.addAnnotatedClass(ChiTietSP.class);
         conf.addAnnotatedClass(DongSP.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-       conf.addAnnotatedClass(ChatLieu.class);
+        conf.addAnnotatedClass(ChatLieu.class);
         conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(Size.class);

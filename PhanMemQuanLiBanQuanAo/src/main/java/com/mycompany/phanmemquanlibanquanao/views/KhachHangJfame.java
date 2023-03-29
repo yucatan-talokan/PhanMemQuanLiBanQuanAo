@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChonKH;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.service.KhachHangService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.KhachHangServiceImpl;

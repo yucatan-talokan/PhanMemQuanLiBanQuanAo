@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChonKH;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -17,6 +18,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChiTietSP;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDonChiTiet;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.UserLogin;
 import com.mycompany.phanmemquanlibanquanao.service.ChiTietSPService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonChiTietService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonService;
@@ -62,8 +64,8 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
 
     public BanHangJpanel() {
         initComponents();
-                khachHangService = new KhachHangServiceImpl();
-        loadDataHoaDon(hoaDonService.getAll());
+        khachHangService = new KhachHangServiceImpl();
+        loadDataHoaDon(hoaDonService.getHoaDonByIdNV(UserLogin.getNhanVien().getId()));
         loadDataCtsp(chiTietSPService.getAllSanPhamLonHon0());
         loadDataGioHang(hoaDonChiTietService.getHdctByIdHD(-1));
         lblMaHD.setText("");
@@ -171,17 +173,17 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         hd.setKhachHang(khachHangService.getOne(27));
         hd.setMaHoaDon(getMa(hoaDonService.getAll()));
         hd.setNgayTao(new Date());
-//        hd.setNhanVien(UserLogin.getNhanVien());
+        hd.setNhanVien(UserLogin.getNhanVien());
         hd.setTrangThai(0);
         hd.setSdt("Không có");
         hd.setDiaChi("Không có");
         hd.setLyDo("Không có");
-                hd.setKhachHang(ChonKH.getKhachHang());
+        hd.setKhachHang(ChonKH.getKhachHang());
 //        hd.setKhuyenMai(new KhuyenMai(1, "r", 0, new Date(), new Date()));
         if (hoaDonService.save(hd)) {
             JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công!");
         }
-        loadDataHoaDon(hoaDonService.getAll());
+        loadDataHoaDon(hoaDonService.getHdWhere(0,UserLogin.getNhanVien().getId()));
         rdoChoThanhToan.setSelected(true);
         tblHoaDon.setRowSelectionInterval(0, 0);
         lblMaHD.setText(getMaHd());
@@ -293,8 +295,8 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         hd.setNgayThanhToan(new Date());
         hd.setHinhThucThanhToan(cboHinhThucThanhToan.getSelectedIndex());
         hd.setTongTien(getThanhTien());
-//        hd.setKhachHang(khachHangService.getOne(1));
-//        hd.setNhanVien(UserLogin.getNhanVien());
+        hd.setKhachHang(khachHangService.getOne(27));
+        hd.setNhanVien(UserLogin.getNhanVien());
         hd.setKhachHang(ChonKH.getKhachHang());
         if (cboHinhThucThanhToan.getSelectedItem().toString().equalsIgnoreCase("Tiền mặt")) {
             hd.setTienKhachTra(getThanhTien());
@@ -316,8 +318,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         hd.setTrangThai(1);
         if (hoaDonService.update(hd)) {
             JOptionPane.showMessageDialog(this, "Thanh toán thành công");
-//            loadDataHoaDon(hoaDonService.getHdWhere(1, UserLogin.getNhanVien().getId()));
-            loadDataHoaDon(hoaDonService.getAll());
+            loadDataHoaDon(hoaDonService.getHdWhere(1, UserLogin.getNhanVien().getId()));
             rdoDaThanhToan.setSelected(true);
             btnThanhToan.setEnabled(false);
         }
@@ -788,7 +789,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 215, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -825,6 +826,11 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         rdoTatCa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rdoTatCaMouseClicked(evt);
+            }
+        });
+        rdoTatCa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoTatCaActionPerformed(evt);
             }
         });
 
@@ -890,7 +896,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 201, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1007,7 +1013,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         }
 
         thanhToan();
-                        ChonKH.setKhachHang(khachHangService.getOne(27));
+        ChonKH.setKhachHang(khachHangService.getOne(27));
         //        int chon = JOptionPane.showConfirmDialog(this, "In hóa đơn", "Xác nhận", JOptionPane.YES_NO_OPTION);
         //        if (chon == JOptionPane.YES_OPTION) {
         //            exportBill();
@@ -1020,7 +1026,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
             txtKhachTra.setText("");
             txtChuyenKhoan.setText("");
             txtTienThua.setText("");
-        } else if (cboHinhThucThanhToan.getSelectedIndex() == 2) {
+        } else if (cboHinhThucThanhToan.getSelectedIndex() == 27) {
             txtKhachTra.setEditable(true); //kết hợp
             txtKhachTra.setText("");
             txtChuyenKhoan.setText("");
@@ -1037,7 +1043,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         // TODO add your handling code here:
         if (cboHinhThucThanhToan.getSelectedIndex() == 0) {
             txtTienThua.setText((Integer.parseInt(txtKhachTra.getText()) - getThanhTien()) + "");
-        } else if (cboHinhThucThanhToan.getSelectedIndex() == 2) {
+        } else if (cboHinhThucThanhToan.getSelectedIndex() == 27) {
             txtChuyenKhoan.setText((getThanhTien() - Integer.parseInt(txtKhachTra.getText())) + "");
         } else {
             txtKhachTra.setEditable(false); //Chuyển khoản
@@ -1118,7 +1124,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         loadDataGioHang(hoaDonChiTietService.getHdctByIdHD(getIdHd()));
         lblThanhTien.setText(getThanhTien() + " đ");
         HoaDon hd = hoaDonService.getOneByMaHD(getMaHd());
-                ChonKH.setKhachHang(hd.getKhachHang());
+        ChonKH.setKhachHang(hd.getKhachHang());
         if (hd.getTrangThai() == 1) {
             btnThanhToan.setEnabled(false);
             //            tblCtsp.setEnabled(false);
@@ -1136,13 +1142,17 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     }//GEN-LAST:event_rdoTatCaMouseClicked
 
     private void rdoChoThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoChoThanhToanMouseClicked
-        loadDataHoaDon(hoaDonService.getHdWhere(0));        // TODO add your handling code here:
+        loadDataHoaDon(hoaDonService.getHdWhere(0,UserLogin.getNhanVien().getId()));        // TODO add your handling code here:
     }//GEN-LAST:event_rdoChoThanhToanMouseClicked
 
     private void rdoDaThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoDaThanhToanMouseClicked
         // TODO add your handling code here:
-        loadDataHoaDon(hoaDonService.getHdWhere(1));
+        loadDataHoaDon(hoaDonService.getHdWhere(1,UserLogin.getNhanVien().getId()));
     }//GEN-LAST:event_rdoDaThanhToanMouseClicked
+
+    private void rdoTatCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTatCaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoTatCaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

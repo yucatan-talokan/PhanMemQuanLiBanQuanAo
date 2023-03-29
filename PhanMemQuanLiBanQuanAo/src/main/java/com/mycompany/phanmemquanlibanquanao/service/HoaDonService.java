@@ -16,7 +16,7 @@ public interface HoaDonService {
 
     HoaDon getOne(int id);
     
-    List<HoaDon> getHdWhere(int tt);
+    List<HoaDon> getHdWhere(int tt,int id);
 
     HoaDon getOneByMaHD(String maHoaDon);
 
