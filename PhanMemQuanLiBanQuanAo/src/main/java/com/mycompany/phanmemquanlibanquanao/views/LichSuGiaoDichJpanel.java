@@ -33,6 +33,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
      */
     public LichSuGiaoDichJpanel() {
         initComponents();
+        loadLichSu(hoaDonService.getAll());
     }
     private String dateFomart(Date d){
         return sdf.format(d);
@@ -48,7 +49,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                 hd.getKhachHang().getSdt(),
                 dateFomart(hd.getNgayTao()),
                 dateFomart(hd.getNgayThanhToan()),
-                hd.getTrangThai()
+                hd.getTrangThai()==1?"Đã thanh toán":"Chưa thanh toán"
             };
             dtm.addRow(row);
         }
