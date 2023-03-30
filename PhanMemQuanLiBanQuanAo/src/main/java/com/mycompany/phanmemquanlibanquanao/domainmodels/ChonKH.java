@@ -16,7 +16,7 @@ import com.mycompany.phanmemquanlibanquanao.service.impl.KhachHangServiceImpl;
 public class ChonKH {
             static KhachHangService khachHangService = new KhachHangServiceImpl();
 
-    public static KhachHang kh = khachHangService.getOne(27);
+    public static KhachHang kh = khachHangService.getOne(1);
 
     public ChonKH() {
 

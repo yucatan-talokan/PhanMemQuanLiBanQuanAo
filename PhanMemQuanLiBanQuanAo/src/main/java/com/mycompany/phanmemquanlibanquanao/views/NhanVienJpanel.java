@@ -269,6 +269,7 @@ loadDataCV(chucVuService.getAll());
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -330,7 +331,7 @@ loadDataCV(chucVuService.getAll());
         buttonGroup1.add(rbnNam);
         rbnNam.setText("Nam");
 
-        buttonGroup2.add(rbnNu);
+        buttonGroup1.add(rbnNu);
         rbnNu.setText("Nữ");
 
         jLabel7.setText("SĐT :");
@@ -627,7 +628,7 @@ loadDataCV(chucVuService.getAll());
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
         );
@@ -1018,6 +1019,7 @@ loadDataCV(chucVuService.getAll());
     private javax.swing.JButton btnXuatFile;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cboChucVu;
     private javax.swing.JCheckBox chekNghi;
     private javax.swing.JLabel jLabel1;
