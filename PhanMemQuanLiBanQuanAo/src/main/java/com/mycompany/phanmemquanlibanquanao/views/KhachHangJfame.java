@@ -228,7 +228,7 @@ public class KhachHangJfame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        ChonKhachHang.setKhachHang(khachHangService.getOne(1));
-        ChonKH.setKhachHang(khachHangService.getOne(27));
+        ChonKH.setKhachHang(khachHangService.getOne(1));
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
