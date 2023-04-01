@@ -917,7 +917,7 @@ loadDataCV(chucVuService.getAll());
 
     private void btnXuatFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatFileActionPerformed
         // TODO add your handling code here:
-        String CurentDirectoryFilePath = "C:\\Users\\user\\Documents\\DA1_XuatNhanVien";
+        String CurentDirectoryFilePath = "";
         JFileChooser execlExportChooser = new JFileChooser(CurentDirectoryFilePath);
         FileNameExtensionFilter excelFNEF = new FileNameExtensionFilter("EXCEL FILES", "xls", "xlsx", "xlsm");
         execlExportChooser.setFileFilter(excelFNEF);

@@ -16,9 +16,11 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChiTietSP;
+import com.mycompany.phanmemquanlibanquanao.domainmodels.ChonKhuyenMai;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDonChiTiet;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.UserLogin;
+import com.mycompany.phanmemquanlibanquanao.repository.KhuyenMaiRepository;
 import com.mycompany.phanmemquanlibanquanao.service.ChiTietSPService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonChiTietService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonService;
@@ -300,15 +302,15 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         hd.setKhachHang(ChonKH.getKhachHang());
         if (cboHinhThucThanhToan.getSelectedItem().toString().equalsIgnoreCase("Tiền mặt")) {
             hd.setTienKhachTra(getThanhTien());
-//            try {
-//                if (Integer.parseInt(txtKhachTra.getText()) < tienSauGiamGia()) {
-//                    JOptionPane.showMessageDialog(this, "Tiền khách trả không đủ");
-//                    return;
-//                }
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(this, "Tiền khách trả không hợp lệ");
-//                return;
-//            }
+            try {
+                if (Integer.parseInt(txtKhachTra.getText()) < tienSauGiamGia()) {
+                    JOptionPane.showMessageDialog(this, "Tiền khách trả không đủ");
+                    return;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Tiền khách trả không hợp lệ");
+                return;
+            }
         } else if (cboHinhThucThanhToan.getSelectedItem().toString().equalsIgnoreCase("Chuyển khoản")) {
             hd.setTienKhachChuyenKhoan(getThanhTien());
         } else {
@@ -329,7 +331,9 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
             @Override
             public void run() {
                 while (true) {
+                    loadChonKhuyenMai();
                     loadKhachHangKhuyenMai();
+                    lblThanhTien.setText(tienSauGiamGia() + " đ");
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException ex) {
@@ -338,6 +342,9 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                 }
             }
         }.start();
+    }
+        private int tienSauGiamGia() {
+        return (getThanhTien()  - (int) Float.parseFloat(txtGiamGia.getText()));
     }
 
     private void loadKhachHangKhuyenMai() {
@@ -356,6 +363,14 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
             }
         }
 
+    }
+
+    private void loadChonKhuyenMai() {
+
+        getThanhTien();
+        lblMaGiamGia.setText(ChonKhuyenMai.getKhuyenMai().getMa());
+//            HoaDon hd = hoaDonService.getOneByMaHD(lblMaHD.getText());
+        txtGiamGia.setText((getThanhTien() * ChonKhuyenMai.getKhuyenMai().getMucGiamGia() / 100) + "");
     }
 
     /**
@@ -402,6 +417,11 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         jButton5 = new javax.swing.JButton();
         lblMaKH = new javax.swing.JLabel();
         btnTaoHoaDon = new javax.swing.JButton();
+        btnChonKhuyenMai = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtGiamGia = new javax.swing.JTextField();
+        lblMaGiamGia = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -620,6 +640,19 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
             }
         });
 
+        btnChonKhuyenMai.setText("Chọn");
+        btnChonKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChonKhuyenMaiActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Mã giảm giá");
+
+        jLabel8.setText("Giảm giá");
+
+        lblMaGiamGia.setText("Mã");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -652,12 +685,23 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(lblThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(btnTaoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 48, Short.MAX_VALUE))
-                    .addComponent(lblTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnChonKhuyenMai))
+                            .addComponent(txtGiamGia))))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -669,7 +713,16 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                     .addComponent(lblMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(177, 177, 177)
+                .addGap(90, 90, 90)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnChonKhuyenMai)
+                    .addComponent(jLabel7)
+                    .addComponent(lblMaGiamGia))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(cboHinhThucThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -887,7 +940,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -1014,6 +1067,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
 
         thanhToan();
         ChonKH.setKhachHang(khachHangService.getOne(1));
+        ChonKhuyenMai.setKhuyenMai(new KhuyenMaiRepository().getAll().get(0));
         //        int chon = JOptionPane.showConfirmDialog(this, "In hóa đơn", "Xác nhận", JOptionPane.YES_NO_OPTION);
         //        if (chon == JOptionPane.YES_OPTION) {
         //            exportBill();
@@ -1034,7 +1088,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         } else {
             txtKhachTra.setEditable(false); //Chuyển khoản
             txtKhachTra.setText("");
-            txtChuyenKhoan.setText(getThanhTien() + "");
+            txtChuyenKhoan.setText(tienSauGiamGia()+ "");
             txtTienThua.setText("");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_cboHinhThucThanhToanItemStateChanged
@@ -1042,13 +1096,13 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private void txtKhachTraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKhachTraKeyReleased
         // TODO add your handling code here:
         if (cboHinhThucThanhToan.getSelectedIndex() == 0) {
-            txtTienThua.setText((Integer.parseInt(txtKhachTra.getText()) - getThanhTien()) + "");
+            txtTienThua.setText((Integer.parseInt(txtKhachTra.getText()) - tienSauGiamGia()) + "");
         } else if (cboHinhThucThanhToan.getSelectedIndex() == 2) {
-            txtChuyenKhoan.setText((getThanhTien() - Integer.parseInt(txtKhachTra.getText())) + "");
+            txtChuyenKhoan.setText((tienSauGiamGia() - Integer.parseInt(txtKhachTra.getText())) + "");
         } else {
             txtKhachTra.setEditable(false); //Chuyển khoản
             txtKhachTra.setText("");
-            txtChuyenKhoan.setText(getThanhTien() + "");
+            txtChuyenKhoan.setText(tienSauGiamGia() + "");
             txtTienThua.setText("");
         }
     }//GEN-LAST:event_txtKhachTraKeyReleased
@@ -1161,8 +1215,13 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoTatCaActionPerformed
 
+    private void btnChonKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonKhuyenMaiActionPerformed
+        new KhuyenMaiJframe().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChonKhuyenMaiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChonKhuyenMai;
     private javax.swing.JButton btnTaoHoaDon;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1183,6 +1242,8 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1197,6 +1258,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jplCam;
+    private javax.swing.JLabel lblMaGiamGia;
     private javax.swing.JLabel lblMaHD;
     private javax.swing.JLabel lblMaKH;
     private javax.swing.JLabel lblTenKH;
@@ -1209,6 +1271,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTextField txtChuyenKhoan;
     private javax.swing.JTextField txtDen;
+    private javax.swing.JTextField txtGiamGia;
     private javax.swing.JTextField txtKhachTra;
     private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTim;
