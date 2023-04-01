@@ -16,11 +16,20 @@ import com.mycompany.phanmemquanlibanquanao.service.NhanVienService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.HoaDonChiTietServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.HoaDonServiceImpl;
 import com.mycompany.phanmemquanlibanquanao.service.impl.NhanVienServiceImpl;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -31,6 +40,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
     private HoaDonService hoaDonService = new HoaDonServiceImpl();
     private HoaDonChiTietService hoaDonChiTietService = new HoaDonChiTietServiceImpl();
     private NhanVienService nhanVienService = new NhanVienServiceImpl();
+    private DefaultTableModel dtm1;
     private DefaultTableModel dtm;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -39,8 +49,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
      */
     public LichSuGiaoDichJpanel() {
         initComponents();
-        loadLichSu(new HoaDonRepository().getLichSu(1));
-        loadCboNhanVien(nhanVienService.getAll());
+        loadLichSu(hoaDonService.getAll());
     }
 
     public void loadCboNhanVien(List<NhanVien> list) {
@@ -48,7 +57,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         for (NhanVien nhanVien : list) {
             row.addElement(nhanVien.getTenNhanVien());            
         }
-        cboNV.setModel(row);
+        cbbNV.setModel(row);
         
     }
 
@@ -57,8 +66,8 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
     }
 
     private void loadLichSu(List<HoaDon> list) {
-        dtm = (DefaultTableModel) tblLichSu.getModel();
-        dtm.setRowCount(0);
+        dtm1 = (DefaultTableModel) tblLichSu.getModel();
+        dtm1.setRowCount(0);
         for (HoaDon hd : list) {
             Object[] row = new Object[]{
                 hd.getId(),
@@ -70,7 +79,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                 dateFomart(hd.getNgayThanhToan()),
                 hd.htTrangThai()
             };
-            dtm.addRow(row);
+            dtm1.addRow(row);
         }        
     }
 
@@ -97,6 +106,14 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         int idHd = hoaDonService.getOneByMaHD(txtMaHD.getText()).getId();
         return idHd;
     }
+    private String getKindByComboBox(){
+        String kind="";
+        if(cbbNV.getSelectedIndex()==0){
+             kind="maHoaDon";
+        }
+        return kind;
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,7 +128,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLichSu = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        cboNV = new javax.swing.JComboBox<>();
+        cbbNV = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -128,9 +145,9 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         txtNgayTao = new javax.swing.JTextField();
         txtNgayThanhToan = new javax.swing.JTextField();
         txtThanhTien = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
@@ -177,7 +194,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(51, 0, 51));
         jLabel1.setText("Lịch Sử Giao Dịch");
 
-        cboNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NV1", "NV2", "NV3" }));
+        cbbNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã hoá đơn", "Tên nhân viên", "Tên khách hàng", "Số điện thoại", "Ngày tạo", "Ngày thanh toán" }));
 
         jLabel2.setText("Hóa Đơn");
 
@@ -260,14 +277,19 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                 .addContainerGap(252, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Seacch");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Xuất excel");
+        btnExport.setText("Xuất excel");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn"));
 
@@ -316,7 +338,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(btnExport)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(2, 2, 2))
                     .addGroup(layout.createSequentialGroup()
@@ -325,11 +347,11 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                         .addGap(0, 6, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(cboNV, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbbNV, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -344,13 +366,13 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(cboNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSearch)
+                            .addComponent(cbbNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnExport)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -371,15 +393,49 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         txtThanhTien.setText(hd.getTongTien() + "");
     }//GEN-LAST:event_tblLichSuMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        hoaDonService.searchKindByComboBox(getKindByComboBox(),txtSearch.getText());
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        String uri="";
+        JFileChooser excelExport= new JFileChooser(uri);
+        FileNameExtensionFilter FNEF=new FileNameExtensionFilter("EXCEL FILES", "xls","xlsx","xlsm");
+        excelExport.setFileFilter(FNEF);
+        excelExport.setDialogTitle("Save excel...");
+        
+        int excelChooser=excelExport.showSaveDialog(null);
+        if(excelChooser==JFileChooser.APPROVE_OPTION){
+            XSSFWorkbook excelSSFWorkbookExprort=new XSSFWorkbook();
+            XSSFSheet excelSheet=excelSSFWorkbookExprort.createSheet("Danh sách");
+            for(int i=0;i<dtm1.getRowCount();i++){
+                XSSFRow excelRow=excelSheet.createRow(i);
+                for(int j=0;j<dtm1.getColumnCount();j++){
+                    XSSFCell excellCell = excelRow.createCell(j);
+                    excellCell.setCellValue(dtm1.getValueAt(i, j).toString());
+                }
+                
+            }
+            FileOutputStream fos;
+            BufferedOutputStream bou;
+            try{
+                fos=new FileOutputStream(excelExport.getSelectedFile()+".xlsx");
+                bou=new BufferedOutputStream(fos);
+                excelSSFWorkbookExprort.write(bou);
+                bou.close();
+                excelSSFWorkbookExprort.close();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnExportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cboNV;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> cbbNV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -394,12 +450,12 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblLichSu;
     private javax.swing.JTextField txtMaHD;
     private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtNgayThanhToan;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtTenNV;
     private javax.swing.JTextField txtThanhTien;

@@ -31,6 +31,12 @@ public class HoaDonRepository {
         query.setParameter("id", id);
         return query.getResultList();
     }
+    public List<HoaDon>searchByComboBoxNoJoin(String kind,String txt){
+        Query query=session.createQuery( "FROM HoaDon where "+kind+" =:txt order by id desc",HoaDon.class);
+        query.setParameter("txt", txt);
+        System.out.println("Câu HQL SEARCH: FROM HoaDon where "+kind+" =:txt order by id desc");
+        return query.getResultList();
+    }
     
     public List<HoaDon> getLichSu(int tt) {
         Query query = session.createQuery(fromTable + "  where trangThai =:tt order by id desc", HoaDon.class);

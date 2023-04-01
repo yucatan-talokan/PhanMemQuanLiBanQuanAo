@@ -63,5 +63,10 @@ public class HoaDonServiceImpl implements HoaDonService{
         return hoaDonReposity.getHdWhere(tt, id);
     }
 
+    @Override
+    public List<HoaDon> searchKindByComboBox(String kind, String txt) {
+        return hoaDonReposity.searchByComboBoxNoJoin(kind, txt);
+    }
+
     
 }
