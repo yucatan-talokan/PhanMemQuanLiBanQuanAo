@@ -7,6 +7,7 @@ package com.mycompany.phanmemquanlibanquanao.views;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.service.KhachHangService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.KhachHangServiceImpl;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -222,6 +223,12 @@ public class KhachHangJpanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Danh sách khách hàng");
 
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyReleased(evt);
+            }
+        });
+
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,6 +438,7 @@ txtDiaChiKH.setText("");// TODO add your handling code here:
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnTimActionPerformed
 
     private void btnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllActionPerformed
@@ -458,6 +466,17 @@ txtDiaChiKH.setText("");// TODO add your handling code here:
     private void tblLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichSuMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblLichSuMouseClicked
+
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
+        // TODO add your handling code here:
+        ArrayList<KhachHang> lst = new ArrayList<>();
+        for (KhachHang kh : viewKhachHangService.getAll()) {
+            if (kh.getTen().contains(txtTimKiem.getText()) || kh.getMa().contains(txtTimKiem.getText()) || kh.getDiaChi().contains(txtTimKiem.getText()) || kh.getSdt().contains(txtTimKiem.getText())) {
+                lst.add(kh);
+            }
+        }
+        loadDatakhachHang(lst);
+    }//GEN-LAST:event_txtTimKiemKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
