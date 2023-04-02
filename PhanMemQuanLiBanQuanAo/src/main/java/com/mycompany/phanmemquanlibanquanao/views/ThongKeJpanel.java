@@ -432,17 +432,13 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNgayBatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,7 +452,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     private void rdoThangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoThangMouseClicked
         // TODO add your handling code here:
 
-        List<Long> a1 = chiTietSpRepository.ThongKeThang1(1, 2022);
+          List<Long> a1 = chiTietSpRepository.ThongKeThang1(1, 2022);
         double val1 = 0;
         for (Long double1 : a1) {
             if (double1 == null) {
@@ -579,17 +575,17 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         //int val1 = 20000;
-        //        int val2 = 100000;
-        //        int val3 = 10;
-        //        int val4 = 15;
-        //        // int val5 = 25;
-        //        int val6 = 20;
-        //        int val7 = 25;
-        //        int val8 = 5;
-        //        int val9 = 30;
-        //        int val10 = 35000;
-        //        int val11= 25;
-        //        int val12 = 30;
+//        int val2 = 100000;
+//        int val3 = 10;
+//        int val4 = 15;
+//        // int val5 = 25;
+//        int val6 = 20;
+//        int val7 = 25;
+//        int val8 = 5;
+//        int val9 = 30;
+//        int val10 = 35000;
+//        int val11= 25;
+//        int val12 = 30;
         dataset.setValue(val1, "", " 1");
         dataset.setValue(val2, "", " 2");
         dataset.setValue(val3, "", " 3");
@@ -619,29 +615,29 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     private void rdoNamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNamMouseClicked
         // TODO add your handling code here:
 
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        //
-        //        //        List<Long> a = chiTietSpRepository.ThongKeNam1(2021);
-        //        //        double
-        //        //        for (Long double1 : a) {
-            //            //            val1=double1;
-            //            //        }
-        //        //        int val1 =0;
+          DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//
+//        //        List<Long> a = chiTietSpRepository.ThongKeNam1(2021);
+//        //        double
+//        //        for (Long double1 : a) {
+//            //            val1=double1;
+//            //        }
+//        //        int val1 =0;
         List<Long> b = chiTietSpRepository.ThongKeNam1(2022);
         double val2 = 0;
         for (Long double2 : b) {
             val2 = double2;
         }
-        //        //        List<Long> c = chiTietSpRepository.ThongKeNam1(2023);
-        //        //        double val3 =0;
-        //        //        for (Long double3 : c) {
-            //            //            val3=double3;
-            //            //        }
-        //        //        List<Long> d = chiTietSpRepository.ThongKeNam1(2024);
-        //        //        double val4 =0;
-        //        //        for (Long double4 : d) {
-            //            //            val4=double4;
-            //            //        }
+//        //        List<Long> c = chiTietSpRepository.ThongKeNam1(2023);
+//        //        double val3 =0;
+//        //        for (Long double3 : c) {
+//            //            val3=double3;
+//            //        }
+//        //        List<Long> d = chiTietSpRepository.ThongKeNam1(2024);
+//        //        double val4 =0;
+//        //        for (Long double4 : d) {
+//            //            val4=double4;
+//            //        }
         int val1 = 0;
         //int val2 = 5;
         int val3 = 0;

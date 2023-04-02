@@ -31,7 +31,7 @@ public class Main extends javax.swing.JFrame {
         showPanel(banHangJPanel);
         banHangJPanel.initWebcam();
         this.setExtendedState(MAXIMIZED_BOTH);
-                lblTenNV.setText(UserLogin.getNhanVien().getTenNhanVien());
+        lblTenNV.setText(UserLogin.getNhanVien().getTenNhanVien());
         lblChucVu.setText(UserLogin.getNhanVien().getChucVu().getTen());
     }
 

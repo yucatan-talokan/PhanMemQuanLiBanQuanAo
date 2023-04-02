@@ -11,6 +11,7 @@ import com.mycompany.phanmemquanlibanquanao.service.impl.KhuyenMaiServiceImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,19 +34,21 @@ public class KhuyenMaiJframe extends javax.swing.JFrame {
 
     public void loadData(List<KhuyenMai> list) {
         model = (DefaultTableModel) tblKhuyenMai.getModel();
-        model.setColumnIdentifiers(new String[]{"STT", "Mã khuyến mại", "Tên", "Mức giảm giá", "Ngày bắt đầu", "Ngày kết thúc", "Trạng Thái"});
+        model.setColumnIdentifiers(new String[]{"STT", "Mã khuyến mại", "Tên", "Mức giảm giá", "Ngày bắt đầu", "Ngày kết thúc"});
         model.setRowCount(0);
+        int i = 0;
         for (KhuyenMai km : list) {
             if (km.getTrangThai() == 0) {
-                model.addRow(new Object[]{km.getId(), km.getMa(), km.getTen(), km.getMucGiamGia(), doiNgay(km.getNgayBatDau()), doiNgay(km.getNgayKetThuc()), km.htTrangThai()});
+                model.addRow(new Object[]{i, km.getMa(), km.getTen(), km.getMucGiamGia() + "%", doiNgay(km.getNgayBatDau()), doiNgay(km.getNgayKetThuc())});
             }
+            i++;
 
         }
     }
 
     private String doiNgay(Date d) {
         SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("yyyy-MM-dd");
+        format.applyPattern("dd-MM-yyyy");
         String ngayTao = format.format(d);
         return ngayTao;
     }
@@ -63,6 +66,7 @@ public class KhuyenMaiJframe extends javax.swing.JFrame {
         tblKhuyenMai = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,26 +97,35 @@ public class KhuyenMaiJframe extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Khuyến Mại");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton1)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(228, 228, 228)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -124,18 +137,24 @@ public class KhuyenMaiJframe extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ChonKhuyenMai.setKhuyenMai(null);
+        ChonKhuyenMai.setKhuyenMai(khuyenMaiService.getAll().get(0));
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        for (KhuyenMai km : khuyenMaiService.getAll()) {
+        int index = tblKhuyenMai.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn khuyến mại");
+        }else{
+                    for (KhuyenMai km : khuyenMaiService.getAll()) {
             if (km.getMa().equals(tblKhuyenMai.getValueAt(tblKhuyenMai.getSelectedRow(), 1))) {
                 ChonKhuyenMai.setKhuyenMai(km);
             }
         }
         this.dispose();
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -176,6 +195,7 @@ public class KhuyenMaiJframe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblKhuyenMai;
     // End of variables declaration//GEN-END:variables
