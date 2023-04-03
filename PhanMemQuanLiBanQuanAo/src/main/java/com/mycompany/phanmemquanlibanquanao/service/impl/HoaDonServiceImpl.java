@@ -7,6 +7,7 @@ package com.mycompany.phanmemquanlibanquanao.service.impl;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
 import com.mycompany.phanmemquanlibanquanao.repository.HoaDonRepository;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonService;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,6 +67,16 @@ public class HoaDonServiceImpl implements HoaDonService{
     @Override
     public List<HoaDon> searchKindByComboBox(String kind, String txt) {
         return hoaDonReposity.searchByComboBoxNoJoin(kind, txt);
+    }
+
+    @Override
+    public List<HoaDon> searchDateKindByComboBox(String kind, Date txt) {
+        return hoaDonReposity.searchDateByComboBoxNoJoin(kind, txt);
+    }
+
+    @Override
+    public List<HoaDon> searchNhanVienByComboBoxJoin(String kind, String txt) {
+        return hoaDonReposity.searchNhanVienByComboBoxJoin(kind, txt);
     }
 
     

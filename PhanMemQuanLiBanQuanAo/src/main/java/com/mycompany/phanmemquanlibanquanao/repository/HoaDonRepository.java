@@ -6,6 +6,7 @@ package com.mycompany.phanmemquanlibanquanao.repository;
 
 import com.mycompany.phanmemquanlibanquanao.config.HibernateConfig;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -31,12 +32,25 @@ public class HoaDonRepository {
         query.setParameter("id", id);
         return query.getResultList();
     }
+    
+    // Query cho chức năng search------------------------------------------------------------
     public List<HoaDon>searchByComboBoxNoJoin(String kind,String txt){
-        Query query=session.createQuery( "FROM HoaDon where "+kind+" =:txt order by id desc",HoaDon.class);
+        Query query=session.createQuery( "FROM HoaDon where "+kind+" = :txt order by id desc",HoaDon.class);
         query.setParameter("txt", txt);
-        System.out.println("Câu HQL SEARCH: FROM HoaDon where "+kind+" =:txt order by id desc");
         return query.getResultList();
     }
+    public List<HoaDon>searchDateByComboBoxNoJoin(String kind,Date txt){
+        Query query=session.createQuery( "FROM HoaDon where "+kind+" = :txt order by id desc",HoaDon.class);
+        query.setParameter("txt", txt);
+        return query.getResultList();
+    }
+    public List<HoaDon>searchNhanVienByComboBoxJoin(String kind,String txt){
+        Query query=session.createQuery( "FROM HoaDon hd JOIN nhanVien nv on hd.nhanVien.id = nv.id where "+kind+" = :txt order by id desc");
+        query.setParameter("txt", txt);
+        return query.getResultList();
+    }
+    //------------------------------------------------------------------------------------
+    
     
     public List<HoaDon> getLichSu(int tt) {
         Query query = session.createQuery(fromTable + "  where trangThai =:tt order by id desc", HoaDon.class);

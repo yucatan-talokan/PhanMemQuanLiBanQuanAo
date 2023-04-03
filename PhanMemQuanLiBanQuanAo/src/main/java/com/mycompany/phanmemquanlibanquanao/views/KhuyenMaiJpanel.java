@@ -126,6 +126,10 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblKhuyenMai);
 
+        txtKetThuc.setDateFormatString("dd/MM/yyyy");
+
+        txtBatDau.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(

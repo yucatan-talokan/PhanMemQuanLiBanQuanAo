@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.service;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,10 @@ public interface HoaDonService {
     List<HoaDon> getHdWhere(int tt,int id);
     
     List<HoaDon>searchKindByComboBox(String kind,String txt);
+    
+    List<HoaDon>searchDateKindByComboBox(String kind,Date txt);
+    
+    List<HoaDon>searchNhanVienByComboBoxJoin(String kind,String txt);
 
     HoaDon getOneByMaHD(String maHoaDon);
 
