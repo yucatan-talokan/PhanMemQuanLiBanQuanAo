@@ -50,8 +50,8 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
      */
     public LichSuGiaoDichJpanel() {
         initComponents();
-        loadLichSu(hoaDonService.getAll());
-        
+        loadLichSu(hoaDonService.getLichSuByTrangThai(1));
+
     }
 
     public void loadCboNhanVien(List<NhanVien> list) {
@@ -79,7 +79,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
                 hd.getKhachHang().getSdt(),
                 dateFomart(hd.getNgayTao()),
                 dateFomart(hd.getNgayThanhToan()),
-                hd.htTrangThai()
+                hd.getTrangThai() == 1 ? "Đã thanh toán" : "Chưa thanh toán"
             };
             dtm1.addRow(row);
         }
@@ -113,9 +113,9 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         String kind = "";
         if (cbbNV.getSelectedIndex() == 0) {
             kind = "maHoaDon";
-        }        
-        if(cbbNV.getSelectedIndex()==1){
-            kind="nv.tenNhanVien";
+        }
+        if (cbbNV.getSelectedIndex() == 1) {
+            kind = "nv.tenNhanVien";
         }
         if (cbbNV.getSelectedIndex() == 3) {
             kind = "sdt";
@@ -420,16 +420,16 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tblLichSuMouseClicked
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if (cbbNV.getSelectedIndex() == 0 || cbbNV.getSelectedIndex()==3) {
+        if (cbbNV.getSelectedIndex() == 0 || cbbNV.getSelectedIndex() == 3) {
             loadLichSu(hoaDonService.searchKindByComboBox(getKindByComboBox(), txtSearch.getText()));
         }
-        if(cbbNV.getSelectedIndex()==1){
+        if (cbbNV.getSelectedIndex() == 1) {
             loadLichSu(hoaDonService.searchNhanVienByComboBoxJoin(getKindByComboBox(), txtSearch.getText()));
         }
         if (cbbNV.getSelectedIndex() == 4 || cbbNV.getSelectedIndex() == 5) {
             try {
                 loadLichSu(hoaDonService.searchDateKindByComboBox(getKindByComboBox(), sdf.parse(txtSearch.getText())));
-                
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -470,7 +470,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExportActionPerformed
 
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
-        loadLichSu(hoaDonService.getAll());
+        loadLichSu(hoaDonService.getLichSuByTrangThai(1));
         txtSearch.setText(null);
     }//GEN-LAST:event_btnReloadActionPerformed
 

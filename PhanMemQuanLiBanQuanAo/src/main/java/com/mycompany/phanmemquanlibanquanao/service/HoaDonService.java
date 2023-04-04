@@ -19,7 +19,7 @@ public interface HoaDonService {
     
     List<HoaDon> getHdWhere(int tt,int id);
     
-
+    List<HoaDon> getLichSuByTrangThai(int tt);
     
     List<HoaDon>searchKindByComboBox(String kind,String txt);
     

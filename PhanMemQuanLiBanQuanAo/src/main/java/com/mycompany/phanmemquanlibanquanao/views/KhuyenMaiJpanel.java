@@ -60,6 +60,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -76,6 +77,9 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         tblKhuyenMai = new javax.swing.JTable();
         txtKetThuc = new com.toedter.calendar.JDateChooser();
         txtBatDau = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        rdoDangHoatDong = new javax.swing.JRadioButton();
+        rdoHetHan = new javax.swing.JRadioButton();
 
         jLabel2.setText("Mã khuyến mại");
 
@@ -130,6 +134,14 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
         txtBatDau.setDateFormatString("dd/MM/yyyy");
 
+        jLabel7.setText("Trạng thái");
+
+        buttonGroup1.add(rdoDangHoatDong);
+        rdoDangHoatDong.setText("Đang hoạt động");
+
+        buttonGroup1.add(rdoHetHan);
+        rdoHetHan.setText("Hết hạn");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,13 +156,17 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
                                 .addGap(178, 178, 178))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2)))
                                 .addGap(33, 33, 33)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdoDangHoatDong)
+                            .addComponent(rdoHetHan))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -197,8 +213,12 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtMucGiam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa))
-                .addGap(44, 44, 44)
+                    .addComponent(btnXoa)
+                    .addComponent(jLabel7)
+                    .addComponent(rdoDangHoatDong))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rdoHetHan)
+                .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(63, Short.MAX_VALUE))
         );
@@ -273,13 +293,17 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rdoDangHoatDong;
+    private javax.swing.JRadioButton rdoHetHan;
     private javax.swing.JTable tblKhuyenMai;
     private com.toedter.calendar.JDateChooser txtBatDau;
     private com.toedter.calendar.JDateChooser txtKetThuc;

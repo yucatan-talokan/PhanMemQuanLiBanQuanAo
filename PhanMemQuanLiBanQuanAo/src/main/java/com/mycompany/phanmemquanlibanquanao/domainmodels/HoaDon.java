@@ -91,12 +91,6 @@ public class HoaDon {
             return "Đã thanh toán";
         } else if (this.trangThai == 2) {
             return "Đã hủy";
-        } else if (this.trangThai == 3) {
-            return "Chờ giao hàng";
-        } else if (this.trangThai == 4) {
-            return "Đã giao hàng";
-        } else if (this.trangThai == 5) {
-            return "Giao hàng thành công";
         } else {
             return null;
         }

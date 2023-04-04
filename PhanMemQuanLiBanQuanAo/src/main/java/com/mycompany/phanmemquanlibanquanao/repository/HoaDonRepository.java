@@ -54,7 +54,7 @@ public class HoaDonRepository {
     //------------------------------------------------------------------------------------
     
     
-    public List<HoaDon> getLichSu(int tt) {
+    public List<HoaDon> getLichSuByTrangThai(int tt) {
         Query query = session.createQuery(fromTable + "  where trangThai =:tt order by id desc", HoaDon.class);
         query.setParameter("tt", tt);
         return query.getResultList();
