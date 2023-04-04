@@ -39,22 +39,28 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     /**
      * Creates new form ThongKeJpanel
      */
-      private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
+    private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
     private ChiTietSPServiceImpl chiTietSpServiceImpl = new ChiTietSPServiceImpl();
     private DefaultTableModel model;
     private HoaDonService hoaDonService;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
     public ThongKeJpanel() {
         initComponents();
         loadTable(chiTietSpRepository.getAll());
         hoaDonService = new HoaDonServiceImpl();
         txtTongDonHang1.setText(getTongDonHang() + "");
         txtThanhCong1.setText(getTongDonHangThanhCong() + "");
+        bieuDoThang();
     }
- public void loadTable(ArrayList<ChiTietSP> list) {
+
+    public void loadTable(ArrayList<ChiTietSP> list) {
         model = (DefaultTableModel) tblThongKeSp.getModel();
         model.setRowCount(0);
         int i = 1;
+        model.setColumnIdentifiers(new Object[]{
+            "STT", "Mã Sản Phẩm", "Sản phẩm", "Dòng sản phẩm", "Đơn giá", "Màu sắc", "Chất liệu", "Size", "Nsx", "soluongton"
+        });
         for (ChiTietSP chiTietSanPham : list) {
 
             Object[] row = new Object[]{
@@ -68,7 +74,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
- 
+
     private int getTongDonHang() {
         int i = 0;
         for (HoaDon hoaDon : hoaDonService.getAll()) {
@@ -100,12 +106,170 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         }
         return i;
     }
-        private String doiNgay(Date d) {
+
+    private String doiNgay(Date d) {
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern("yyyy-MM-dd");
         String ngayTao = format.format(d);
         return ngayTao;
     }
+    private void bieuDoThang(){
+     List<Long> a1 = chiTietSpRepository.ThongKeThang1(1, 2023);
+        double val1 = 0;
+        for (Long double1 : a1) {
+            if (double1 == null) {
+                val1 = 0;
+            } else {
+                val1 = double1;
+            }
+        }
+        //2
+        List<Long> a2 = chiTietSpRepository.ThongKeThang2(2, 2023);
+        double val2 = 0;
+        for (Long double1 : a2) {
+            if (double1 == null) {
+                val2 = 0;
+            } else {
+                val2 = double1;
+            }
+
+        }
+        //3
+        List<Long> a3 = chiTietSpRepository.ThongKeThang3(3, 2023);
+        double val3 = 0;
+        for (Long double1 : a3) {
+            if (double1 == null) {
+                val3 = 0;
+            } else {
+                val3 = double1;
+            }
+        }
+        //4
+        List<Long> a4 = chiTietSpRepository.ThongKeThang4(4, 2023);
+        double val4 = 0;
+        for (Long double1 : a4) {
+            if (double1 == null) {
+                val4 = 0;
+            } else {
+                val4 = double1;
+            }
+        }
+        //5
+        List<Long> a5 = chiTietSpRepository.ThongKeThang5(5, 2023);
+        double val5 = 0;
+        for (Long double1 : a5) {
+            if (double1 == null) {
+                val5 = 0;
+            } else {
+                val5 = double1;
+            }
+        }
+        //6
+        List<Long> a6 = chiTietSpRepository.ThongKeThang6(6, 2023);
+        double val6 = 0;
+        for (Long double1 : a6) {
+            if (double1 == null) {
+                val6 = 0;
+            } else {
+                val6 = double1;
+            }
+        }
+        //7
+        List<Long> a7 = chiTietSpRepository.ThongKeThang7(7, 2023);
+        double val7 = 0;
+        for (Long double1 : a7) {
+            if (double1 == null) {
+                val7 = 0;
+            } else {
+                val7 = double1;
+            }
+        }
+        //8
+        List<Long> a8 = chiTietSpRepository.ThongKeThang8(8, 2023);
+        double val8 = 0;
+        for (Long double1 : a8) {
+            if (double1 == null) {
+                val8 = 0;
+            } else {
+                val8 = double1;
+            }
+        }
+        //9
+        List<Long> a9 = chiTietSpRepository.ThongKeThang9(9, 2023);
+        double val9 = 0;
+        for (Long double1 : a9) {
+            if (double1 == null) {
+                val9 = 0;
+            } else {
+                val9 = double1;
+            }
+        }
+        //10
+        List<Long> a10 = chiTietSpRepository.ThongKeThang10(10, 2023);
+        double val10 = 0;
+        for (Long double1 : a10) {
+            if (double1 == null) {
+                val10 = 0;
+            } else {
+                val10 = double1;
+            }
+        }//11
+        List<Long> a11 = chiTietSpRepository.ThongKeThang11(11, 2023);
+        double val11 = 0;
+        for (Long double1 : a11) {
+            if (double1 == null) {
+                val11 = 0;
+            } else {
+                val11 = double1;
+            }
+        }
+        //12
+        List<Long> a12 = chiTietSpRepository.ThongKeThang12(12, 2023);
+        double val12 = 0;
+        for (Long double1 : a12) {
+            if (double1 == null) {
+                val12 = 0;
+            } else {
+                val12 = double1;
+            }
+        }
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        //int val1 = 20000;
+//        int val2 = 100000;
+//        int val3 = 10;
+//        int val4 = 15;
+//        // int val5 = 25;
+//        int val6 = 20;
+//        int val7 = 25;
+//        int val8 = 5;
+//        int val9 = 30;
+//        int val10 = 35000;
+//        int val11= 25;
+//        int val12 = 30;
+        dataset.setValue(val1, "", " 1");
+        dataset.setValue(val2, "", " 2");
+        dataset.setValue(val3, "", " 3");
+        dataset.setValue(val4, "", " 4");
+        dataset.setValue(val5, "", " 5");
+        dataset.setValue(val6, "", " 6");
+        dataset.setValue(val7, "", " 7");
+        dataset.setValue(val8, "", " 8");
+        dataset.setValue(val9, "", " 9");
+        dataset.setValue(val10, "", " 10");
+        dataset.setValue(val11, "", " 11");
+        dataset.setValue(val12, "", " 12");
+
+        JFreeChart oChart = ChartFactory.createBarChart("BIỂU ĐỒ TỔNG TIỀN THÁNG " + "", "", "TỔNG TIỀN(VND)", dataset, PlotOrientation.VERTICAL, false, false, false);
+
+        ChartPanel oPanel = new ChartPanel(oChart);
+        pan2.setLayout(new java.awt.BorderLayout());
+        pan2.removeAll();
+        pan2.add(oPanel);
+        pan2.validate();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,6 +307,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         txtTim = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btlTKDoanhThu = new javax.swing.JButton();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
 
         jLabel8.setText("Tổng đơn hàng");
 
@@ -183,6 +349,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 51));
+
         jLabel3.setText("Tổng tiền theo ngày");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -199,12 +367,14 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(txtDtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(31, 31, 31))
         );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 51));
 
         jLabel4.setText("Tổng tiền theo tháng");
 
@@ -222,12 +392,14 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel4)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(txtDtThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 51));
 
         jLabel5.setText("Tổng tiền theo năm");
 
@@ -245,9 +417,9 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel5)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(txtNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -412,20 +584,20 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1124, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtNgayBatdau, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNgayBatdau, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btlTKDoanhThu))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
+                                .addGap(18, 18, 18)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btlTKDoanhThu))
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -433,12 +605,11 @@ public class ThongKeJpanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNgayBatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,162 +621,9 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rdoThangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoThangMouseClicked
-        // TODO add your handling code here:
+bieuDoThang();        // TODO add your handling code here:
 
-          List<Long> a1 = chiTietSpRepository.ThongKeThang1(1, 2022);
-        double val1 = 0;
-        for (Long double1 : a1) {
-            if (double1 == null) {
-                val1 = 0;
-            } else {
-                val1 = double1;
-            }
-        }
-        //2
-        List<Long> a2 = chiTietSpRepository.ThongKeThang2(2, 2022);
-        double val2 = 0;
-        for (Long double1 : a2) {
-            if (double1 == null) {
-                val2 = 0;
-            } else {
-                val2 = double1;
-            }
-
-        }
-        //3
-        List<Long> a3 = chiTietSpRepository.ThongKeThang3(3, 2022);
-        double val3 = 0;
-        for (Long double1 : a3) {
-            if (double1 == null) {
-                val3 = 0;
-            } else {
-                val3 = double1;
-            }
-        }
-        //4
-        List<Long> a4 = chiTietSpRepository.ThongKeThang4(4, 2022);
-        double val4 = 0;
-        for (Long double1 : a4) {
-            if (double1 == null) {
-                val4 = 0;
-            } else {
-                val4 = double1;
-            }
-        }
-        //5
-        List<Long> a5 = chiTietSpRepository.ThongKeThang5(5, 2022);
-        double val5 = 0;
-        for (Long double1 : a5) {
-            if (double1 == null) {
-                val5 = 0;
-            } else {
-                val5 = double1;
-            }
-        }
-        //6
-        List<Long> a6 = chiTietSpRepository.ThongKeThang6(6, 2022);
-        double val6 = 0;
-        for (Long double1 : a6) {
-            if (double1 == null) {
-                val6 = 0;
-            } else {
-                val6 = double1;
-            }
-        }
-        //7
-        List<Long> a7 = chiTietSpRepository.ThongKeThang7(7, 2022);
-        double val7 = 0;
-        for (Long double1 : a7) {
-            if (double1 == null) {
-                val7 = 0;
-            } else {
-                val7 = double1;
-            }
-        }
-        //8
-        List<Long> a8 = chiTietSpRepository.ThongKeThang8(8, 2022);
-        double val8 = 0;
-        for (Long double1 : a8) {
-            if (double1 == null) {
-                val8 = 0;
-            } else {
-                val8 = double1;
-            }
-        }
-        //9
-        List<Long> a9 = chiTietSpRepository.ThongKeThang9(9, 2022);
-        double val9 = 0;
-        for (Long double1 : a9) {
-            if (double1 == null) {
-                val9 = 0;
-            } else {
-                val9 = double1;
-            }
-        }
-        //10
-        List<Long> a10 = chiTietSpRepository.ThongKeThang10(10, 2022);
-        double val10 = 0;
-        for (Long double1 : a10) {
-            if (double1 == null) {
-                val10 = 0;
-            } else {
-                val10 = double1;
-            }
-        }//11
-        List<Long> a11 = chiTietSpRepository.ThongKeThang11(11, 2022);
-        double val11 = 0;
-        for (Long double1 : a11) {
-            if (double1 == null) {
-                val11 = 0;
-            } else {
-                val11 = double1;
-            }
-        }
-        //12
-        List<Long> a12 = chiTietSpRepository.ThongKeThang12(12, 2022);
-        double val12 = 0;
-        for (Long double1 : a12) {
-            if (double1 == null) {
-                val12 = 0;
-            } else {
-                val12 = double1;
-            }
-        }
-
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        //int val1 = 20000;
-//        int val2 = 100000;
-//        int val3 = 10;
-//        int val4 = 15;
-//        // int val5 = 25;
-//        int val6 = 20;
-//        int val7 = 25;
-//        int val8 = 5;
-//        int val9 = 30;
-//        int val10 = 35000;
-//        int val11= 25;
-//        int val12 = 30;
-        dataset.setValue(val1, "", " 1");
-        dataset.setValue(val2, "", " 2");
-        dataset.setValue(val3, "", " 3");
-        dataset.setValue(val4, "", " 4");
-        dataset.setValue(val5, "", " 5");
-        dataset.setValue(val6, "", " 6");
-        dataset.setValue(val7, "", " 7");
-        dataset.setValue(val8, "", " 8");
-        dataset.setValue(val9, "", " 9");
-        dataset.setValue(val10, "", " 10");
-        dataset.setValue(val11, "", " 11");
-        dataset.setValue(val12, "", " 12");
-
-        JFreeChart oChart = ChartFactory.createBarChart("BIỂU ĐỒ TỔNG TIỀN THÁNG " + "", "", "TỔNG TIỀN(VND)", dataset, PlotOrientation.VERTICAL, false, false, false);
-
-        ChartPanel oPanel = new ChartPanel(oChart);
-        pan2.setLayout(new java.awt.BorderLayout());
-        pan2.removeAll();
-        pan2.add(oPanel);
-        pan2.validate();
+       
     }//GEN-LAST:event_rdoThangMouseClicked
 
     private void rdoThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoThangActionPerformed
@@ -615,7 +633,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
     private void rdoNamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNamMouseClicked
         // TODO add your handling code here:
 
-          DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //
 //        //        List<Long> a = chiTietSpRepository.ThongKeNam1(2021);
 //        //        double
@@ -623,7 +641,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 //            //            val1=double1;
 //            //        }
 //        //        int val1 =0;
-        List<Long> b = chiTietSpRepository.ThongKeNam1(2022);
+        List<Long> b = chiTietSpRepository.ThongKeNam1(2023);
         double val2 = 0;
         for (Long double2 : b) {
             val2 = double2;
@@ -643,8 +661,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         int val3 = 0;
         int val4 = 0;
         dataset.setValue(val1, "", "");
-        dataset.setValue(val2, "", "NĂM 2022");
-        dataset.setValue(val3, "", "NĂM 2023");
+        dataset.setValue(val2, "", "NĂM 2023");
+        dataset.setValue(val3, "", "NĂM 2024");
         dataset.setValue(val4, "", "");
 
         JFreeChart oChart = ChartFactory.createBarChart("BIỂU ĐỒ TỔNG TIỀN NĂM " + "", "", "TỔNG TIỀN(VND)", dataset, PlotOrientation.VERTICAL, false, false, false);
@@ -726,7 +744,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 
     private void btlTKDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlTKDoanhThuActionPerformed
         // TODO add your handling code here:
-         int day = (txtNgayBatdau.getDate().getDate());
+        int day = (txtNgayBatdau.getDate().getDate());
         int thang = (txtNgayBatdau.getDate().getMonth() + 1);
         int nam = (txtNgayBatdau.getDate().getYear() + 1900);
         txtDtNgay.setText(String.valueOf(chiTietSpRepository.ThongKeTong(day, thang, nam)));

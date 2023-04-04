@@ -8,9 +8,11 @@ import com.mycompany.phanmemquanlibanquanao.config.HibernateConfig;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.data.jpa.provider.HibernateUtils;
 
 /**
  *

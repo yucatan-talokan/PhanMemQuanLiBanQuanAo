@@ -33,6 +33,7 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDonChiTiet;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhuyenMai;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.UserLogin;
+import com.mycompany.phanmemquanlibanquanao.repository.HoaDonRepository;
 import com.mycompany.phanmemquanlibanquanao.repository.KhuyenMaiRepository;
 import com.mycompany.phanmemquanlibanquanao.service.ChiTietSPService;
 import com.mycompany.phanmemquanlibanquanao.service.HoaDonChiTietService;
@@ -325,7 +326,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         hd.setKhachHang(ChonKH.getKhachHang());
         hd.setKhuyenMai(ChonKhuyenMai.getKhuyenMai());
         if (cboHinhThucThanhToan.getSelectedItem().toString().equalsIgnoreCase("Tiền mặt")) {
-            hd.setTienKhachTra(getThanhTien());
+            hd.setTienKhachTra(Integer.parseInt(txtKhachTra.getText()));
             try {
                 if (Integer.parseInt(txtKhachTra.getText()) < tienSauGiamGia()) {
                     JOptionPane.showMessageDialog(this, "Tiền khách trả không đủ");
@@ -372,6 +373,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private int tienSauGiamGia() {
         return (getThanhTien() - (int) Float.parseFloat(txtGiamGia.getText()));
     }
+
     
     private void loadKhachHangKhuyenMai() {
         
@@ -702,27 +704,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblMaHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboHinhThucThanhToan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtKhachTra)
-                            .addComponent(txtChuyenKhoan)
-                            .addComponent(txtTienThua)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnChonKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lblTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(btnTaoHoaDon)
@@ -731,15 +712,43 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                         .addGap(18, 18, 18))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
+                            .addComponent(jLabel6)
                             .addComponent(jLabel7))
-                        .addGap(25, 25, 25)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(lblMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnChonKhuyenMai))
-                            .addComponent(txtGiamGia))))
+                            .addComponent(lblThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(44, 44, 44)
+                        .addComponent(txtGiamGia))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnChonKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTienThua)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(41, 41, 41)
+                        .addComponent(cboHinhThucThanhToan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(42, 42, 42)
+                        .addComponent(txtKhachTra))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtChuyenKhoan)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -751,41 +760,41 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                     .addComponent(lblMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
+                .addGap(115, 115, 115)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnChonKhuyenMai)
-                    .addComponent(jLabel7)
-                    .addComponent(lblMaGiamGia))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10)
+                    .addComponent(lblMaKH)
+                    .addComponent(btnChonKhachHang))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(cboHinhThucThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtKhachTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtChuyenKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtTienThua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(btnChonKhachHang)
-                    .addComponent(lblMaKH))
+                    .addComponent(jLabel7)
+                    .addComponent(lblMaGiamGia)
+                    .addComponent(btnChonKhuyenMai))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(lblThanhTien))
-                .addGap(109, 109, 109)
+                .addGap(81, 81, 81)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTaoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -835,7 +844,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
 
         btnLamMoiGioHang.setBackground(new java.awt.Color(255, 0, 0));
         btnLamMoiGioHang.setForeground(new java.awt.Color(255, 255, 255));
-        btnLamMoiGioHang.setText("Làm mới giỏ hàng");
+        btnLamMoiGioHang.setText("Làm mới");
         btnLamMoiGioHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiGioHangActionPerformed(evt);
@@ -981,7 +990,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -1229,21 +1238,18 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         lblThanhTien.setText(tienSauGiamGia() + " đ");
         HoaDon hd = hoaDonService.getOneByMaHD(getMaHd());
         ChonKH.setKhachHang(hd.getKhachHang());
+        ChonKhuyenMai.setKhuyenMai(hd.getKhuyenMai());
         if (hd.getTrangThai() == 1) {
             btnThanhToan.setEnabled(false);
             btnLamMoiGioHang.setEnabled(false);
             //            tblCtsp.setEnabled(false);
             tblHdct.setEnabled(false);
-            btnChonKhuyenMai.setEnabled(false);
-            btnChonKhachHang.setEnabled(false);
             cboHinhThucThanhToan.setEnabled(false);
         } else {
             btnThanhToan.setEnabled(true);
                         btnLamMoiGioHang.setEnabled(true);
             //            tblCtsp.setEnabled(false);
             tblHdct.setEnabled(true);
-            btnChonKhuyenMai.setEnabled(true);
-            btnChonKhachHang.setEnabled(true);
             cboHinhThucThanhToan.setEnabled(true);
             //            tblCtsp.setEnabled(true);
             //            tblHdct.setEnabled(true);

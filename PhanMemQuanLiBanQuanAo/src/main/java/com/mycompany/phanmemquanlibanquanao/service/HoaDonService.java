@@ -19,6 +19,8 @@ public interface HoaDonService {
     
     List<HoaDon> getHdWhere(int tt,int id);
     
+
+    
     List<HoaDon>searchKindByComboBox(String kind,String txt);
     
     List<HoaDon>searchDateKindByComboBox(String kind,Date txt);

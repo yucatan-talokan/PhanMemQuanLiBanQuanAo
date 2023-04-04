@@ -12,6 +12,7 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.MauSac;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.NSX;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.SanPham;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.Size;
+import com.mycompany.phanmemquanlibanquanao.views.Main;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
@@ -414,5 +415,6 @@ public class ChiTietSPRepository {
         }
         return list;
     }
+    
 
 }
