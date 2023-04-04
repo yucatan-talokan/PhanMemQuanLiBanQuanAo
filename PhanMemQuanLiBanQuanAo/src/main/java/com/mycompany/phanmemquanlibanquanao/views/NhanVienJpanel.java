@@ -772,7 +772,7 @@ loadDataCV(chucVuService.getAll());
         rbnNam.setSelected(false);
         rbnNu.setSelected(false);
         chekNghi.setSelected(false);
-        chekNghi.setEnabled(false);
+     
         
     }//GEN-LAST:event_btnNewActionPerformed
 
