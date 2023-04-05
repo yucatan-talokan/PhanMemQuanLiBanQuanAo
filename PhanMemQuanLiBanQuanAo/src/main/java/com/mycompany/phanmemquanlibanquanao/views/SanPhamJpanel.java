@@ -4,7 +4,6 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
-
 import com.github.sarxos.webcam.Webcam;
 import com.google.zxing.WriterException;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.ChatLieu;
@@ -55,9 +54,9 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private DongSPService dongSPService = new DongSPServiceImpl();
     private ChatLieuService chatLieuService = new ChatLieuServiceImpl();
     private SanPhamService sanPhamService = new SanPhamServiceImpl();
-    
+
     private ChiTietSPRepository chiTietSpRepository = new ChiTietSPRepository();
-    
+
     private List<ChiTietSP> list = chiTietSpServiceImpl.getAll();
     private List<MauSac> listMauSac = chiTietSpServiceImpl.getMauSac();
     private List<Size> listSize = chiTietSpServiceImpl.getSize();
@@ -65,8 +64,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     private List<DongSP> listDongSP = chiTietSpServiceImpl.getDongSP();
     private List<ChatLieu> listChatLieu = chiTietSpServiceImpl.getChatLieu();
     private List<SanPham> listSanPham = chiTietSpServiceImpl.getSanPham();
-        public Webcam webcam = null;
-    
+    public Webcam webcam = null;
+
     public SanPhamJpanel() {
         initComponents();
         loadCboMauSac(chiTietSpServiceImpl.getMauSac());
@@ -86,7 +85,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cboMauSac.setModel(row);
 
     }
-    
+
     public void loadCboSize(List<Size> list) {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (Size size : list) {
@@ -95,8 +94,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cboSize.setModel(row);
 
     }
-    
-     public void loadCboNSX(List<NSX> list) {
+
+    public void loadCboNSX(List<NSX> list) {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (NSX nsx : list) {
             row.addElement(nsx.getTen());
@@ -105,7 +104,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
     }
 
-      public void loadCboDongSP(List<DongSP> list) {
+    public void loadCboDongSP(List<DongSP> list) {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (DongSP dongSP : list) {
             row.addElement(dongSP.getTen());
@@ -113,8 +112,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cboDongSp.setModel(row);
 
     }
-      
-       public void loadCboChatLieu(List<ChatLieu> list) {
+
+    public void loadCboChatLieu(List<ChatLieu> list) {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (ChatLieu chatLieu : list) {
             row.addElement(chatLieu.getTen());
@@ -122,7 +121,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cboChatLieu.setModel(row);
 
     }
-      public void loadCboSanPham(List<SanPham> list) {
+
+    public void loadCboSanPham(List<SanPham> list) {
         DefaultComboBoxModel row = new DefaultComboBoxModel();
         for (SanPham sanPham : list) {
             row.addElement(sanPham.getTen());
@@ -130,6 +130,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         cboSanPham.setModel(row);
 
     }
+
     public void loadTblMau(List<MauSac> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
@@ -143,7 +144,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         }
     }
-    
+
     public void loadTblSize(List<Size> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
@@ -157,8 +158,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         }
     }
-    
-     public void loadTblNSX(List<NSX> list) {
+
+    public void loadTblNSX(List<NSX> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
         int i = 1;
@@ -171,8 +172,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         }
     }
-     
-      public void loadTblDongSP(List<DongSP> list) {
+
+    public void loadTblDongSP(List<DongSP> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
         int i = 1;
@@ -186,37 +187,39 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         }
     }
 
-       public void loadTblChatLieu(List<ChatLieu> list) {
+    public void loadTblChatLieu(List<ChatLieu> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
         int i = 1;
-            for (ChatLieu chatLieu : list) {
+        for (ChatLieu chatLieu : list) {
             Object[] row = new Object[]{
-                i, chatLieu.getMa(),chatLieu.getTen()
+                i, chatLieu.getMa(), chatLieu.getTen()
             };
             i++;
             model.addRow(row);
 
         }
     }
-        public void loadTblSanPham(List<SanPham> list) {
+
+    public void loadTblSanPham(List<SanPham> list) {
         model = (DefaultTableModel) tblThuocTinh.getModel();
         model.setRowCount(0);
         int i = 1;
-            for (SanPham sanPham : list) {
+        for (SanPham sanPham : list) {
             Object[] row = new Object[]{
-                i, sanPham.getMa(),sanPham.getTen()
+                i, sanPham.getMa(), sanPham.getTen()
             };
             i++;
             model.addRow(row);
 
         }
     }
-         public void loadTableCtSanPham(ArrayList<ChiTietSP> list) {
+
+    public void loadTableCtSanPham(ArrayList<ChiTietSP> list) {
         model = (DefaultTableModel) tblChiTietSp.getModel();
         model.setRowCount(0);
 
-       int i =1;
+        int i = 1;
         for (ChiTietSP chiTietSanPham : list) {
             Object[] row = new Object[]{chiTietSanPham.getMactsp(), chiTietSanPham.getChatLieu().getTen(), chiTietSanPham.getDongSp().getTen(),
                 chiTietSanPham.getSize().getTen(), chiTietSanPham.getNsx().getTen(), chiTietSanPham.getMauSac().getTen(), chiTietSanPham.getSanPham().getTen(), chiTietSanPham.getSoLuongTon(),
@@ -224,6 +227,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+
     public Boolean checkMauSac() {
         Boolean check = true;
         for (MauSac mauSac : listMauSac) {
@@ -233,7 +237,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         }
         return check;
     }
-    
+
     public Boolean checkSize() {
         Boolean check = true;
         for (Size size : listSize) {
@@ -243,8 +247,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         }
         return check;
     }
-    
-     public Boolean checkNSX() {
+
+    public Boolean checkNSX() {
         Boolean check = true;
         for (NSX nsx : listNSX) {
             if (nsx.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
@@ -253,35 +257,37 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         }
         return check;
     }
- 
-      public Boolean checkDongSP() {
+
+    public Boolean checkDongSP() {
         Boolean check = true;
-        for (DongSP dongSP: listDongSP) {
+        for (DongSP dongSP : listDongSP) {
             if (dongSP.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
                 check = false;
             }
         }
         return check;
     }
-       public Boolean checkChatLieu() {
+
+    public Boolean checkChatLieu() {
         Boolean check = true;
-        for (ChatLieu chatLieu: listChatLieu) {
+        for (ChatLieu chatLieu : listChatLieu) {
             if (chatLieu.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
                 check = false;
             }
         }
         return check;
     }
-        public Boolean checkSanPham() {
+
+    public Boolean checkSanPham() {
         Boolean check = true;
-        for (SanPham sanPham: listSanPham) {
+        for (SanPham sanPham : listSanPham) {
             if (sanPham.getTen().equalsIgnoreCase(txtTenThuocTinh.getText())) {
                 check = false;
             }
         }
         return check;
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -342,6 +348,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblThuocTinh = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -768,6 +775,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblThuocTinh);
 
+        jButton2.setText("Sửa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -792,7 +806,10 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButton4)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jButton2)
+                                                .addGap(49, 49, 49)
+                                                .addComponent(jButton4))
                                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(113, 113, 113)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -810,7 +827,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -837,10 +854,11 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Thuộc tính", jPanel2);
@@ -859,7 +877,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
- try {
+        try {
             List<ChiTietSP> list = chiTietSpServiceImpl.getAll();
             ChiTietSP chiTietSp = new ChiTietSP();
 
@@ -909,7 +927,6 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 //                JOptionPane.showMessageDialog(this, "Trung thuoc tinh");
 //                return;
 //            }
-
             if (chiTietSpServiceImpl.add(chiTietSp) == true) {
                 JOptionPane.showMessageDialog(this, "them  thanh cong");
                 loadTableCtSanPham(chiTietSpRepository.getAll());
@@ -924,7 +941,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSUaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSUaActionPerformed
-chiTietSpRepository = new ChiTietSPRepository();
+        chiTietSpRepository = new ChiTietSPRepository();
         chiTietSpServiceImpl = new ChiTietSPServiceImpl();
         try {
             String id = txtMaSp.getText();
@@ -1016,7 +1033,7 @@ chiTietSpRepository = new ChiTietSPRepository();
 
     private void tblChiTietSpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSpMouseClicked
         // TODO add your handling code here:
-    int index = tblChiTietSp.getSelectedRow();
+        int index = tblChiTietSp.getSelectedRow();
 
         txtMaSp.setText(tblChiTietSp.getValueAt(index, 0).toString());
         cboChatLieu.setSelectedItem(tblChiTietSp.getValueAt(index, 1));
@@ -1072,7 +1089,7 @@ chiTietSpRepository = new ChiTietSPRepository();
 
     private void rdoMauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoMauMouseClicked
         loadTblMau(chiTietSpServiceImpl.getMauSac());
-return;        // TODO add your handling code here:
+        return;        // TODO add your handling code here:
     }//GEN-LAST:event_rdoMauMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1104,10 +1121,8 @@ return;        // TODO add your handling code here:
             }
         }
         loadTblMau(chiTietSpServiceImpl.getMauSac());
-        
-        
-        
-         if (rdoSize.isSelected() == true) {
+
+        if (rdoSize.isSelected() == true) {
 
             try {
                 Size size = new Size();
@@ -1132,9 +1147,8 @@ return;        // TODO add your handling code here:
             }
         }
         loadTblSize(chiTietSpServiceImpl.getSize());
-        
-        
-          if (rdoNSX.isSelected() == true) {
+
+        if (rdoNSX.isSelected() == true) {
 
             try {
                 NSX nsx = new NSX();
@@ -1184,7 +1198,7 @@ return;        // TODO add your handling code here:
             }
         }
         loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
-         if (rboChatLieu.isSelected() == true) {
+        if (rboChatLieu.isSelected() == true) {
 
             try {
                 ChatLieu chatLieu = new ChatLieu();
@@ -1209,7 +1223,7 @@ return;        // TODO add your handling code here:
             }
         }
         loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
-         if (rdoSanPham.isSelected() == true) {
+        if (rdoSanPham.isSelected() == true) {
 
             try {
                 SanPham sanPham = new SanPham();
@@ -1257,7 +1271,7 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
-         if (rdoSize.isSelected()) {
+        if (rdoSize.isSelected()) {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
@@ -1274,7 +1288,7 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
-          if (rdoNSX.isSelected()) {
+        if (rdoNSX.isSelected()) {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
@@ -1291,7 +1305,7 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
-          if (rdoDongSP.isSelected()) {
+        if (rdoDongSP.isSelected()) {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
@@ -1308,7 +1322,7 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
-           if (rboChatLieu.isSelected()) {
+        if (rboChatLieu.isSelected()) {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
@@ -1325,7 +1339,7 @@ return;        // TODO add your handling code here:
                 e.printStackTrace();
             }
         }
-           if (rdoSanPham.isSelected()) {
+        if (rdoSanPham.isSelected()) {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
@@ -1346,26 +1360,26 @@ return;        // TODO add your handling code here:
 
     private void rdoSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoSizeMouseClicked
         // TODO add your handling code here:
-         loadTblSize(chiTietSpServiceImpl.getSize());
-         return;
+        loadTblSize(chiTietSpServiceImpl.getSize());
+        return;
     }//GEN-LAST:event_rdoSizeMouseClicked
 
     private void rdoNSXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNSXMouseClicked
         // TODO add your handling code here:
         loadTblNSX(chiTietSpServiceImpl.getNsx());
-         return;
+        return;
     }//GEN-LAST:event_rdoNSXMouseClicked
 
     private void rdoDongSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoDongSPMouseClicked
         // TODO add your handling code here:
         loadTblDongSP(chiTietSpServiceImpl.getDongSP());
-         return;
+        return;
     }//GEN-LAST:event_rdoDongSPMouseClicked
 
     private void rboChatLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rboChatLieuMouseClicked
         // TODO add your handling code here:
-         loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
-         return;
+        loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
+        return;
     }//GEN-LAST:event_rboChatLieuMouseClicked
 
     private void cboMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMauSacActionPerformed
@@ -1375,7 +1389,7 @@ return;        // TODO add your handling code here:
     private void rdoSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoSanPhamMouseClicked
         // TODO add your handling code here:
         loadTblSanPham(chiTietSpServiceImpl.getSanPham());
-         return;
+        return;
     }//GEN-LAST:event_rdoSanPhamMouseClicked
 
     private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
@@ -1399,9 +1413,9 @@ return;        // TODO add your handling code here:
     private void tblThuocTinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThuocTinhMouseClicked
         // TODO add your handling code here:
         int index = tblThuocTinh.getSelectedRow();
-        txtTenThuocTinh.setText(tblThuocTinh.getValueAt(index,2).toString());
+        txtTenThuocTinh.setText(tblThuocTinh.getValueAt(index, 2).toString());
         txtMa.setText(tblThuocTinh.getValueAt(index, 1).toString());
-       
+
     }//GEN-LAST:event_tblThuocTinhMouseClicked
 
     private void txtTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimMouseClicked
@@ -1411,6 +1425,79 @@ return;        // TODO add your handling code here:
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+//        int index = tblThuocTinh.getSelectedRow();
+//        try {
+//            MauSac mauSac = mauSacService.getAll().get(index);
+//            mauSac.setTen(txtTenThuocTinh.getText());
+//            mauSac.setMa(txtMa.getText());
+//
+//            if (mauSacService.update(mauSac) == true) {
+//                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+//                loadTblMau(mauSacService.getAll());
+//
+//                return;
+//            }
+//
+//            Size size = sizeService.getAll().get(index);
+//            size.setTen(txtTenThuocTinh.getText());
+//            size.setMa(txtMa.getText());
+//
+//            if (sizeService.update(size) == true) {
+//                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+//                loadTblSize(sizeService.getAll());
+//
+//                return;
+//            }
+//
+//            NSX nsx = nSXService.getAll().get(index);
+//            nsx.setTen(txtTenThuocTinh.getText());
+//            nsx.setMa(txtMa.getText());
+//
+//            if (nSXService.update(nsx) == true) {
+//                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+//                loadTblNSX(nSXService.getAll());
+//
+//                return;
+//            }
+//            DongSP dongSP = dongSPService.getAll().get(index);
+//            dongSP.setTen(txtTenThuocTinh.getText());
+//            dongSP.setMa(txtMa.getText());
+//
+//            if (dongSPService.update(dongSP) == true) {
+//                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+//                loadTblDongSP(dongSPService.getAll());
+//
+//                return;
+//            }
+//
+//            SanPham sanPham = sanPhamService.getAll().get(index);
+//            sanPham.setTen(txtTenThuocTinh.getText());
+//            sanPham.setMa(txtMa.getText());
+//
+//            if (sanPhamService.update(sanPham) == true) {
+//                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+//                loadTblSanPham(sanPhamService.getAll());
+//
+//                return;
+//            }
+//            ChatLieu chatLieu = chatLieuService.getAll().get(index);
+//            chatLieu.setTen(txtTenThuocTinh.getText());
+//            chatLieu.setMa(txtMa.getText());
+//
+//            if (chatLieuService.update(chatLieu) == true) {
+//                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+//                loadTblChatLieu(chatLieuService.getAll());
+//
+//                return;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1425,6 +1512,7 @@ return;        // TODO add your handling code here:
     private javax.swing.JComboBox<String> cboSanPham;
     private javax.swing.JComboBox<String> cboSize;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

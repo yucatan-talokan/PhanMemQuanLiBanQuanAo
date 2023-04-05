@@ -38,7 +38,19 @@ public class ChatLieuRepository {
         return null;
 
     }
-    
+     public Boolean Update(ChatLieu chatLieu) {
+        Transaction transaction = null;
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(chatLieu);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+
+    }
   
      
      public Boolean delete(ChatLieu chatLieu) {

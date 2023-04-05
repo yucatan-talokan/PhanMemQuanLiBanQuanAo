@@ -28,4 +28,9 @@ public class DongSPServiceImpl  implements  DongSPService{
     public Boolean delete(DongSP dongSP) {
         return dongSpRepository.delete(dongSP);
     }
+
+    @Override
+    public Boolean update(DongSP dongSP) {
+     return dongSpRepository.Update(dongSP);
+    }
 }

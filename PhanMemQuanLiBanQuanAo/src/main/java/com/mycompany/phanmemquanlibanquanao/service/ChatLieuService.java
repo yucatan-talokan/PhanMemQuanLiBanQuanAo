@@ -16,4 +16,5 @@ public interface ChatLieuService {
 
     public Boolean add(ChatLieu chatLieu);
     public Boolean delete(ChatLieu chatLieu);
+        public Boolean update(ChatLieu chatLieu);
 }

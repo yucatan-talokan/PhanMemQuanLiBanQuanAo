@@ -30,4 +30,9 @@ public class SizeServiceImpl implements  SizeService{
         return sizeRepository.delete(size);
     }
 
+    @Override
+    public Boolean update(Size size) {
+      return sizeRepository.Update(size);
+    }
+
 }

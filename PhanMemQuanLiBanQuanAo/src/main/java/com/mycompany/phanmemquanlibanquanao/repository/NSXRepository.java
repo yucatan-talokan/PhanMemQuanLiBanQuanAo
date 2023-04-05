@@ -39,7 +39,19 @@ public class NSXRepository {
         return null;
 
     }
-    
+     public Boolean Update(NSX nsx) {
+        Transaction transaction = null;
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(nsx);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+
+    }
   
      
      public Boolean delete(NSX nsx) {

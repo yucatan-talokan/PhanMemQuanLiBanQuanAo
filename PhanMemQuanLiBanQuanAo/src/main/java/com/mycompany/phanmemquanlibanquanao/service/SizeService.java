@@ -18,4 +18,5 @@ public interface SizeService {
 
     public Boolean add(Size size);
     public Boolean delete(Size size);
+     public Boolean update(Size size);
 }

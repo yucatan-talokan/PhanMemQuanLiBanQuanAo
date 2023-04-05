@@ -16,4 +16,5 @@ public interface NSXService {
 
     public Boolean add(NSX nsx);
     public Boolean delete(NSX nsx);
+     public Boolean update(NSX nsx);
 }

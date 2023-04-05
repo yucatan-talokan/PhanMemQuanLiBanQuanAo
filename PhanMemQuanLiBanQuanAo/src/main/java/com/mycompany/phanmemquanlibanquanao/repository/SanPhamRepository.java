@@ -40,7 +40,19 @@ public class SanPhamRepository {
 
     }
     
-  
+   public Boolean Update(SanPham sanPham) {
+        Transaction transaction = null;
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(sanPham);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+
+    }
      
      public Boolean delete(SanPham sanPham) {
         Transaction transaction = null;

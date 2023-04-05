@@ -28,4 +28,9 @@ public class NSXServiceImpl implements  NSXService{
     public Boolean delete(NSX nsx) {
         return nSXRepository.delete(nsx);
     }
+
+    @Override
+    public Boolean update(NSX nsx) {
+      return nSXRepository.Update(nsx);
+    }
 }

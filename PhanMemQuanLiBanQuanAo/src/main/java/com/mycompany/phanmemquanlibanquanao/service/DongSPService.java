@@ -16,4 +16,5 @@ public interface DongSPService {
 
     public Boolean add(DongSP dongSP);
     public Boolean delete(DongSP dongSP);
+    public Boolean update(DongSP dongSP);
 }

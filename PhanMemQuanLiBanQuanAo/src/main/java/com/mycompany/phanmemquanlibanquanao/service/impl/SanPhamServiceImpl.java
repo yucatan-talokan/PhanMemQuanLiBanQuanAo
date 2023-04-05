@@ -31,4 +31,9 @@ public class SanPhamServiceImpl implements SanPhamService{
         return sanPhamRepository.delete(sanPham);
     }
 
+    @Override
+    public Boolean update(SanPham sanPham) {
+      return sanPhamRepository.Update(sanPham);
+    }
+
 }

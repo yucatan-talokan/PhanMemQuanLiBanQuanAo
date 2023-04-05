@@ -30,4 +30,9 @@ public class ChatLieuServiceImpl implements ChatLieuService{
         return chatLieuRepository.delete(chatLieu);
     }
 
+    @Override
+    public Boolean update(ChatLieu chatLieu) {
+      return  chatLieuRepository.Update(chatLieu);
+    }
+
 }

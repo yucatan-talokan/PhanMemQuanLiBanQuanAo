@@ -39,7 +39,19 @@ public class SizeRepository {
 
     }
     
-  
+   public Boolean Update(Size size) {
+        Transaction transaction = null;
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(size);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return null;
+
+    }
      
      public Boolean delete(Size size) {
         Transaction transaction = null;

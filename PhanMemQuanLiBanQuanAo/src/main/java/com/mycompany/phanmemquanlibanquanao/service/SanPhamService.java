@@ -17,4 +17,5 @@ public interface SanPhamService {
 
     public Boolean add(SanPham sanPham);
     public Boolean delete(SanPham sanPham);
+        public Boolean update(SanPham sanPham);
 }
