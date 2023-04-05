@@ -25,7 +25,9 @@ public interface HoaDonService {
     
     List<HoaDon>searchDateKindByComboBox(String kind,Date txt);
     
-    List<HoaDon>searchNhanVienByComboBoxJoin(String kind,String txt);
+    List<HoaDon>searchNhanVienByComboBoxJoin(String txt);
+    
+    List<HoaDon>searchKhachHangByComboBoxJoin(String txt);
 
     HoaDon getOneByMaHD(String maHoaDon);
 

@@ -46,8 +46,13 @@ public class HoaDonRepository {
         query.setParameter("txt", txt);
         return query.getResultList();
     }
-    public List<HoaDon>searchNhanVienByComboBoxJoin(String kind,String txt){
-        Query query=session.createQuery( "FROM HoaDon hd JOIN nhanVien nv on hd.nhanVien.id = nv.id where "+kind+" = :txt order by id desc");
+    public List<HoaDon>searchNhanVienByComboBoxJoin(String txt){
+        Query query=session.createQuery( "SELECT hd FROM HoaDon hd INNER JOIN hd.nhanVien nv where nv.tenNhanVien = :txt order by hd.id desc");
+        query.setParameter("txt", txt);
+        return query.getResultList();
+    }
+    public List<HoaDon>searchKhachHangByComboBoxJoin(String txt){
+        Query query=session.createQuery( "SELECT hd FROM HoaDon hd INNER JOIN hd.khachHang kh where kh.ten = :txt order by hd.id desc");
         query.setParameter("txt", txt);
         return query.getResultList();
     }

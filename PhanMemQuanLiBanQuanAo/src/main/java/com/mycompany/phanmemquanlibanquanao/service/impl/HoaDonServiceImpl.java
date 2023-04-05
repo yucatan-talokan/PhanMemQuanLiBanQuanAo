@@ -75,13 +75,18 @@ public class HoaDonServiceImpl implements HoaDonService{
     }
 
     @Override
-    public List<HoaDon> searchNhanVienByComboBoxJoin(String kind, String txt) {
-        return hoaDonReposity.searchNhanVienByComboBoxJoin(kind, txt);
+    public List<HoaDon> searchNhanVienByComboBoxJoin(String txt) {
+        return hoaDonReposity.searchNhanVienByComboBoxJoin(txt);
     }
 
     @Override
     public List<HoaDon> getLichSuByTrangThai(int tt) {
         return hoaDonReposity.getLichSuByTrangThai(tt);
+    }
+
+    @Override
+    public List<HoaDon> searchKhachHangByComboBoxJoin(String txt) {
+        return hoaDonReposity.searchKhachHangByComboBoxJoin(txt);
     }
 
 
