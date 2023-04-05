@@ -1496,7 +1496,57 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-
+        int index = tblThuocTinh.getSelectedRow();
+        if (rdoMau.isSelected() == true) {
+            MauSac mauSac = mauSacService.getAll().get(index);
+            mauSac.setMa(txtMa.getText());
+            mauSac.setTen(txtTenThuocTinh.getText());
+            if (mauSacService.update(mauSac)) {
+                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+                loadTblMau(chiTietSpServiceImpl.getMauSac());
+                
+            }
+        } else if (rdoNSX.isSelected() == true) {
+            NSX nsx = nSXService.getAll().get(index);
+            nsx.setMa(txtMa.getText());
+            nsx.setTen(txtTenThuocTinh.getText());
+            if (nSXService.update(nsx) == true) {
+                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+                loadTblNSX(chiTietSpServiceImpl.getNsx());
+            }
+        }else if (rdoSize.isSelected() == true) {
+            Size size = sizeService.getAll().get(index);
+            size.setMa(txtMa.getText());
+            size.setTen(txtTenThuocTinh.getText());
+            if (sizeService.update(size) == true) {
+                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+                loadTblSize(chiTietSpServiceImpl.getSize());
+            }
+        }else if (rdoDongSP.isSelected() == true) {
+           DongSP dongSP = dongSPService.getAll().get(index);
+            dongSP.setMa(txtMa.getText());
+            dongSP.setTen(txtTenThuocTinh.getText());
+            if (dongSPService.update(dongSP) == true) {
+                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+                loadTblDongSP(chiTietSpServiceImpl.getDongSP());
+            }
+        }else if (rdoSanPham.isSelected() == true) {
+            SanPham sanPham = sanPhamService.getAll().get(index);
+            sanPham.setMa(txtMa.getText());
+            sanPham.setTen(txtTenThuocTinh.getText());
+            if (sanPhamService.update(sanPham) == true) {
+                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+                loadTblSanPham(chiTietSpServiceImpl.getSanPham());
+            }
+        }else if (rboChatLieu.isSelected() == true) {
+            ChatLieu chatLieu = chatLieuService.getAll().get(index);
+            chatLieu.setMa(txtMa.getText());
+            chatLieu.setTen(txtTenThuocTinh.getText());
+            if (chatLieuService.update(chatLieu) == true) {
+                JOptionPane.showMessageDialog(this, "Sửa Thành công");
+                loadTblChatLieu(chiTietSpServiceImpl.getChatLieu());
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
