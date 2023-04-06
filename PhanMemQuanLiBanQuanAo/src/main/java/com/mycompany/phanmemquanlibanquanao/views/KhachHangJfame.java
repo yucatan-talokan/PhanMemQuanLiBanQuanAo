@@ -73,7 +73,7 @@ public class KhachHangJfame extends javax.swing.JFrame {
         txtDiaChi = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
 
         jLabel1.setText("Danh sách khách hàng");
 
@@ -128,6 +128,8 @@ public class KhachHangJfame extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Khách hàng", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(102, 255, 255));
 
         jLabel3.setText("Họ tên");
 

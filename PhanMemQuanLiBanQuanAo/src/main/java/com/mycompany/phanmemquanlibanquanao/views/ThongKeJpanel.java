@@ -308,7 +308,9 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         btlTKDoanhThu = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
+        setBackground(new java.awt.Color(102, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel8.setText("Tổng đơn hàng");
 
@@ -349,7 +351,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 51));
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel3.setText("Tổng tiền theo ngày");
 
@@ -374,7 +376,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 51));
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel4.setText("Tổng tiền theo tháng");
 
@@ -399,7 +401,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 51));
+        jPanel6.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel5.setText("Tổng tiền theo năm");
 
@@ -424,11 +426,14 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTabbedPane1.setBackground(new java.awt.Color(102, 255, 255));
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
             }
         });
+
+        jPanel10.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout pan2Layout = new javax.swing.GroupLayout(pan2);
         pan2.setLayout(pan2Layout);
@@ -496,6 +501,8 @@ public class ThongKeJpanel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Doanh thu", jPanel10);
+
+        jPanel11.setBackground(new java.awt.Color(153, 255, 153));
 
         tblThongKeSp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -350,7 +350,9 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         tblThuocTinh = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
         btnThem.setText("Them");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -434,8 +436,9 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblChiTietSp);
 
-        jPanel4.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel4.setBackground(new java.awt.Color(102, 255, 255));
 
+        jLabel1.setBackground(new java.awt.Color(102, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUAN LI SAN PHAM");

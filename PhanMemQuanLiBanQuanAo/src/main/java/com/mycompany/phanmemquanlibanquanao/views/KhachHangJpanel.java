@@ -104,6 +104,8 @@ public class KhachHangJpanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLichSu = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(102, 255, 255));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("Quản lý khách hàng");
@@ -220,6 +222,10 @@ public class KhachHangJpanel extends javax.swing.JPanel {
                 .addGap(54, 54, 54))
         );
 
+        jTabbedPane1.setBackground(new java.awt.Color(102, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Danh sách khách hàng");
 
@@ -296,6 +302,8 @@ public class KhachHangJpanel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Danh sách KH", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
         tblLichSu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

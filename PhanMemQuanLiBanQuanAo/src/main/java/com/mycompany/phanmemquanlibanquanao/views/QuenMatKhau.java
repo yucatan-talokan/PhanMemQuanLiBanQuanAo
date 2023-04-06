@@ -58,6 +58,7 @@ public class QuenMatKhau extends javax.swing.JFrame {
         txtNhapLaiMatKhauMoi = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 255, 255));
 
         jLabel1.setText("Email:");
 
