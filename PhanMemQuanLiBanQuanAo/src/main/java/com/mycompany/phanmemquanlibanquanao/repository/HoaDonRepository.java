@@ -19,7 +19,8 @@ import org.springframework.data.jpa.provider.HibernateUtils;
  * @author Thanh Giang
  */
 public class HoaDonRepository {
-        private Session session = HibernateConfig.getFACTORY().openSession();
+
+    private Session session = HibernateConfig.getFACTORY().openSession();
 
     private String fromTable = "FROM HoaDon";
 
@@ -34,31 +35,33 @@ public class HoaDonRepository {
         query.setParameter("id", id);
         return query.getResultList();
     }
-    
+
     // Query cho chức năng search------------------------------------------------------------
-    public List<HoaDon>searchByComboBoxNoJoin(String kind,String txt){
-        Query query=session.createQuery( "FROM HoaDon where "+kind+" = :txt order by id desc",HoaDon.class);
+    public List<HoaDon> searchByComboBoxNoJoin(String kind, String txt) {
+        Query query = session.createQuery("FROM HoaDon where " + kind + " LIKE :txt order by id desc", HoaDon.class);
+        query.setParameter("txt", "%" + txt + "%");
+        return query.getResultList();
+    }
+
+    public List<HoaDon> searchDateByComboBoxNoJoin(String kind, Date txt) {
+        Query query = session.createQuery("FROM HoaDon where " + kind + " = :txt order by id desc", HoaDon.class);
         query.setParameter("txt", txt);
         return query.getResultList();
     }
-    public List<HoaDon>searchDateByComboBoxNoJoin(String kind,Date txt){
-        Query query=session.createQuery( "FROM HoaDon where "+kind+" = :txt order by id desc",HoaDon.class);
-        query.setParameter("txt", txt);
+
+    public List<HoaDon> searchNhanVienByComboBoxJoin(String txt) {
+        Query query = session.createQuery("SELECT hd FROM HoaDon hd INNER JOIN hd.nhanVien nv where nv.tenNhanVien LIKE :txt order by hd.id desc");
+        query.setParameter("txt", "%" + txt + "%");
         return query.getResultList();
     }
-    public List<HoaDon>searchNhanVienByComboBoxJoin(String txt){
-        Query query=session.createQuery( "SELECT hd FROM HoaDon hd INNER JOIN hd.nhanVien nv where nv.tenNhanVien = :txt order by hd.id desc");
-        query.setParameter("txt", txt);
-        return query.getResultList();
-    }
-    public List<HoaDon>searchKhachHangByComboBoxJoin(String txt){
-        Query query=session.createQuery( "SELECT hd FROM HoaDon hd INNER JOIN hd.khachHang kh where kh.ten = :txt order by hd.id desc");
-        query.setParameter("txt", txt);
+
+    public List<HoaDon> searchKhachHangByComboBoxJoin(String txt) {
+        Query query = session.createQuery("SELECT hd FROM HoaDon hd INNER JOIN hd.khachHang kh where kh.ten LIKE :txt order by hd.id desc");
+        query.setParameter("txt", "%" + txt + "%");
         return query.getResultList();
     }
     //------------------------------------------------------------------------------------
-    
-    
+
     public List<HoaDon> getLichSuByTrangThai(int tt) {
         Query query = session.createQuery(fromTable + "  where trangThai =:tt order by id desc", HoaDon.class);
         query.setParameter("tt", tt);
@@ -67,7 +70,7 @@ public class HoaDonRepository {
 
     public Boolean save(HoaDon hoaDon) {
         Transaction transaction = null;
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(hoaDon);
             transaction.commit();
@@ -80,7 +83,7 @@ public class HoaDonRepository {
 
     public Boolean update(HoaDon hoaDon) {
         Transaction transaction = null;
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(hoaDon);
             transaction.commit();
@@ -93,7 +96,7 @@ public class HoaDonRepository {
 
     public Boolean delete(HoaDon hoaDon) {
         Transaction transaction = null;
-        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.delete(hoaDon);
             transaction.commit();
