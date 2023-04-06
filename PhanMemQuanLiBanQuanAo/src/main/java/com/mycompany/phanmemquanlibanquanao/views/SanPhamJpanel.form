@@ -142,7 +142,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnThem">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Them"/>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
@@ -150,7 +150,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSUa">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Sua"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSUaActionPerformed"/>
@@ -166,7 +166,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Xoa"/>
+                    <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
@@ -362,53 +362,53 @@
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="QUAN LI SAN PHAM"/>
+                    <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xed; s&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ma San Pham"/>
+                    <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="San Pham"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Loai"/>
+                    <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtSoLuongTon">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="So Luong Ton"/>
+                    <Property name="text" type="java.lang.String" value="S&#x1ed1; lu&#x1ecd;ng t&#x1ed3;n"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtGia">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mau Sac"/>
+                    <Property name="text" type="java.lang.String" value="M&#xe0;u s&#x1eaf;c"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gia"/>
+                    <Property name="text" type="java.lang.String" value="Gi&#xe1;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Chat Lieu"/>
+                    <Property name="text" type="java.lang.String" value="Ch&#x1ea5;t li&#x1ec7;u"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMoTa">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mo Ta"/>
+                    <Property name="text" type="java.lang.String" value="M&#xf4; t&#x1ea3;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
@@ -418,7 +418,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Noi San Xuat"/>
+                    <Property name="text" type="java.lang.String" value="N&#x1a1;i s&#x1ea3;n xu&#x1ea5;t"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cboNsx">

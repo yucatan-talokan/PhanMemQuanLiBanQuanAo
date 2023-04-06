@@ -354,14 +354,14 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
-        btnThem.setText("Them");
+        btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
             }
         });
 
-        btnSUa.setText("Sua");
+        btnSUa.setText("Sửa");
         btnSUa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSUaActionPerformed(evt);
@@ -375,7 +375,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setText("Xoa");
+        jButton6.setText("Xóa");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -441,27 +441,27 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(102, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUAN LI SAN PHAM");
+        jLabel1.setText("Quản lí sản phẩm");
 
-        jLabel2.setText("Ma San Pham");
+        jLabel2.setText("Mã sản phẩm");
 
-        jLabel4.setText("San Pham");
+        jLabel4.setText("Sản phẩm");
 
-        jLabel5.setText("Loai");
+        jLabel5.setText("Loại");
 
-        jLabel6.setText("So Luong Ton");
+        jLabel6.setText("Số luọng tồn");
 
-        jLabel7.setText("Mau Sac");
+        jLabel7.setText("Màu sắc");
 
-        jLabel8.setText("Gia");
+        jLabel8.setText("Giá");
 
-        jLabel9.setText("Chat Lieu");
+        jLabel9.setText("Chất liệu");
 
-        jLabel10.setText("Mo Ta");
+        jLabel10.setText("Mô tả");
 
         jLabel11.setText("Size");
 
-        jLabel12.setText("Noi San Xuat");
+        jLabel12.setText("Nơi sản xuất");
 
         cboNsx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboNsx.addMouseListener(new java.awt.event.MouseAdapter() {
