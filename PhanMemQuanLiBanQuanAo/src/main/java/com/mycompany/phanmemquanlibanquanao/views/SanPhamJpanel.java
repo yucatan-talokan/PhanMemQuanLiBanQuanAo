@@ -583,7 +583,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(6, 6, 6)
                                         .addComponent(cboSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,10 +663,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1077, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -674,6 +671,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -885,15 +883,15 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             ChiTietSP chiTietSp = new ChiTietSP();
 
             if (txtMaSp.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "  khong dk de trong ma");
+                JOptionPane.showMessageDialog(this, "Không được để trống mã !");
                 return;
             }
             if (Integer.parseInt(txtSoLuongTon.getText()) <= 0 || txtSoLuongTon.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, " phai la  so khong dk de trong");
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số không được để trống !");
                 return;
             }
             if (Integer.parseInt(txtGia.getText()) <= 0 || txtGia.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, " phai la  so khong dk de trong");
+                JOptionPane.showMessageDialog(this, "Giá phải là số và không được để trống !");
                 return;
             }
 
@@ -931,14 +929,14 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 //                return;
 //            }
             if (chiTietSpServiceImpl.add(chiTietSp) == true) {
-                JOptionPane.showMessageDialog(this, "them  thanh cong");
+                JOptionPane.showMessageDialog(this, "Thêm thành công");
                 loadTableCtSanPham(chiTietSpRepository.getAll());
             } else {
-                JOptionPane.showMessageDialog(this, "that bai");
+                JOptionPane.showMessageDialog(this, "Thất bại");
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "that bai");
+            JOptionPane.showMessageDialog(this, "Thất bại");
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnThemActionPerformed
@@ -951,15 +949,15 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             ChiTietSP chiTietSp = chiTietSpServiceImpl.getOne(id);
 
             if (txtMaSp.getText().length() == 0) {
-                JOptionPane.showMessageDialog(this, "  khong dk de trong ma");
+                JOptionPane.showMessageDialog(this, "Không được để trống mã !");
                 return;
             }
             if (Integer.parseInt(txtGia.getText()) <= 0 || txtGia.getText().length() == 0) {
-                JOptionPane.showMessageDialog(this, " phai la  so khong dk de trong");
+                JOptionPane.showMessageDialog(this, " Giá phải là số và không được để trống !");
                 return;
             }
             if (Integer.parseInt(txtSoLuongTon.getText()) <= 0 || txtSoLuongTon.getText().length() == 0) {
-                JOptionPane.showMessageDialog(this, " phai la  so khong dk de trong");
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số không được để trống !");
                 return;
             }
             chiTietSp.setMactsp(txtMaSp.getText());
@@ -1009,10 +1007,10 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 //            }
 
             if (chiTietSpServiceImpl.update(chiTietSp) == true) {
-                JOptionPane.showMessageDialog(this, "sua thanh cong");
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
 
             } else {
-                JOptionPane.showMessageDialog(this, "that bai");
+                JOptionPane.showMessageDialog(this, "Thất bại");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1261,7 +1259,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Chua cho mau de xoa");
+                    JOptionPane.showMessageDialog(this, "Chưa chọn Màu sắc !");
                     return;
                 }
                 MauSac mauSac = mauSacService.getAll().get(index);
@@ -1270,7 +1268,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     loadTblMau(mauSacService.getAll());
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                JOptionPane.showMessageDialog(this, "Liên quan chi tiết sản phẩm");
                 e.printStackTrace();
             }
         }
@@ -1278,7 +1276,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Chua cho size de xoa");
+                    JOptionPane.showMessageDialog(this, "Chưa chọn size !");
                     return;
                 }
                 Size size = sizeService.getAll().get(index);
@@ -1287,7 +1285,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     loadTblSize(sizeService.getAll());
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                JOptionPane.showMessageDialog(this, "Liên quan chi tiết sản phẩm");
                 e.printStackTrace();
             }
         }
@@ -1295,7 +1293,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Chua cho nsx de xoa");
+                    JOptionPane.showMessageDialog(this, "Chưa chọn nsx !");
                     return;
                 }
                 NSX nsx = nSXService.getAll().get(index);
@@ -1304,7 +1302,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     loadTblNSX(nSXService.getAll());
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                JOptionPane.showMessageDialog(this, "Liên quan chi tiết sản phẩm");
                 e.printStackTrace();
             }
         }
@@ -1312,7 +1310,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Chua cho dòng sản phẩm de xoa");
+                    JOptionPane.showMessageDialog(this, "Chưa chọn dòng sản phẩm !");
                     return;
                 }
                 DongSP dongSP = dongSPService.getAll().get(index);
@@ -1321,7 +1319,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     loadTblDongSP(dongSPService.getAll());
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                JOptionPane.showMessageDialog(this, "Liên quan chi tiết sản phẩm");
                 e.printStackTrace();
             }
         }
@@ -1329,7 +1327,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Chua cho chất liệu de xoa");
+                    JOptionPane.showMessageDialog(this, "Chưa chọn chất liệu !");
                     return;
                 }
                 ChatLieu chatLieu = chatLieuService.getAll().get(index);
@@ -1338,7 +1336,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     loadTblChatLieu(chatLieuService.getAll());
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                JOptionPane.showMessageDialog(this, "Liên quan chi tiết sản phẩm");
                 e.printStackTrace();
             }
         }
@@ -1346,7 +1344,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             try {
                 int index = tblThuocTinh.getSelectedRow();
                 if (index == -1) {
-                    JOptionPane.showMessageDialog(this, "Chua cho san pham de xoa");
+                    JOptionPane.showMessageDialog(this, "Chưa chọn sản phẩm  !");
                     return;
                 }
                 SanPham sanPham = sanPhamService.getAll().get(index);
@@ -1355,7 +1353,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     loadTblSanPham(sanPhamService.getAll());
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Lien quan san pham chi tiet");
+                JOptionPane.showMessageDialog(this, "Liên quan chi tiết sản phẩm");
                 e.printStackTrace();
             }
         }
