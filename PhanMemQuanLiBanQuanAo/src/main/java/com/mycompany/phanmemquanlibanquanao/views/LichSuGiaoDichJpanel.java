@@ -145,6 +145,8 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(102, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+
         tblLichSu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -208,6 +210,8 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 51));
         jLabel1.setText("Lịch Sử Giao Dịch");
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Hóa Đơn");
@@ -302,6 +306,7 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết hóa đơn"));
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(

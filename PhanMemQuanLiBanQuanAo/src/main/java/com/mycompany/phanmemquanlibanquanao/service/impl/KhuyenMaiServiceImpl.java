@@ -34,5 +34,20 @@ private KhuyenMaiRepository khuyenMaiRepository=new KhuyenMaiRepository();
     public Boolean delete(KhuyenMai km) {
         return khuyenMaiRepository.delete(km);
     }
+
+    @Override
+    public void checkDangHoatDong() {
+        khuyenMaiRepository.checkDangHoatDong();
+    }
+
+    @Override
+    public void checkKetThuc() {
+        khuyenMaiRepository.checkKetThuc();
+    }
+
+    @Override
+    public void checkChuaBatDau() {
+        khuyenMaiRepository.checkChuaBatDau();
+    }
     
 }

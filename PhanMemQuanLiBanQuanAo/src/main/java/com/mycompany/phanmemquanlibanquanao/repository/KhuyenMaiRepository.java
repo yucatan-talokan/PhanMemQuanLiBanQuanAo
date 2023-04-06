@@ -60,4 +60,42 @@ public class KhuyenMaiRepository {
         }
         return null;
     }
+    public void checkDangHoatDong(){
+        Transaction trans=null;
+        try(Session ss=HibernateConfig.getFACTORY().openSession()){
+            trans=ss.beginTransaction();
+            Query query=ss.createQuery("update KhuyenMai set trangThai=1 where GETDATE() between ngayBatDau and ngayKetThuc");
+            query.executeUpdate();
+            trans.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void checkKetThuc(){
+        Transaction trans=null;
+        try(Session ss=HibernateConfig.getFACTORY().openSession()){
+            trans=ss.beginTransaction();
+            Query query=ss.createQuery("update KhuyenMai set trangThai=0 where GETDATE() > ngayKetThuc");
+            query.executeUpdate();
+            trans.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void checkChuaBatDau(){
+        Transaction trans=null;
+        try(Session ss=HibernateConfig.getFACTORY().openSession()){
+            trans=ss.beginTransaction();
+            Query query=ss.createQuery("update KhuyenMai set trangThai=2 where GETDATE() < ngayBatDau");
+            query.executeUpdate();
+            trans.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

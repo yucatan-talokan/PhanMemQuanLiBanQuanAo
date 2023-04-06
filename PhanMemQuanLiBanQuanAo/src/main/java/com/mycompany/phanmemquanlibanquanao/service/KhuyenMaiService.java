@@ -16,4 +16,7 @@ public interface KhuyenMaiService {
     public Boolean add(KhuyenMai km);
     public Boolean update(KhuyenMai km);
     public Boolean delete(KhuyenMai km);
+    public void checkDangHoatDong();
+    public void checkKetThuc();
+    public void checkChuaBatDau();
 }
