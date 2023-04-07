@@ -528,7 +528,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/search.png"))); // NOI18N
         jButton1.setText("Tìm kiếm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -623,7 +622,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         btnThanhToan.setBackground(new java.awt.Color(255, 0, 0));
         btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
-        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/pay.png"))); // NOI18N
         btnThanhToan.setText("Thanh toán");
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -658,7 +656,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
 
         jLabel10.setText("Khách");
 
-        btnChonKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/choose.png"))); // NOI18N
         btnChonKhachHang.setText("Chọn");
         btnChonKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -671,7 +668,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         btnTaoHoaDon.setBackground(new java.awt.Color(255, 0, 0));
         btnTaoHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTaoHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-        btnTaoHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/add.png"))); // NOI18N
         btnTaoHoaDon.setText("Tạo hóa đơn");
         btnTaoHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -679,7 +675,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
             }
         });
 
-        btnChonKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/choose.png"))); // NOI18N
         btnChonKhuyenMai.setText("Chọn");
         btnChonKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -713,7 +708,8 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(btnTaoHoaDon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnThanhToan))
+                        .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -738,8 +734,8 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnChonKhachHang))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnChonKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtTienThua)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -848,7 +844,6 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
 
         btnLamMoiGioHang.setBackground(new java.awt.Color(255, 0, 0));
         btnLamMoiGioHang.setForeground(new java.awt.Color(255, 255, 255));
-        btnLamMoiGioHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/icons8-update-left-rotation-25.png"))); // NOI18N
         btnLamMoiGioHang.setText("Làm mới");
         btnLamMoiGioHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -878,7 +873,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 12, Short.MAX_VALUE))
-                    .addComponent(btnLamMoiGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(btnLamMoiGioHang, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -995,7 +990,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()

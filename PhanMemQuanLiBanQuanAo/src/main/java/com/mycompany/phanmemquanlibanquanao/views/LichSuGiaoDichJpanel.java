@@ -168,7 +168,6 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
             tblLichSu.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        btnReload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/refresh.png"))); // NOI18N
         btnReload.setText("Reload");
         btnReload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,7 +175,6 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
             }
         });
 
-        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/export_excel.png"))); // NOI18N
         btnExport.setText("Xuất excel");
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +337,6 @@ public class LichSuGiaoDichJpanel extends javax.swing.JPanel {
         );
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/search.png"))); // NOI18N
         jLabel10.setText("Tìm kiếm ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
