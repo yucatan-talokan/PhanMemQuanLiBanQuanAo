@@ -58,7 +58,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         txtMucGiam.setText("");
         txtBatDau.setDateFormatString("");
         txtKetThuc.setDateFormatString("");
-        jLabel10.setText("");
+        txtTrangThai.setText("");
     }
     public void checkKhuyenMai(){
         Date date=new Date();
@@ -103,7 +103,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         tblKhuyenMai = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        txtTrangThai = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 255, 255));
 
@@ -140,7 +140,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
         txtKetThuc.setDateFormatString("dd/MM/yyyy");
 
-        txtBatDau.setDateFormatString("dd/MM/yyyy HH:mm");
+        txtBatDau.setDateFormatString("dd/MM/yyyy");
 
         jLabel7.setText("Trạng thái");
 
@@ -156,21 +156,35 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
         tblKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "STT", "Mã KM", "Tên KM", "Mức giảm giá", "Ngày bắt đầu", "Ngày kết thúc", "Trạng thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblKhuyenMaiMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblKhuyenMai);
+        if (tblKhuyenMai.getColumnModel().getColumnCount() > 0) {
+            tblKhuyenMai.getColumnModel().getColumn(0).setResizable(false);
+            tblKhuyenMai.getColumnModel().getColumn(1).setResizable(false);
+            tblKhuyenMai.getColumnModel().getColumn(2).setResizable(false);
+            tblKhuyenMai.getColumnModel().getColumn(3).setResizable(false);
+            tblKhuyenMai.getColumnModel().getColumn(4).setResizable(false);
+            tblKhuyenMai.getColumnModel().getColumn(5).setResizable(false);
+            tblKhuyenMai.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jButton1.setText("Reload");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -211,8 +225,6 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel9.setText("Quản lí khuyến mại");
 
-        jLabel10.setText("jLabel10");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,7 +247,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -287,7 +299,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
                     .addComponent(txtMucGiam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel10))
+                    .addComponent(txtTrangThai))
                 .addGap(57, 57, 57)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -296,8 +308,13 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb=new StringBuilder();
-        LocalDate ld=LocalDate.now();
-        System.out.println(ld);
+        Long now=System.currentTimeMillis();
+        Date start=txtBatDau.getDate();
+        Date end=txtKetThuc.getDate();
+        Long startValue=start.getTime();
+        Long endValue=end.getTime();
+        
+        
         if(txtTen.getText().isEmpty()){
             sb.append("Tên không được để trống\n");
         }
@@ -342,7 +359,12 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         km.setNgayBatDau(txtBatDau.getDate());
         km.setNgayKetThuc(txtKetThuc.getDate());
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
-        
+        if(now>=startValue&&now<=endValue){
+            km.setTrangThai(1);
+        }
+        else{
+            km.setTrangThai(0);
+        }
         
         if (khuyenMaiService.add(km)) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
@@ -362,10 +384,10 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         txtBatDau.setDate((Date) tblKhuyenMai.getValueAt(row, 4));
         txtKetThuc.setDate((Date) tblKhuyenMai.getValueAt(row, 5));
         if(tblKhuyenMai.getValueAt(row, 6).equals("Hết hạn")){
-            jLabel10.setText("Hết hạn");
+            txtTrangThai.setText("Hết hạn");
         }
         else{
-            jLabel10.setText("Đang hoạt động");
+            txtTrangThai.setText("Đang hoạt động");
         }
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
@@ -470,7 +492,6 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -488,5 +509,6 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtMucGiam;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTen;
+    private javax.swing.JLabel txtTrangThai;
     // End of variables declaration//GEN-END:variables
 }
