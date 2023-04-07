@@ -350,10 +350,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         tblThuocTinh = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
+        jTabbedPane1.setBackground(new java.awt.Color(102, 255, 255));
+
         jPanel1.setBackground(new java.awt.Color(102, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(153, 255, 153));
 
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,6 +364,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
+        btnSUa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/update.png"))); // NOI18N
         btnSUa.setText("Sửa");
         btnSUa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,6 +372,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
+        btnQR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/qr.png"))); // NOI18N
         btnQR.setText("QR");
         btnQR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,6 +380,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/delete.png"))); // NOI18N
         jButton6.setText("Xóa");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -640,6 +646,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/search.png"))); // NOI18N
         jButton5.setText("Tìm kiếm");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -691,6 +698,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Thông tin", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(102, 255, 255));
 
         jLabel3.setText("Tên thuộc tính");
 
@@ -746,6 +755,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/little_add.png"))); // NOI18N
         jButton1.setText("Thêm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -753,6 +763,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/delete.png"))); // NOI18N
         jButton4.setText("Xóa");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -778,6 +789,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblThuocTinh);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/update.png"))); // NOI18N
         jButton2.setText("Sửa");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -810,11 +822,13 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(113, 113, 113))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jButton2)
-                                                .addGap(49, 49, 49)
-                                                .addComponent(jButton4))
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(113, 113, 113)))
+                                                .addGap(51, 51, 51)
+                                                .addComponent(jButton4)
+                                                .addGap(81, 81, 81)))))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(rdoMau)
                                     .addComponent(rboChatLieu)
@@ -861,7 +875,7 @@ public class SanPhamJpanel extends javax.swing.JPanel {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Thuộc tính", jPanel2);

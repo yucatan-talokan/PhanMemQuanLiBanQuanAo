@@ -493,7 +493,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                 .addComponent(rdoThang)
                 .addGap(31, 31, 31)
                 .addComponent(rdoNam)
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -575,6 +575,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Sản phẩm", jPanel11);
 
+        btlTKDoanhThu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/phanmemquanlibanquanao/icon/search.png"))); // NOI18N
         btlTKDoanhThu.setText("Tìm kiếm");
         btlTKDoanhThu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -622,7 +623,7 @@ public class ThongKeJpanel extends javax.swing.JPanel {
                     .addComponent(txtNgayBatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btlTKDoanhThu))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
