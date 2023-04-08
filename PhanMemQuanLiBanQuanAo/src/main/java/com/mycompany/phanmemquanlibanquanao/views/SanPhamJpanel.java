@@ -1402,7 +1402,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
             if (ctsp.getMactsp().contains(txtTim.getText()) || ctsp.getSanPham().getTen().contains(txtTim.getText())
                     || ctsp.getDongSp().getTen().contains(txtTim.getText()) || ctsp.getNsx().getTen().contains(txtTim.getText())
                     || ctsp.getChatLieu().getTen().contains(txtTim.getText()) || ctsp.getMauSac().getTen().contains(txtTim.getText())
-                    || ctsp.getSize().getTen().contains(txtTim.getText())) {
+                    || ctsp.getSize().getTen().contains(txtTim.getText()) || ctsp.getMoTa().contains(txtTim.getText())
+                    ) {
                 lst.add(ctsp);
             }
         }
