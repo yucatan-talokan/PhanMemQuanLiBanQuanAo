@@ -312,7 +312,9 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         StringBuilder sb=new StringBuilder();
-        Long now=System.currentTimeMillis();
+        Long now=Calendar.getInstance().getTimeInMillis();
+        Date date=new Date();
+//        Long now=System.currentTimeMillis();
         Date start=txtBatDau.getDate();
         Date end=txtKetThuc.getDate();
         Long startValue=start.getTime();
@@ -402,7 +404,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         StringBuilder sb=new StringBuilder();
-        Long now=System.currentTimeMillis();
+        Long now=Calendar.getInstance().getTimeInMillis();
         Date start=txtBatDau.getDate();
         Date end=txtKetThuc.getDate();
         Long startValue=start.getTime();
