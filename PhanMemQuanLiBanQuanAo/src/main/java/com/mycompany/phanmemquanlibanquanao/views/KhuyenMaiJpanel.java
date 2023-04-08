@@ -36,7 +36,9 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         initComponents();        
         loadTable(khuyenMaiService.getAll());
     }
-    
+    private String dateFomart(Date d) {
+        return sdf.format(d);
+    }
     public void loadTable(List<KhuyenMai> list) {
         dtm = (DefaultTableModel) tblKhuyenMai.getModel();
         dtm.setRowCount(0);
@@ -46,8 +48,8 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
                 km.getMa(),
                 km.getTen(),
                 km.getMucGiamGia(),
-                km.getNgayBatDau(),
-                km.getNgayKetThuc(),
+                dateFomart(km.getNgayBatDau()),
+                dateFomart(km.getNgayKetThuc()),
                 km.getTrangThai() == 1 ? "Đang hoạt động" : "Hết hạn"
             };
             dtm.addRow(row);
@@ -358,12 +360,8 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         KhuyenMai km = new KhuyenMai();
         km.setMa(txtMa.getText());
         km.setTen(txtTen.getText());
-        try {
-            km.setNgayBatDau(sdf.parse(txtBatDau.getDateFormatString()));
-            km.setNgayKetThuc(sdf.parse(txtKetThuc.getDateFormatString()));
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
+        km.setNgayBatDau(txtBatDau.getDate());
+        km.setNgayKetThuc(txtKetThuc.getDate());
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
         if(now>=startValue&&now<=endValue){
             km.setTrangThai(1);
@@ -387,8 +385,13 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         txtMa.setText(tblKhuyenMai.getValueAt(row, 1).toString());
         txtTen.setText(tblKhuyenMai.getValueAt(row, 2).toString());
         txtMucGiam.setText(tblKhuyenMai.getValueAt(row, 3).toString());
-        txtBatDau.setDate((Date) tblKhuyenMai.getValueAt(row, 4));
-        txtKetThuc.setDate((Date) tblKhuyenMai.getValueAt(row, 5));
+        try {
+            txtBatDau.setDate(sdf.parse(tblKhuyenMai.getValueAt(row, 4).toString()));
+            txtKetThuc.setDate(sdf.parse(tblKhuyenMai.getValueAt(row, 5).toString()) );
+        } catch (ParseException ex) {
+            Logger.getLogger(KhuyenMaiJpanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if(tblKhuyenMai.getValueAt(row, 6).equals("Hết hạn")){
             txtTrangThai.setText("Hết hạn");
         }
@@ -444,14 +447,9 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         int row = tblKhuyenMai.getSelectedRow();
         KhuyenMai km = khuyenMaiService.getAll().get(row);
         km.setMa(txtMa.getText());
-        km.setTen(txtTen.getText());
-        try {
-            km.setNgayBatDau(sdf.parse(txtBatDau.getDateFormatString()));
-            km.setNgayKetThuc(sdf.parse(txtKetThuc.getDateFormatString()));
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-        
+        km.setTen(txtTen.getText());       
+        km.setNgayBatDau(txtBatDau.getDate());
+        km.setNgayKetThuc(txtKetThuc.getDate());            
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
         if(now>=startValue&&now<=endValue){
             km.setTrangThai(1);
