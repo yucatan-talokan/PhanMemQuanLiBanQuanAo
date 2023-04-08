@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,7 +36,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         initComponents();        
         loadTable(khuyenMaiService.getAll());
     }
-
+    
     public void loadTable(List<KhuyenMai> list) {
         dtm = (DefaultTableModel) tblKhuyenMai.getModel();
         dtm.setRowCount(0);
@@ -56,8 +58,8 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         txtMa.setText("");
         txtTen.setText("");
         txtMucGiam.setText("");
-        txtBatDau.setDateFormatString("");
-        txtKetThuc.setDateFormatString("");
+        txtBatDau.setCalendar(null);
+        txtKetThuc.setCalendar(null);
         txtTrangThai.setText("");
     }
     public void checkKhuyenMai(){
@@ -356,8 +358,12 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         KhuyenMai km = new KhuyenMai();
         km.setMa(txtMa.getText());
         km.setTen(txtTen.getText());
-        km.setNgayBatDau(txtBatDau.getDate());
-        km.setNgayKetThuc(txtKetThuc.getDate());
+        try {
+            km.setNgayBatDau(sdf.parse(txtBatDau.getDateFormatString()));
+            km.setNgayKetThuc(sdf.parse(txtKetThuc.getDateFormatString()));
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
         if(now>=startValue&&now<=endValue){
             km.setTrangThai(1);
@@ -393,6 +399,11 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         StringBuilder sb=new StringBuilder();
+        Long now=System.currentTimeMillis();
+        Date start=txtBatDau.getDate();
+        Date end=txtKetThuc.getDate();
+        Long startValue=start.getTime();
+        Long endValue=end.getTime();
         if(txtTen.getText().isEmpty()){
             sb.append("Tên không được để trống\n");
         }
@@ -434,9 +445,20 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         KhuyenMai km = khuyenMaiService.getAll().get(row);
         km.setMa(txtMa.getText());
         km.setTen(txtTen.getText());
-        km.setNgayBatDau(txtBatDau.getDate());
-        km.setNgayKetThuc(txtKetThuc.getDate());
+        try {
+            km.setNgayBatDau(sdf.parse(txtBatDau.getDateFormatString()));
+            km.setNgayKetThuc(sdf.parse(txtKetThuc.getDateFormatString()));
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
+        if(now>=startValue&&now<=endValue){
+            km.setTrangThai(1);
+        }
+        else{
+            km.setTrangThai(0);
+        }
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Hãy chọn 1 dòng trên table để sửa");
         } else {
