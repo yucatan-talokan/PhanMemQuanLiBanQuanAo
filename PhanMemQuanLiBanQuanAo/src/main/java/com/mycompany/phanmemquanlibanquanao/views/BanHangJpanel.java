@@ -514,6 +514,11 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
 
         jLabel15.setText("Giá từ");
 
+        txtTu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTuActionPerformed(evt);
+            }
+        });
         txtTu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTuKeyReleased(evt);
@@ -892,7 +897,7 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 228, Short.MAX_VALUE)
+            .addGap(0, 231, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -1281,6 +1286,10 @@ public class BanHangJpanel extends javax.swing.JPanel implements Runnable, Threa
     private void btnChonKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonKhuyenMaiMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnChonKhuyenMaiMouseClicked
+
+    private void txtTuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
