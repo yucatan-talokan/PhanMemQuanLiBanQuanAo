@@ -5,6 +5,7 @@
 package com.mycompany.phanmemquanlibanquanao.views;
 
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
+import com.mycompany.phanmemquanlibanquanao.repository.HoaDonRepository;
 import com.mycompany.phanmemquanlibanquanao.service.KhachHangService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.KhachHangServiceImpl;
 import java.util.ArrayList;
@@ -68,6 +69,21 @@ public class KhachHangJpanel extends javax.swing.JPanel {
         }
     }
 
+     private void loadDataHoaDon(List<HoaDon> list) {
+        tableModel = (DefaultTableModel) tblLichSu.getModel();
+        tableModel.setRowCount(0);
+        tableModel.setColumnIdentifiers(new String[]{
+            "STT", "Mã HD", "Ngày tạo", "Trạng thái"
+        });
+        int i = 1;
+        for (HoaDon hoaDon : list) {
+            tableModel.addRow(new Object[]{
+                i, hoaDon.getMaHoaDon(),
+                fomartNgay(hoaDon.getNgayTao()), hoaDon.htTrangThai()
+            });
+            i++;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -468,11 +484,13 @@ txtDiaChiKH.setText("");// TODO add your handling code here:
                 idkh = kh.getId();
             }
         }
+         loadDataHoaDon(new HoaDonRepository().getHdWhereMaKH(idkh));
 //        loadDataHoaDon(new HoaDonReposity().getHdWhereMaKH(idkh));
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void tblLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichSuMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_tblLichSuMouseClicked
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
