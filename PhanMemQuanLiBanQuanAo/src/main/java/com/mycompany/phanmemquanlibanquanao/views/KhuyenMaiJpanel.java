@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thanh Giang
  */
-public class KhuyenMaiJpanel extends javax.swing.JPanel {
+public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
 
     private KhuyenMaiService khuyenMaiService = new KhuyenMaiServiceImpl();
     private DefaultTableModel dtm;
@@ -35,6 +35,15 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     public KhuyenMaiJpanel() {
         initComponents();        
         loadTable(khuyenMaiService.getAll());
+        Thread thread=new Thread(this);
+        thread.start();
+    }
+    @Override
+    public void run() {
+        while (true) {            
+            khuyenMaiService.checkKetThuc();
+            loadTable(khuyenMaiService.getAll());
+        }
     }
     private String dateFomart(Date d) {
         return sdf.format(d);
@@ -64,21 +73,21 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
         txtKetThuc.setCalendar(null);
         txtTrangThai.setText("");
     }
-    public void checkKhuyenMai(){
-        Date date=new Date();
-        Thread thread=new Thread(){
-            @Override
-            public void run(){
-                while (true) {                    
-                    khuyenMaiService.checkChuaBatDau();
-                    khuyenMaiService.checkDangHoatDong();
-                    khuyenMaiService.checkKetThuc();
-                    loadTable(khuyenMaiService.getAll());
-                }
-            }
-        };
-        thread.start();
-    }
+//    public void checkKhuyenMai(){
+//        Date date=new Date();
+//        Thread thread=new Thread(){
+//            @Override
+//            public void run(){
+//                while (true) {                    
+//                    khuyenMaiService.checkChuaBatDau();
+//                    khuyenMaiService.checkDangHoatDong();
+//                    khuyenMaiService.checkKetThuc();
+//                    loadTable(khuyenMaiService.getAll());
+//                }
+//            }
+//        };
+//        thread.start();
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -533,4 +542,6 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTen;
     private javax.swing.JLabel txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+    
 }

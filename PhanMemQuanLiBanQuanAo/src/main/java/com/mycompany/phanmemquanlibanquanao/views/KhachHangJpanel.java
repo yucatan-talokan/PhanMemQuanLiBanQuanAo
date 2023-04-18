@@ -4,6 +4,7 @@
  */
 package com.mycompany.phanmemquanlibanquanao.views;
 
+import com.mycompany.phanmemquanlibanquanao.domainmodels.HoaDon;
 import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.repository.HoaDonRepository;
 import com.mycompany.phanmemquanlibanquanao.service.KhachHangService;
