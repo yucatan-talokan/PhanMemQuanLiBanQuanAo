@@ -740,6 +740,8 @@ public class SanPhamJpanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Thông tin", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(102, 255, 255));
+
         jLabel3.setText("Tên thuộc tính");
 
         jLabel13.setText("Mã");
