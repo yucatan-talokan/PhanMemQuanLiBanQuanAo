@@ -36,6 +36,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
         initComponents();        
         loadTable(khuyenMaiService.getAll());
         txtMa.setEnabled(false);
+        checkKhuyenMai();
 //        Thread thread=new Thread(this);
 //        thread.start();
     }
@@ -65,7 +66,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
                 km.getMucGiamGia(),
                 dateFomart(km.getNgayBatDau()),
                 dateFomart(km.getNgayKetThuc()),
-                km.getTrangThai() == 1 ? "Đang hoạt động" : "Hết hạn"
+                km.htTrangThai()
             };
             dtm.addRow(row);
         }
@@ -94,7 +95,27 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
 //        };
 //        thread.start();
 //    }
+ public void checkKhuyenMai() {
+        Date date = new Date();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (true) {
+                    khuyenMaiService.checkChuaBatDau();
+                    khuyenMaiService.checkDangHoatDong();
+                    khuyenMaiService.checkKetThuc();
+                    loadTable(khuyenMaiService.getAll());
+                    try {
+                        Thread.sleep(20000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(KhuyenMaiJpanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
 
+        };
+        thread.start();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -9,7 +9,9 @@ import com.mycompany.phanmemquanlibanquanao.domainmodels.KhachHang;
 import com.mycompany.phanmemquanlibanquanao.repository.HoaDonRepository;
 import com.mycompany.phanmemquanlibanquanao.service.KhachHangService;
 import com.mycompany.phanmemquanlibanquanao.service.impl.KhachHangServiceImpl;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -69,7 +71,10 @@ public class KhachHangJpanel extends javax.swing.JPanel {
             return;
         }
     }
-
+        private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        private String fomartNgay(Date d) {
+        return dateFormat.format(d);
+        }
      private void loadDataHoaDon(List<HoaDon> list) {
         tableModel = (DefaultTableModel) tblLichSu.getModel();
         tableModel.setRowCount(0);
@@ -410,18 +415,18 @@ txtDiaChiKH.setText("");// TODO add your handling code here:
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-//                if (txtTen.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Tên không được để trống");
-//            return;
-//        } else if (txtSdt.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Sdt không được để trống");
-//            return;
-//        } else if (txtDiaChi.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống");
-//            return;
-//        }
+                if (txtTenKH.getText().isEmpty()) {
+           JOptionPane.showMessageDialog(this, "Tên không được để trống");
+            return;
+        } else if (txtSdtKH.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Sdt không được để trống");
+            return;
+        } else if (txtDiaChiKH.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Địa chỉ không được để trống");
+            return;
+        }
 
-//        checkPhone(txtSdtKH.getText());
+        checkPhone(txtSdtKH.getText());
         KhachHang khachHang = new KhachHang();
         khachHang.setMa(txtMaKH.getText());
         khachHang.setTen(txtTenKH.getText());
