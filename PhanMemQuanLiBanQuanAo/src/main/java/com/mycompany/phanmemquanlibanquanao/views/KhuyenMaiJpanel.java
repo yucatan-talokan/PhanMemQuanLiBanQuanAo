@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thanh Giang
  */
-public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
+public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable {
 
     private KhuyenMaiService khuyenMaiService = new KhuyenMaiServiceImpl();
     private DefaultTableModel dtm;
@@ -33,28 +33,32 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
      * Creates new form KhuyenMaiJpanel
      */
     public KhuyenMaiJpanel() {
-        initComponents();        
+        initComponents();
         loadTable(khuyenMaiService.getAll());
         txtMa.setEnabled(false);
         checkKhuyenMai();
 //        Thread thread=new Thread(this);
 //        thread.start();
     }
+
     @Override
     public void run() {
-        while (true) {            
+        while (true) {
             khuyenMaiService.checkKetThuc();
             loadTable(khuyenMaiService.getAll());
         }
     }
+
     public String genMa(List<KhuyenMai> list) {
         String ma = "KM";
         return ma + String.valueOf(list.size() + 1);
-        
+
     }
+
     private String dateFomart(Date d) {
         return sdf.format(d);
     }
+
     public void loadTable(List<KhuyenMai> list) {
         dtm = (DefaultTableModel) tblKhuyenMai.getModel();
         dtm.setRowCount(0);
@@ -66,7 +70,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
                 km.getMucGiamGia(),
                 dateFomart(km.getNgayBatDau()),
                 dateFomart(km.getNgayKetThuc()),
-                km.htTrangThai()
+                km.getTrangThai() == 1 ? "Đang hoạt động" : km.getTrangThai() == 0 ? "Hết hạn" : "Chưa bắt đầu"
             };
             dtm.addRow(row);
         }
@@ -95,7 +99,8 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
 //        };
 //        thread.start();
 //    }
- public void checkKhuyenMai() {
+
+    public void checkKhuyenMai() {
         Date date = new Date();
         Thread thread = new Thread() {
             @Override
@@ -116,6 +121,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
         };
         thread.start();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -347,51 +353,47 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        StringBuilder sb=new StringBuilder();
-        Long now=Calendar.getInstance().getTimeInMillis();
-        Date date=new Date();
+        StringBuilder sb = new StringBuilder();
+        Long now = Calendar.getInstance().getTimeInMillis();
+        Date date = new Date();
 //        Long now=System.currentTimeMillis();
-        Date start=txtBatDau.getDate();
-        Date end=txtKetThuc.getDate();
-        Long startValue=start.getTime();
-        Long endValue=end.getTime();
-        
-        
-        if(txtTen.getText().isEmpty()){
+        Date start = txtBatDau.getDate();
+        Date end = txtKetThuc.getDate();
+        Long startValue = start.getTime();
+        Long endValue = end.getTime();
+
+        if (txtTen.getText().isEmpty()) {
             sb.append("Tên không được để trống\n");
         }
-        
-        if(txtMucGiam.getText().isEmpty()){
+
+        if (txtMucGiam.getText().isEmpty()) {
             sb.append("Mức giảm không được để trống\n");
-        }
-        else{
-            try{
-                int mucGiam=Integer.parseInt(txtMucGiam.getText());
-                if(mucGiam<1||mucGiam>99){
+        } else {
+            try {
+                int mucGiam = Integer.parseInt(txtMucGiam.getText());
+                if (mucGiam < 1 || mucGiam > 99) {
                     sb.append("Mức giảm phải lớn hơn 1 và nhỏ hơn 100\n");
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 sb.append("Mức giảm phải là số\n");
             }
         }
-        try{
-            Date ngayBD=this.txtBatDau.getDate();
-            Date ngayKT=this.txtKetThuc.getDate();
-            if(ngayBD==null){
+        try {
+            Date ngayBD = this.txtBatDau.getDate();
+            Date ngayKT = this.txtKetThuc.getDate();
+            if (ngayBD == null) {
                 sb.append("Ngày bắt đầu không được để trống\n");
             }
-            if(ngayKT==null){
+            if (ngayKT == null) {
                 sb.append("Ngày kết thúc không được để trống\n");
             }
-            if(ngayBD.getTime()>=ngayKT.getTime()){
+            if (ngayBD.getTime() >= ngayKT.getTime()) {
                 sb.append("Ngày bắt đầu phải trước ngày kết thúc\n");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if(sb.length()>0){
+        if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, sb.toString());
             return;
         }
@@ -401,13 +403,14 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
         km.setNgayBatDau(txtBatDau.getDate());
         km.setNgayKetThuc(txtKetThuc.getDate());
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
-        if(now>=startValue&&now<=endValue){
+        if (now >= startValue && now <= endValue) {
             km.setTrangThai(1);
-        }
-        else{
+        } else if (now < startValue) {
+            km.setTrangThai(2);
+        } else {
             km.setTrangThai(0);
         }
-        
+
         if (khuyenMaiService.add(km)) {
             JOptionPane.showMessageDialog(this, "Thêm thành công");
             loadTable(khuyenMaiService.getAll());
@@ -425,74 +428,64 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
         txtMucGiam.setText(tblKhuyenMai.getValueAt(row, 3).toString());
         try {
             txtBatDau.setDate(sdf.parse(tblKhuyenMai.getValueAt(row, 4).toString()));
-            txtKetThuc.setDate(sdf.parse(tblKhuyenMai.getValueAt(row, 5).toString()) );
+            txtKetThuc.setDate(sdf.parse(tblKhuyenMai.getValueAt(row, 5).toString()));
         } catch (ParseException ex) {
             Logger.getLogger(KhuyenMaiJpanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if(tblKhuyenMai.getValueAt(row, 6).equals("Hết hạn")){
-            txtTrangThai.setText("Hết hạn");
-        }
-        else{
-            txtTrangThai.setText("Đang hoạt động");
-        }
+        txtTrangThai.setText(tblKhuyenMai.getValueAt(row, 6).toString());
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        StringBuilder sb=new StringBuilder();
-        Long now=Calendar.getInstance().getTimeInMillis();
-        Date start=txtBatDau.getDate();
-        Date end=txtKetThuc.getDate();
-        Long startValue=start.getTime();
-        Long endValue=end.getTime();
-        if(txtTen.getText().isEmpty()){
+        StringBuilder sb = new StringBuilder();
+        Long now = Calendar.getInstance().getTimeInMillis();
+        Date start = txtBatDau.getDate();
+        Date end = txtKetThuc.getDate();
+        Long startValue = start.getTime();
+        Long endValue = end.getTime();
+        if (txtTen.getText().isEmpty()) {
             sb.append("Tên không được để trống\n");
         }
-        if(txtMucGiam.getText().isEmpty()){
+        if (txtMucGiam.getText().isEmpty()) {
             sb.append("Mức giảm không được để trống\n");
-        }
-        else{
-            try{
-                int mucGiam=Integer.parseInt(txtMucGiam.getText());
-                if(mucGiam<1||mucGiam>99){
+        } else {
+            try {
+                int mucGiam = Integer.parseInt(txtMucGiam.getText());
+                if (mucGiam < 1 || mucGiam > 99) {
                     sb.append("Mức giảm phải lớn hơn 1 và nhỏ hơn 100\n");
                 }
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 sb.append("Mức giảm phải là số\n");
             }
         }
-        try{
-            Date ngayBD=this.txtBatDau.getDate();
-            Date ngayKT=this.txtKetThuc.getDate();
-            if(ngayBD==null){
+        try {
+            Date ngayBD = this.txtBatDau.getDate();
+            Date ngayKT = this.txtKetThuc.getDate();
+            if (ngayBD == null) {
                 sb.append("Ngày bắt đầu không được để trống\n");
             }
-            if(ngayKT==null){
+            if (ngayKT == null) {
                 sb.append("Ngày kết thúc không được để trống\n");
             }
-            if(ngayBD.getTime()>=ngayKT.getTime()){
+            if (ngayBD.getTime() >= ngayKT.getTime()) {
                 sb.append("Ngày bắt đầu phải trước ngày kết thúc\n");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if(sb.length()>0){
+        if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, sb.toString());
             return;
         }
         int row = tblKhuyenMai.getSelectedRow();
         KhuyenMai km = khuyenMaiService.getAll().get(row);
         km.setMa(txtMa.getText());
-        km.setTen(txtTen.getText());       
+        km.setTen(txtTen.getText());
         km.setNgayBatDau(txtBatDau.getDate());
-        km.setNgayKetThuc(txtKetThuc.getDate());            
+        km.setNgayKetThuc(txtKetThuc.getDate());
         km.setMucGiamGia(Integer.valueOf(txtMucGiam.getText()));
-        if(now>=startValue&&now<=endValue){
+        if (now >= startValue && now <= endValue) {
             km.setTrangThai(1);
-        }
-        else{
+        } else {
             km.setTrangThai(0);
         }
         if (row == -1) {
@@ -526,12 +519,11 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        List<KhuyenMai>list=new ArrayList<>();
-        for(KhuyenMai km:khuyenMaiService.getAll()){
-            if(km.getMa().contains(txtSearch.getText())||
-                    km.getTen().contains(txtSearch.getText())||
-                    String.valueOf(km.getMucGiamGia()).contains(txtSearch.getText())
-                    ){
+        List<KhuyenMai> list = new ArrayList<>();
+        for (KhuyenMai km : khuyenMaiService.getAll()) {
+            if (km.getMa().contains(txtSearch.getText())
+                    || km.getTen().contains(txtSearch.getText())
+                    || String.valueOf(km.getMucGiamGia()).contains(txtSearch.getText())) {
                 list.add(km);
             }
         }
@@ -570,5 +562,4 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
     private javax.swing.JLabel txtTrangThai;
     // End of variables declaration//GEN-END:variables
 
-    
 }
