@@ -35,8 +35,8 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
     public KhuyenMaiJpanel() {
         initComponents();        
         loadTable(khuyenMaiService.getAll());
-        Thread thread=new Thread(this);
-        thread.start();
+//        Thread thread=new Thread(this);
+//        thread.start();
     }
     @Override
     public void run() {
@@ -44,6 +44,10 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
             khuyenMaiService.checkKetThuc();
             loadTable(khuyenMaiService.getAll());
         }
+    }
+    public String genMa(List<KhuyenMai> list) {
+        String ma = "KM";
+        return ma + String.valueOf(list.size() + 1);
     }
     private String dateFomart(Date d) {
         return sdf.format(d);
@@ -369,7 +373,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
             return;
         }
         KhuyenMai km = new KhuyenMai();
-        km.setMa(txtMa.getText());
+        km.setMa(genMa(khuyenMaiService.getAll()));
         km.setTen(txtTen.getText());
         km.setNgayBatDau(txtBatDau.getDate());
         km.setNgayKetThuc(txtKetThuc.getDate());
