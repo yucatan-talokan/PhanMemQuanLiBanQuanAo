@@ -266,17 +266,17 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="T&#xea;n nh&#xe2;n vi&#xea;n :"/>
+                    <Property name="text" type="java.lang.String" value="T&#xea;n nh&#xe2;n vi&#xea;n "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh :"/>
+                    <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y Sinh :"/>
+                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y Sinh "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTenNhanVien">
@@ -301,29 +301,29 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#x110;T :"/>
+                    <Property name="text" type="java.lang.String" value="S&#x110;T "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtDiaChi">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9; :"/>
+                    <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9; "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jlbTrangThai">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i :"/>
+                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Email :"/>
+                    <Property name="text" type="java.lang.String" value="Email "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n :"/>
+                    <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n "/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel4">
@@ -413,7 +413,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="CCCD :"/>
+                    <Property name="text" type="java.lang.String" value="CCCD "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCccd">
@@ -622,7 +622,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m :"/>
+                    <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTim">

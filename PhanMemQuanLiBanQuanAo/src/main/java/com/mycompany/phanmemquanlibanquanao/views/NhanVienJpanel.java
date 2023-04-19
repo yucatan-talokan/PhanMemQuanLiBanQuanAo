@@ -330,11 +330,11 @@ loadDataCV(chucVuService.getAll());
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel3.setText("Tên nhân viên :");
+        jLabel3.setText("Tên nhân viên ");
 
-        jLabel5.setText("Giới tính :");
+        jLabel5.setText("Giới tính ");
 
-        jLabel6.setText("Ngày Sinh :");
+        jLabel6.setText("Ngày Sinh ");
 
         buttonGroup1.add(rbnNam);
         rbnNam.setText("Nam");
@@ -342,15 +342,15 @@ loadDataCV(chucVuService.getAll());
         buttonGroup1.add(rbnNu);
         rbnNu.setText("Nữ");
 
-        jLabel7.setText("SĐT :");
+        jLabel7.setText("SĐT ");
 
-        jLabel8.setText("Địa chỉ :");
+        jLabel8.setText("Địa chỉ ");
 
-        jlbTrangThai.setText("Trạng thái :");
+        jlbTrangThai.setText("Trạng thái ");
 
-        jLabel12.setText("Email :");
+        jLabel12.setText("Email ");
 
-        jLabel13.setText("Mã nhân viên :");
+        jLabel13.setText("Mã nhân viên ");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -413,7 +413,7 @@ loadDataCV(chucVuService.getAll());
                 .addContainerGap())
         );
 
-        jLabel9.setText("CCCD :");
+        jLabel9.setText("CCCD ");
 
         txtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -580,7 +580,7 @@ loadDataCV(chucVuService.getAll());
         });
         jScrollPane1.setViewportView(tbNhanVien);
 
-        jLabel11.setText("Tìm Kiếm :");
+        jLabel11.setText("Tìm Kiếm ");
 
         txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
