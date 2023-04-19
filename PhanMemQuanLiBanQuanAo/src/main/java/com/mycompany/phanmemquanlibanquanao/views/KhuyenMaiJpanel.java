@@ -35,6 +35,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
     public KhuyenMaiJpanel() {
         initComponents();        
         loadTable(khuyenMaiService.getAll());
+        txtMa.setEnabled(false);
 //        Thread thread=new Thread(this);
 //        thread.start();
     }
@@ -48,6 +49,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
     public String genMa(List<KhuyenMai> list) {
         String ma = "KM";
         return ma + String.valueOf(list.size() + 1);
+        
     }
     private String dateFomart(Date d) {
         return sdf.format(d);
@@ -261,10 +263,10 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
                                         .addComponent(jLabel3)
                                         .addComponent(jLabel2)))
                                 .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                    .addComponent(txtTen, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                    .addComponent(txtTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -316,7 +318,7 @@ public class KhuyenMaiJpanel extends javax.swing.JPanel implements Runnable{
                     .addComponent(txtMucGiam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa)
                     .addComponent(jLabel7)
-                    .addComponent(txtTrangThai))
+                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
